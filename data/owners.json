@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1, 
+        "first_name": "Maxence", 
+        "last_name": "PAULIN"
+    },
+    {
+        "id": 2, 
+        "first_name": "Baptiste", 
+        "last_name": "LAVAL"
+    },
+    {
+        "id": 3, 
+        "first_name": "Antoine", 
+        "last_name": "PERRIN"
+    },
+    {
+        "id": 4, 
+        "first_name": "Antoine", 
+        "last_name": "LACHAT"
+    },
+    {
+        "id": 5, 
+        "first_name": "Taha", 
+        "last_name": "MOUMEN"
+    }
+]

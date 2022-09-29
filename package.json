@@ -1,0 +1,25 @@
+{
+  "name": "sae_s3s4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.iut-bm.univ-fcomte.fr/mpauli11/sae_s3s4.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
