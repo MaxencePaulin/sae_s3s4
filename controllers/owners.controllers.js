@@ -28,6 +28,14 @@ exports.listOwners = (req, res, next) => {
         }
         console.log("Success");
         // 200 => OK
+        
+        // return res.render("owners",{
+        //     per_page: per_page,
+        //     page: page,
+        //     nbPage: nbPage,
+        //     nbOwners: results.length,
+        //     data: [data]
+        // })
         return res.status(200).send({ success: 1, per_page: per_page, page: page, nbPage: nbPage, nbOwners: results.length, data: data });
     });
 };
