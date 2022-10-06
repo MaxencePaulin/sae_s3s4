@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 // path.join(__dirname,)
 const dotenv = require("dotenv");
 const ownersRoutes = require("./routes/owners.router.js");
@@ -10,6 +12,22 @@ dotenv.config();
 
 const port = process.env.PORT;
 const app = express();
+
+/** Swagger Initialization - START */
+const swaggerOption = {
+    swaggerDefinition: (swaggerJsdoc.Options = {
+        info: {
+            title: "API_REST",
+            description: "API documentation",
+            contact: {
+                name: "Maxence PAULIN",
+            },
+            servers: ["http://localhost:3000/"],
+        },
+    }),
+    apis: ["server.js", "./routes/*.js"],
+};
+const swaggerDocs = swaggerJsdoc(swaggerOption);
 
 app.engine("hbs", hbengine.engine({
     defaultLayout: "main",
@@ -31,6 +49,8 @@ app.use((req, res, next) =>{
         JSON.stringify(req.ip));
     next();
 });
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use("/owners", ownersRoutes);
 app.use("/api/owners", (req, res) => {
