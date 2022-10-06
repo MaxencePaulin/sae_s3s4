@@ -32,10 +32,11 @@ const allOwners = () => {
     }
 }
 
-const lireOwners = (callback) => {
+const lireOwners = (req, callback) => {
     try {
         const result = allOwners();
-        return callback(null, result);
+        const finalResult = pagination(req, result);
+        return callback(null, finalResult);
     } catch (e) {
         console.log("error");
         console.log(e);
@@ -53,12 +54,12 @@ const lireIdOwners = (id, callback) => {
         const ownersL = allOwners();
         const result = [];
         ownersL.forEach((owner) => {
-            if (owner.id === id) {
+            if (owner.id === parseInt(id)) {
                 result.push(owner);
             }
         });
         if (result[0] == null) {
-            return callback([], null);
+            return callback("No result", null);
         }
         return callback(null, result);
     }catch (e) {

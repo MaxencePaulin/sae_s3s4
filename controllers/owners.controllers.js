@@ -5,7 +5,7 @@ const ownersService = require("../services/owners.service.js");
 
 // GET 
 exports.listOwners = (req, res, next) => {
-    ownersService.lireOwners((error, results) => {
+    ownersService.lireOwners(req, (error, results) => {
         if (error) {
             return res.status(400).send({ success: 0, data: error });
         }
