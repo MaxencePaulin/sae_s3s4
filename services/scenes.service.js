@@ -32,7 +32,7 @@ const allScenes = () => {
     }
 }
 
-const lireScenes = (callback) => {
+const lireScenes = (req, callback) => {
     try {
         const result = allScenes();
         const finalResult = pagination(req, result);
@@ -54,7 +54,7 @@ const lireIdScenes = (id, callback) => {
         const scenesL = allScenes();
         const result = [];
         scenesL.forEach((scene) => {
-            if (scene.id === id) {
+            if (scene.id === parseInt(id)) {
                 result.push(scene);
             }
         });
