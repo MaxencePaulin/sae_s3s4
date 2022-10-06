@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 // const datasource = process.env.DATASOURCE;
-const ownersService = require("../services/owners-fs.service.js");
+const ownersService = require("../services/owners.service.js");
 
 // GET 
 exports.listOwners = (req, res, next) => {

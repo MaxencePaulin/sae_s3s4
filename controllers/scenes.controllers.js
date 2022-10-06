@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 // const datasource = process.env.DATASOURCE;
-const scenesService = require("../services/scenes-fs.service.js");
+const scenesService = require("../services/scenes.service.js");
 
 // GET 
 exports.listScenes = (req, res, next) => {
