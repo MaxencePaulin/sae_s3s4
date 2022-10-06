@@ -9,40 +9,13 @@ exports.listOwners = (req, res, next) => {
         if (error) {
             return res.status(400).send({ success: 0, data: error });
         }
-        var page = parseInt(req.params.page);
-        var per_page = 6;
-        var nbPage = parseInt(results.length/6)+1;
-        var data = []; 
-        var i = (page-1)*6 || 0;
-        var j = i+6;
-        for (i; i<j; i++) {
-            if (results[i] != undefined) {
-                data.push(results[i]); 
-            }else {
-                break;
-            }
-        } 
-        if (data[0] == null) {
-            const err=new Error("Not Found");
-            return next(err);
-        }
-        console.log("Success");
-        // 200 => OK
-        
-        // return res.render("owners",{
-        //     per_page: per_page,
-        //     page: page,
-        //     nbPage: nbPage,
-        //     nbOwners: results.length,
-        //     data: [data]
-        // })
-        return res.status(200).send({ success: 1, per_page: per_page, page: page, nbPage: nbPage, nbOwners: results.length, data: data });
+        console.log("success");
+        return res.status(200).send({ success: 1, data: results });
     });
 };
 
 exports.listOwnerById = (req, res, next) => {
-    const id = parseInt(req.params.id);
-    ownersService.lireIdOwners(id, (error, results) => {
+    ownersService.lireIdOwners(req.params.id, (error, results) => {
         if (error) {
             return res.status(400).send({ success: 0, data: error });
         }

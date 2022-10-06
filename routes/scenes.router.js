@@ -4,9 +4,6 @@ const {listScenes, listSceneById} = require("../controllers/scenes.controllers.j
 var router=express.Router();
 // localhost:3000/scenes
 router.get("/id=:id", listSceneById);
-router.get("/page=:page",listScenes);
-router.use("/", (req, res) => {
-    res.redirect("/scenes/page=1");
-});
+router.get("/",listScenes);
 
 module.exports = router;

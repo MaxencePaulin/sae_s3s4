@@ -4,9 +4,6 @@ const {listOwners, listOwnerById} = require("../controllers/owners.controllers.j
 var router=express.Router();
 // localhost:3000/owners
 router.get("/id=:id", listOwnerById);
-router.get("/page=:page",listOwners);
-router.use("/", (req, res) => {
-    res.redirect("/owners/page=1");
-});
+router.get("/",listOwners);
 
 module.exports = router;
