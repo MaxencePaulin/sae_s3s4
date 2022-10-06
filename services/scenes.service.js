@@ -35,9 +35,12 @@ const allScenes = () => {
 const lireScenes = (req, callback) => {
     try {
         const result = allScenes();
+        if (result.length === 0) {
+            return callback(`No scenes found`, null);
+        }
         const finalResult = pagination(req, result);
-        if (finalResult[0] == null) {
-            return callback("No scenes found", null);
+        if (finalResult.length === 0) {
+            return callback(`No scenes found for page ${req.query.page}`, null);
         }
         return callback(null, finalResult);
     } catch (e) {
