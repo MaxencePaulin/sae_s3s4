@@ -36,6 +36,9 @@ const lireScenes = (req, callback) => {
     try {
         const result = allScenes();
         const finalResult = pagination(req, result);
+        if (finalResult[0] == null) {
+            return callback("No scenes found", null);
+        }
         return callback(null, finalResult);
     } catch (e) {
         console.log("error");
@@ -59,7 +62,7 @@ const lireIdScenes = (id, callback) => {
             }
         });
         if (result[0] == null) {
-            return callback([], null);
+            return callback("No result", null);
         }
         return callback(null, result);
     }catch (e) {

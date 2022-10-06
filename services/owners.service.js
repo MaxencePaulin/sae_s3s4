@@ -36,6 +36,9 @@ const lireOwners = (req, callback) => {
     try {
         const result = allOwners();
         const finalResult = pagination(req, result);
+        if (finalResult[0] == null) {
+            return callback("No owners found", null);
+        }
         return callback(null, finalResult);
     } catch (e) {
         console.log("error");
