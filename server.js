@@ -17,10 +17,14 @@ const app = express();
 const swaggerOption = {
     swaggerDefinition: (swaggerJsdoc.Options = {
         info: {
-            title: "API_REST",
+            title: "SAE S3S4",
             description: "API documentation",
             contact: {
                 name: "Maxence PAULIN",
+                name: "Baptiste LAVAL", 
+                name: "Antoine PERRIN",
+                name: "Antoine LACHAT", 
+                name: "Taha MOUMEN"
             },
             servers: ["http://localhost:3000/"],
         },
