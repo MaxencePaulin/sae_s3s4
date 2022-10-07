@@ -86,6 +86,9 @@ app.use("*",(req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
+    if (req.path === "/favicon.ico") {
+        return;
+    }
     console.error(err.stack);
     res.render("error404.hbs");
 });
