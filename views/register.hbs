@@ -1,0 +1,116 @@
+<!-- entrer les informations d'inscription
+    - nom d'utilisateur
+    - mot de passe
+    - confirmation du mot de passe
+    - adresse email
+    - confirmation de l'adresse email
+    - bouton pour s'inscrire
+    - lien pour se connecter
+    - lien pour retourner à l'accueil
+
+
+    - vérifier que les informations sont valides
+    - vérifier que les informations sont identiques
+
+    - si les informations sont valides
+        - envoyer les informations au serveur
+        - si les informations sont valides
+            - rediriger vers la page d'accueil
+        - sinon afficher un message d'erreur
+    - sinon afficher un message d'erreur
+-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="myform form ">
+                <div class="logo mb-3">
+                    <div class="col-md-12 text-center">
+                        <h1 class="text-warning">S'enregistrer</h1>
+                    </div>
+                </div>
+                <!--                <form action="" method="post" name="register">-->
+                <div class="form-group">
+                    <label for="username" class="text-warning">Pseudonyme</label>
+                    <input type="text" name="username" class="form-control" id="username"
+                           placeholder="Entrez un pseudonyme">
+                </div>
+                <div class="form-group">
+                    <label for="email" class="text-warning">Adresse Email</label>
+                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                           placeholder="Entrez un email">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-warning">Mot de Passe</label>
+                    <input type="password" name="password" id="password" class="form-control"
+                           aria-describedby="emailHelp" placeholder="Entrez un mot de passe">
+                </div>
+                <div class="form-group">
+                    <label for="cpassword" class="text-warning">Confirmation du mot de passe</label>
+                    <input type="password" name="cpassword" id="cpassword" class="form-control"
+                           aria-describedby="emailHelp" placeholder="Entrez la confirmation du mot de passe">
+                </div>
+                <div class="col-md-12 text-center ">
+                    <button type="submit" class=" btn btn-block mybtn btn-warning tx-tfm font-weight-bold text-dark"
+                            id="register">Enregistrez-vous gratuitement
+                    </button>
+                </div>
+            </div>
+<!--            <div class="col-md-12 mb-3">-->
+<!--                <p class="text-center">-->
+<!--                    <a href="javascript:void();" class="google btn mybtn text-primary"><i class="fa fa-google-plus">-->
+<!--                    </i> Se connecter avec Google-->
+<!--                    </a>-->
+<!--                </p>-->
+<!--            </div> molo l'asticot ca à l'air dur ca-->
+            <div class="form-group">
+                <p class="text-center text-warning">En vous connectant vous acceptez notre <a href="#" target="_blank">Charte
+                    d'utilisation
+                </a></p>
+            </div>
+            <!--                </form>-->
+        </div>
+    </div>
+</div>
+
+<script>
+    function register() {
+        // récupérer les informations entrer dans le formulaire
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var cpassword = document.getElementById("cpassword").value;
+
+        // vérifier que les informations sont valides
+        if (username === "" || email === "" || password === "" || cpassword === "") {
+            alert("Veuillez remplir tous les champs");
+        } else if (password !== cpassword) {
+            alert("Les mots de passe ne correspondent pas");
+        } else {
+            // envoyer les informations au serveur
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/register", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify({
+                username: username,
+                email: email,
+                password: password
+            }));
+
+            // si les informations sont valides
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // rediriger vers la page d'accueil
+                    window.location.href = "/";
+                } else {
+                    // sinon afficher un message d'erreur
+                    alert("Une erreur est survenue");
+                }
+            }
+        }
+    }
+
+    // ajouter un écouteur d'événement sur le bouton pour s'inscrire
+    document.getElementById("register").addEventListener("click", register);
+
+</script>

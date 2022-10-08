@@ -7,7 +7,7 @@ const swaggerUi = require("swagger-ui-express");
 const dotenv = require("dotenv");
 const ownersRoutes = require("./routes/owners.router.js");
 const scenesRoutes = require("./routes/scenes.router.js");
-const usersController = require("./controllers/users.controller.js");
+const usersRoutes = require("./routes/users.router.js");
 const hbengine = require("express-handlebars");
 dotenv.config();
 
@@ -45,7 +45,6 @@ app.set("view engine", "hbs");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(express.static(path.join(__dirname, "public")));
 
 // Middleware
@@ -72,7 +71,7 @@ app.use("/api/scenes", (req, res) => {
     res.redirect("/scenes");
 });
 
-app.get("/login", usersController.loginForm);
+app.use("/login", usersRoutes);
 
 app.get("/", (req, res) => {
     res.render("home", {

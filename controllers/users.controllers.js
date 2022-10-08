@@ -2,11 +2,22 @@ const usersService = require('../services/users.service');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const usersServices = require("../services/users.service");
 dotenv.config();
 
 exports.loginForm = (req, res) => {
-    res.render('login');
+    usersService.lireUsers(req, (error, results) => {
+        if (error) {
+            return res.status(400).send({ success: 0, data: error });
+        }
+        console.log("Success");
+        res.render('login');
+    });
 }
+
+exports.registerForm = (req, res) => {
+    res.render('register');
+};
 
 // POST
 exports.register = (req, res) => {

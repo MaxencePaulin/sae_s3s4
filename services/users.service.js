@@ -43,6 +43,27 @@ const lireUsers = (req, callback) => {
     }
 }
 
+// login
+const login = (req, callback) => {
+    try {
+        const usersL = users;
+        const result = [];
+        usersL.forEach((user) => {
+            if (user.email === req.body.email && user.password === req.body.password) {
+                result.push(user);
+            }
+        });
+        if (result.length === 0) {
+            return callback(`No user found for email ${req.body.email}`, null);
+        }
+        return callback(null, result);
+    } catch (e) {
+        console.log("error");
+        console.log(e);
+        return callback([], null);
+    }
+}
+
 const lireIdUsers = (id, callback) => {
     try {
         const usersL = users;
@@ -71,7 +92,8 @@ const saveUsers = (users) => {
 module.exports = {
     lireUsers: lireUsers,
     lireIdUsers: lireIdUsers,
-    saveUsers: saveUsers
+    saveUsers: saveUsers,
+    login: login
 }
 
 
