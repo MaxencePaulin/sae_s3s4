@@ -22,3 +22,7 @@
 .dropdown-item:focus {
     color: rgb(82, 82, 82);
 }
+
+.list-group-item {
+    background-color: #ffe76d;
+}
