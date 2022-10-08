@@ -20,11 +20,13 @@ const swaggerOption = {
             title: "SAE S3S4",
             description: "API documentation",
             contact: {
-                name: "Maxence PAULIN",
-                name: "Baptiste LAVAL", 
-                name: "Antoine PERRIN",
-                name: "Antoine LACHAT", 
-                name: "Taha MOUMEN"
+                name: [
+                    "Maxence PAULIN",
+                    "Baptiste LAVAL",
+                    "Antoine PERRIN",
+                    "Antoine LACHAT",
+                    "Taha MOUMEN"
+                ],
             },
             servers: ["http://localhost:3000/"],
         },
@@ -90,9 +92,6 @@ app.use("*",(req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    if (req.path === "/favicon.ico") {
-        return;
-    }
     console.error(err.stack);
     res.render("error404.hbs");
 });
