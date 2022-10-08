@@ -1,5 +1,9 @@
-// Owners service
+// Users service
 const fs = require("fs");
+const dotenv = require("dotenv");
+dotenv.config();
+const datasource = process.env.DATASOURCE;
+const users = JSON.parse(fs.readFileSync("data/users.json", "utf8"));
 
 const pagination = (req, results) => {
     if (!req.query.page || req.query.page < 1) {
@@ -21,25 +25,15 @@ const pagination = (req, results) => {
     return {page: page, limit: limit, nbPage: nbPage, totalResult: totalResult, result: result};
 }
 
-const allOwners = () => {
+const lireUsers = (req, callback) => {
     try {
-        const dataBuffer = fs.readFileSync("data/owners.json");
-        const dataJSON = dataBuffer.toString();
-        return JSON.parse(dataJSON);
-    } catch (e) {
-        return [];
-    }
-}
-
-const lireOwners = (req, callback) => {
-    try {
-        const result = allOwners();
+        const result = users;
         if (result.length === 0) {
-            return callback(`No owners found`, null);
+            return callback(`No users found`, null);
         }
         const finalResult = pagination(req, result);
         if (finalResult.length === 0) {
-            return callback(`No owners found for page ${req.query.page}`, null);
+            return callback(`No users found for page ${req.query.page}`, null);
         }
         return callback(null, finalResult);
     } catch (e) {
@@ -47,34 +41,40 @@ const lireOwners = (req, callback) => {
         console.log(e);
         return callback([], null);
     }
-};
+}
 
-const saveOwners = (owners) => {
-    const dataJSON = JSON.stringify(owners);
-    fs.writeFileSync("data/owners.json", dataJSON);
-};
-
-const lireIdOwners = (id, callback) => {
+const lireIdUsers = (id, callback) => {
     try {
-        const ownersL = allOwners();
+        const usersL = users;
         const result = [];
-        ownersL.forEach((owner) => {
-            if (owner.id === parseInt(id)) {
-                result.push(owner);
+        usersL.forEach((user) => {
+            if (user.id == id) {
+                result.push(user);
             }
         });
-        if (result[0] == null) {
-            return callback("No result", null);
+        if (result.length === 0) {
+            return callback(`No user found for id ${id}`, null);
         }
         return callback(null, result);
-    }catch (e) {
+    } catch (e) {
         console.log("error");
         console.log(e);
         return callback([], null);
     }
 }
 
-module.exports = {
-    lireOwners: lireOwners,
-    lireIdOwners: lireIdOwners
+const saveUsers = (users) => {
+    const dataJSON = JSON.stringify(users);
+    fs.writeFileSync(datasource + "users.json", dataJSON);
 }
+
+module.exports = {
+    lireUsers: lireUsers,
+    lireIdUsers: lireIdUsers,
+    saveUsers: saveUsers
+}
+
+
+
+
+

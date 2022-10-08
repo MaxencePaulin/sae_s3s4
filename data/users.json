@@ -1,0 +1,24 @@
+[
+  {
+    "mail": "mail1",
+    "firstname": "firstname1",
+    "lastname": "lastname1",
+    "password": "password1",
+    "role": "role1",
+    "status": "status1",
+    "created_at": "created_at1",
+    "updated_at": "updated_at1",
+    "deleted_at": "deleted_at1"
+  },
+  {
+    "mail": "mail2",
+    "firstname": "firstname2",
+    "lastname": "lastname2",
+    "password": "password2",
+    "role": "role2",
+    "status": "status2",
+    "created_at": "created_at2",
+    "updated_at": "updated_at2",
+    "deleted_at": "deleted_at2"
+  }
+]

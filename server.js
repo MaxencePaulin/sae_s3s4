@@ -7,6 +7,7 @@ const swaggerUi = require("swagger-ui-express");
 const dotenv = require("dotenv");
 const ownersRoutes = require("./routes/owners.router.js");
 const scenesRoutes = require("./routes/scenes.router.js");
+const usersController = require("./controllers/users.controller.js");
 const hbengine = require("express-handlebars");
 dotenv.config();
 
@@ -45,8 +46,11 @@ app.set("view engine", "hbs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(express.static(path.join(__dirname, "public")));
+
 // Middleware
 app.use((req, res, next) =>{
+    console.log("URL : "+req.path);
     console.log("Browser: "+ 
         req.headers["user-agent"]);
     console.log("Language: "+
@@ -68,9 +72,7 @@ app.use("/api/scenes", (req, res) => {
     res.redirect("/scenes");
 });
 
-app.get("/favicon.ico", (req, res) => {
-    res.status(204);
-});
+app.get("/login", usersController.loginForm);
 
 app.get("/", (req, res) => {
     res.render("home", {
@@ -78,6 +80,26 @@ app.get("/", (req, res) => {
             {
                 author: "Maxence",
                 image: "https://picsum.photos/500/500",
+                comments: ["En cours de développement"]
+            },
+            {
+                author: "Antoine",
+                image: "https://picsum.photos/500/500?2",
+                comments: ["En cours de développement"]
+            },
+            {
+                author: "Baptiste",
+                image: "https://picsum.photos/500/500?3",
+                comments: ["En cours de développement"]
+            },
+            {
+                author: "Antoine",
+                image: "https://picsum.photos/500/500?4",
+                comments: ["En cours de développement"]
+            },
+            {
+                author: "Taha",
+                image: "https://picsum.photos/500/500?5",
                 comments: ["En cours de développement"]
             }
 
