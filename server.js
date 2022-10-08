@@ -42,6 +42,10 @@ app.use("/api/scenes", (req, res) => {
     res.redirect("/scenes");
 });
 
+app.get("/favicon.ico", (req, res) => {
+    res.status(204);
+});
+
 app.get("/", (req, res) => {
     res.render("home", {
         posts: [
