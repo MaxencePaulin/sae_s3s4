@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 // path.join(__dirname,)
 const dotenv = require("dotenv");
 const ownersRoutes = require("./routes/owners.router.js");
@@ -10,6 +12,26 @@ dotenv.config();
 
 const port = process.env.PORT;
 const app = express();
+
+/** Swagger Initialization - START */
+const swaggerOption = {
+    swaggerDefinition: (swaggerJsdoc.Options = {
+        info: {
+            title: "SAE S3S4",
+            description: "API documentation",
+            contact: {
+                name: "Maxence PAULIN",
+                name: "Baptiste LAVAL", 
+                name: "Antoine PERRIN",
+                name: "Antoine LACHAT", 
+                name: "Taha MOUMEN"
+            },
+            servers: ["http://localhost:3000/"],
+        },
+    }),
+    apis: ["server.js", "./routes/*.js"],
+};
+const swaggerDocs = swaggerJsdoc(swaggerOption);
 
 app.engine("hbs", hbengine.engine({
     defaultLayout: "main",
@@ -31,6 +53,8 @@ app.use((req, res, next) =>{
         JSON.stringify(req.ip));
     next();
 });
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use("/owners", ownersRoutes);
 app.use("/api/owners", (req, res) => {
@@ -66,6 +90,9 @@ app.use("*",(req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
+    if (req.path === "/favicon.ico") {
+        return;
+    }
     console.error(err.stack);
     res.render("error404.hbs");
 });
