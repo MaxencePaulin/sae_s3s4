@@ -1,3 +1,4 @@
+// Imports
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -9,10 +10,11 @@ const ownersRoutes = require("./routes/owners.router.js");
 const scenesRoutes = require("./routes/scenes.router.js");
 const usersRoutes = require("./routes/users.router.js");
 const hbengine = require("express-handlebars");
-dotenv.config();
 
-const port = process.env.PORT;
+// Instantiate server
 const app = express();
+dotenv.config();
+const port = process.env.PORT;
 
 /** Swagger Initialization - START */
 const swaggerOption = {
@@ -59,6 +61,7 @@ app.use((req, res, next) =>{
     next();
 });
 
+// Configure routes
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use("/owners", ownersRoutes);
@@ -71,7 +74,7 @@ app.use("/api/scenes", (req, res) => {
     res.redirect("/scenes");
 });
 
-app.use("/login", usersRoutes);
+app.use("/users", usersRoutes);
 
 app.get("/", (req, res) => {
     res.render("home", {

@@ -1,6 +1,7 @@
 // Users service
 const fs = require("fs");
 const dotenv = require("dotenv");
+const {User} = require("../models/users.model");
 dotenv.config();
 const datasource = process.env.DATASOURCE;
 const users = JSON.parse(fs.readFileSync("data/users.json", "utf8"));
@@ -44,21 +45,46 @@ const lireUsers = (req, callback) => {
 }
 
 // login
-const login = (req, callback) => {
+const login = (name, callback) => {
     try {
         const usersL = users;
         const result = [];
         usersL.forEach((user) => {
-            if (user.email === req.body.email && user.password === req.body.password) {
+            if (user.email === name || user.username === name) {
                 result.push(user);
             }
         });
         if (result.length === 0) {
-            return callback(`No user found for email ${req.body.email}`, null);
+            return callback(`No user found for email or this username ${name}`, null);
         }
         return callback(null, result);
     } catch (e) {
-        console.log("error");
+        console.log("error login");
+        console.log(e);
+        return callback([], null);
+    }
+}
+
+// register en utilisant le model user
+const register = (user, callback) => {
+    try {
+        const usersL = users;
+        const result = new User(
+            (usersL.length + 1).toString(),
+            user.firstname,
+            user.lastname,
+            user.username,
+            user.email,
+            user.password,
+            "user",
+            false,
+            false
+        );
+        usersL.push(JSON.parse(result.JSON));
+        saveUsers(usersL);
+        return callback(null, user);
+    } catch (e) {
+        console.log("error register");
         console.log(e);
         return callback([], null);
     }
@@ -86,14 +112,15 @@ const lireIdUsers = (id, callback) => {
 
 const saveUsers = (users) => {
     const dataJSON = JSON.stringify(users);
-    fs.writeFileSync(datasource + "users.json", dataJSON);
+    fs.writeFileSync("data/users.json", dataJSON);
 }
 
 module.exports = {
     lireUsers: lireUsers,
     lireIdUsers: lireIdUsers,
     saveUsers: saveUsers,
-    login: login
+    login: login,
+    register: register
 }
 
 

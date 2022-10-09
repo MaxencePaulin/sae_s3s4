@@ -68,22 +68,22 @@
                 //rediriger vers la page d'accueil
                 //sinon afficher un message d'erreur
                 fetch(
-                        "http://localhost:3000/login/check",
+                        "http://localhost:3000/users/login",
                         {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
                             },
                             body: JSON.stringify({
-                                loginName: loginName,
-                                loginPassword: loginPassword,
-                                loginCheck: loginCheck
+                                name: loginName,
+                                password: loginPassword
+                                // loginCheck: loginCheck
                             })
                         }
                 ).then(function (response) {
                     return response.json();
                 }).then(function (data) {
-                    console.log(data);
+                    console.log(data.data);
                     if (data.success) {
                         window.location.href = "http://localhost:3000/";
                     } else {

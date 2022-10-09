@@ -1,7 +1,7 @@
 {
   "name": "sae_s3s4",
   "version": "1.0.0",
-  "description": "",
+  "description": "API REST avec BDD pour le projet SAE",
   "main": "server.js",
   "dependencies": {
     "axios": "^0.27.2",
@@ -19,10 +19,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
+  "keywords": [
+    "node",
+    "express",
+    "SAE_S3S4"
+  ],
   "repository": {
     "type": "git",
     "url": "https://gitlab.iut-bm.univ-fcomte.fr/mpauli11/sae_s3s4.git"
   },
-  "author": "",
+  "author": "Groupe 6",
   "license": "ISC"
 }
