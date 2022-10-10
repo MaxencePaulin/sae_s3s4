@@ -54,6 +54,7 @@ exports.login = (req, res) => {
             results.password = undefined;
             let token = generateTokenForUser(results[0])
             console.log(token);
+
             return res.status(200).send({
                 success: 1, data:
                     {

@@ -15,3 +15,20 @@ exports.generateTokenForUser = (user) => {
         }
     );
 }
+
+exports.verifyToken = (token) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        let userId=-1;
+        let is_moderator=false;
+        let is_admin=false;
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(decoded);
+            userId = decoded.id;
+            is_moderator = decoded.is_moderator;
+            is_admin = decoded.is_admin;
+        }
+        return {userId, is_moderator, is_admin};
+    });
+}

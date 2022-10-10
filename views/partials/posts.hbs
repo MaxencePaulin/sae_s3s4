@@ -1,5 +1,5 @@
 <div class="posts">
-    <h3 id="test" class="text-warning"></H3>
+    <h3 id="test" class="text-warning">Vous êtes connecté</h3>
     <div class="row justify-content-center">
         {{#each posts}}
         <div class="col-lg-4" style="margin-top: 50px;">
@@ -28,8 +28,9 @@
 
 <script>
     let token = window.localStorage.getItem("token");
+    let test = document.getElementById("test");
+    test.style.display = "none";
     if (token) {
-        let test = document.getElementById("test");
-        test.innerHTML = "Vous êtes connecté";
+        test.style.display = "block";
     }
 </script>
