@@ -84,6 +84,8 @@
                     return response.json();
                 }).then(function (data) {
                     console.log(data.data);
+                    window.localStorage.setItem('userId', data.data.userId);
+                    window.localStorage.setItem('token', data.data.token);
                     if (data.success) {
                         window.location.href = "http://localhost:3000/";
                     } else {
