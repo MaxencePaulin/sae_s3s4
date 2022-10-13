@@ -65,7 +65,6 @@ const lireIdScenes = (id, callback) => {
         });
         if (result[0] == null) {
             return callback("No result", null);
-
         }
         return callback(null, result);
     }catch (e) {
