@@ -1,0 +1,54 @@
+[
+  {
+    "id": "1",
+    "firstname": "firstname1",
+    "lastname": "lastname1",
+    "username": "username1",
+    "mail": "mail1",
+    "password": "password1",
+    "role": "role1",
+    "status": "status1",
+    "created_at": "created_at1",
+    "updated_at": "updated_at1",
+    "deleted_at": "deleted_at1"
+  },
+  {
+    "id": "2",
+    "firstname": "firstname2",
+    "lastname": "lastname2",
+    "username": "username2",
+    "mail": "mail2",
+    "password": "password2",
+    "role": "role2",
+    "status": "status2",
+    "created_at": "created_at2",
+    "updated_at": "updated_at2",
+    "deleted_at": "deleted_at2"
+  },
+  {
+    "id": "3",
+    "firstname": "test",
+    "lastname": "test",
+    "username": "test",
+    "email": "test",
+    "password": "$2b$10$bGdMoFd6He22HHr4voTm3u5AbNFyibv9YA8bIB.9V0jsbmAOen2n.",
+    "role": "user",
+    "created_at": "2022-10-09T13:08:02.202Z",
+    "updated_at": "2022-10-09T13:08:02.202Z",
+    "is_admin": false,
+    "is_moderator": false
+  },
+  {
+    "id": "4",
+    "firstname": "admin",
+    "lastname": "admin",
+    "username": "admin",
+    "email": "admin",
+    "password": "$2b$10$bGdMoFd6He22HHr4voTm3u5AbNFyibv9YA8bIB.9V0jsbmAOen2n.",
+    "role": "admin",
+    "created_at": "2022-10-09T13:08:02.202Z",
+    "updated_at": "2022-10-09T13:08:02.202Z",
+    "is_admin": true,
+    "is_moderator": false
+  }
+]

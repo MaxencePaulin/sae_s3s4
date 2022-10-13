@@ -1,0 +1,28 @@
+.form-control:focus {
+    border-color: #f0ad4e;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: 0 0 5px rgba(240, 173, 78, 1);
+}
+
+.form-group .form-control {
+    border-color: #f0ad4e;
+    background-color: #ffe76d;
+}
+
+.form-control, .form-control:focus {
+    border-color: #f0ad4e;
+    background-color: #ffe76d;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: #fdc007;
+}
+
+.dropdown-item:focus {
+    color: rgb(82, 82, 82);
+}
+
+.list-group-item {
+    background-color: #ffe76d;
+}

@@ -18,8 +18,7 @@ const pagination = (req, results) => {
     }
     const nbPage= Math.ceil(results.length / limit);
     const totalResult = results.length;
-    const resultsPage = {page: page, limit: limit, nbPage: nbPage, totalResult: totalResult, result: result};
-    return resultsPage;
+    return {page: page, limit: limit, nbPage: nbPage, totalResult: totalResult, result: result};
 }
 
 const allScenes = () => {

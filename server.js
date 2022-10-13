@@ -1,3 +1,4 @@
+// Imports
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -5,13 +6,16 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 // path.join(__dirname,)
 const dotenv = require("dotenv");
+const mainRoutes = require("./routes/main.router.js");
 const ownersRoutes = require("./routes/owners.router.js");
 const scenesRoutes = require("./routes/scenes.router.js");
+const usersRoutes = require("./routes/users.router.js");
 const hbengine = require("express-handlebars");
-dotenv.config();
 
-const port = process.env.PORT;
+// Instantiate server
 const app = express();
+dotenv.config();
+const port = process.env.PORT;
 
 /** Swagger Initialization - START */
 const swaggerOption = {
@@ -20,11 +24,13 @@ const swaggerOption = {
             title: "SAE S3S4",
             description: "API documentation",
             contact: {
-                name: "Maxence PAULIN",
-                name: "Baptiste LAVAL", 
-                name: "Antoine PERRIN",
-                name: "Antoine LACHAT", 
-                name: "Taha MOUMEN"
+                name: [
+                    "Maxence PAULIN",
+                    "Baptiste LAVAL",
+                    "Antoine PERRIN",
+                    "Antoine LACHAT",
+                    "Taha MOUMEN"
+                ],
             },
             servers: ["http://localhost:3000/"],
         },
@@ -42,9 +48,11 @@ app.set("view engine", "hbs");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Middleware
 app.use((req, res, next) =>{
+    console.log("URL : "+req.path);
     console.log("Browser: "+ 
         req.headers["user-agent"]);
     console.log("Language: "+
@@ -54,7 +62,11 @@ app.use((req, res, next) =>{
     next();
 });
 
+// Configure routes
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/api/api-docs", (req, res) => {
+    res.redirect("/api-docs");
+});
 
 app.use("/owners", ownersRoutes);
 app.use("/api/owners", (req, res) => {
@@ -66,18 +78,9 @@ app.use("/api/scenes", (req, res) => {
     res.redirect("/scenes");
 });
 
-app.get("/", (req, res) => {
-    res.render("home", {
-        posts: [
-            {
-                author: "Maxence",
-                image: "https://picsum.photos/500/500",
-                comments: ["En cours de développement"]
-            }
+app.use("/users", usersRoutes);
 
-        ]
-    });
-});
+app.use("/", mainRoutes);
 
 app.use("*",(req, res, next) => {
     const err = new Error("Not Found");
