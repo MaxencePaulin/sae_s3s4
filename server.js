@@ -2,42 +2,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
 // path.join(__dirname,)
 const dotenv = require("dotenv");
 const mainRoutes = require("./routes/main.router.js");
-const ownersRoutes = require("./routes/owners.router.js");
-const scenesRoutes = require("./routes/scenes.router.js");
-const usersRoutes = require("./routes/users.router.js");
 const hbengine = require("express-handlebars");
 
 // Instantiate server
 const app = express();
 dotenv.config();
 const port = process.env.PORT;
-
-/** Swagger Initialization - START */
-const swaggerOption = {
-    swaggerDefinition: (swaggerJsdoc.Options = {
-        info: {
-            title: "SAE S3S4",
-            description: "API documentation",
-            contact: {
-                name: [
-                    "Maxence PAULIN",
-                    "Baptiste LAVAL",
-                    "Antoine PERRIN",
-                    "Antoine LACHAT",
-                    "Taha MOUMEN"
-                ],
-            },
-            servers: ["http://localhost:3000/"],
-        },
-    }),
-    apis: ["server.js", "./routes/*.js"],
-};
-const swaggerDocs = swaggerJsdoc(swaggerOption);
 
 app.engine("hbs", hbengine.engine({
     defaultLayout: "main",
@@ -61,24 +34,6 @@ app.use((req, res, next) =>{
         JSON.stringify(req.ip));
     next();
 });
-
-// Configure routes
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.use("/api/api-docs", (req, res) => {
-    res.redirect("/api-docs");
-});
-
-app.use("/owners", ownersRoutes);
-app.use("/api/owners", (req, res) => {
-    res.redirect("/owners");
-});
-
-app.use("/scenes", scenesRoutes);
-app.use("/api/scenes", (req, res) => {
-    res.redirect("/scenes");
-});
-
-app.use("/users", usersRoutes);
 
 app.use("/", mainRoutes);
 
