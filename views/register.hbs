@@ -103,7 +103,7 @@
         } else {
             // envoyer les informations au serveur
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/users/register", true);
+            xhr.open("POST", "/register", true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify({
                 firstname: firstname,

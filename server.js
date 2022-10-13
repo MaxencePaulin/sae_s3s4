@@ -6,6 +6,7 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 // path.join(__dirname,)
 const dotenv = require("dotenv");
+const mainRoutes = require("./routes/main.router.js");
 const ownersRoutes = require("./routes/owners.router.js");
 const scenesRoutes = require("./routes/scenes.router.js");
 const usersRoutes = require("./routes/users.router.js");
@@ -63,6 +64,9 @@ app.use((req, res, next) =>{
 
 // Configure routes
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/api/api-docs", (req, res) => {
+    res.redirect("/api-docs");
+});
 
 app.use("/owners", ownersRoutes);
 app.use("/api/owners", (req, res) => {
@@ -76,38 +80,7 @@ app.use("/api/scenes", (req, res) => {
 
 app.use("/users", usersRoutes);
 
-app.get("/", (req, res) => {
-    res.render("home", {
-        posts: [
-            {
-                author: "Maxence",
-                image: "https://picsum.photos/500/500",
-                comments: ["En cours de développement"]
-            },
-            {
-                author: "Antoine",
-                image: "https://picsum.photos/500/500?2",
-                comments: ["En cours de développement"]
-            },
-            {
-                author: "Baptiste",
-                image: "https://picsum.photos/500/500?3",
-                comments: ["En cours de développement"]
-            },
-            {
-                author: "Antoine",
-                image: "https://picsum.photos/500/500?4",
-                comments: ["En cours de développement"]
-            },
-            {
-                author: "Taha",
-                image: "https://picsum.photos/500/500?5",
-                comments: ["En cours de développement"]
-            }
-
-        ]
-    });
-});
+app.use("/", mainRoutes);
 
 app.use("*",(req, res, next) => {
     const err = new Error("Not Found");
