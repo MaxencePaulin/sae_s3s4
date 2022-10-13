@@ -121,9 +121,4 @@ module.exports = {
     saveUsers: saveUsers,
     login: login,
     register: register
-}
-
-
-
-
-
+};

@@ -1,10 +1,11 @@
 // main.router.js
 const express = require("express");
-const usersController = require("../controllers/users.controllers");
-const adminRoutes = require("../routes/admin.router");
-const ownersRoutes = require("./owners.router");
-const scenesRoutes = require("./scenes.router");
-const usersRoutes = require("./users.router");
+const usersControllers = require("../controllers/users.controllers");
+const ownersControllers = require("../controllers/owners.controllers");
+const scenesControllers = require("../controllers/scenes.controllers");
+const adminControllers = require("../controllers/admin.controllers");
+const guestControllers = require("../controllers/guest.controllers");
+const userControllers = require("../controllers/user.controllers");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 let router=express.Router();
@@ -36,27 +37,117 @@ const swaggerDocs = swaggerJsdoc(swaggerOption);
 // Configuration des routes
 
 router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-router.use("/api/api-docs", (req, res) => {
-    res.redirect("/api-docs");
-});
 
-router.use("/owners", ownersRoutes);
-router.use("/api/owners", (req, res) => {
-    res.redirect("/owners");
-});
+router.get("owners/id=:id", ownersControllers.listOwnerById);
+/**
+ * @swagger
+ * /owners/id={id}:
+ *   get:
+ *      description: Display owner with id = {id}
+ *      tags:
+ *          - owners
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            description: Owner ID
+ *            required: true
+ *            type: integer
+ *      responses:
+ *          '200':
+ *              description: Resource updated successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 
-router.use("/scenes", scenesRoutes);
-router.use("/api/scenes", (req, res) => {
-    res.redirect("/scenes");
-});
+router.get("/owners",ownersControllers.listOwners);
+/**
+ * @swagger
+ * /owners:
+ *   get:
+ *      description: List all owners
+ *      tags:
+ *          - owners
+ *      parameters:
+ *          - in: query
+ *            name: page
+ *            description: Number of the page
+ *            required: false
+ *            type: integer
+ *          - in: query
+ *            name: limit
+ *            description: Limit of result per page
+ *            required: false
+ *            type: integer
+ *      responses:
+ *          '200':
+ *              description: Resource updated successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 
-router.use("/users", usersRoutes);
+router.get("/scenes/id=:id", scenesControllers.listSceneById);
+/**
+ * @swagger
+ * /scenes/id={id}:
+ *   get:
+ *      description: Display scene with id = {id}
+ *      tags:
+ *          - scenes
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            description: Scene ID
+ *            required: true
+ *            type: integer
+ *      responses:
+ *          '200':
+ *              description: Resource updated successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 
-router.get("/login", usersController.loginForm);
-router.post('/login', usersController.login);
-router.get("/register", usersController.registerForm);
-router.post("/register", usersController.register);
-router.use("/admin",  adminRoutes)
+router.get("/scenes", scenesControllers.listScenes);
+/**
+ * @swagger
+ * /scenes:
+ *   get:
+ *      description: Display all scene
+ *      tags:
+ *          - scenes
+ *      parameters:
+ *          - in: query
+ *            name: page
+ *            description: Number of the page
+ *            required: false
+ *            type: integer
+ *          - in: query
+ *            name: limit
+ *            description: Limit of result per page
+ *            required: false
+ *            type: integer
+ *      responses:
+ *          '200':
+ *              description: Resource updated successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+
+router.get("/login", usersControllers.loginForm);
+router.post('/login', usersControllers.login);
+router.get("/register", usersControllers.registerForm);
+router.post("/register", usersControllers.register);
+
+router.get("/user", userControllers.test);
+router.get("/guest",  guestControllers.test);
+router.get("/admin",  adminControllers.test);
 
 router.get("/", (req, res) => {
     res.render("home", {
