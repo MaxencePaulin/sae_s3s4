@@ -9,10 +9,10 @@ const _users_role = Symbol('role');
 const _users_created_at = Symbol('created_at');
 const _users_updated_at = Symbol('updated_at');
 const _users_is_admin = Symbol('is_admin');
-const _users_is_moderator = Symbol('is_moderator');
+const _users_is_guest = Symbol('is_guest');
 
 class User {
-    constructor(id, firstname, lastname, username, email, password, role, is_admin, is_moderator) {
+    constructor(id, firstname, lastname, username, email, password, role, is_admin, is_guest) {
         this[_users_id] = id;
         this[_users_firstname] = firstname;
         this[_users_lastname] = lastname;
@@ -23,7 +23,7 @@ class User {
         this[_users_created_at] = new Date(Date.now());
         this[_users_updated_at] = new Date(Date.now());
         this[_users_is_admin] = is_admin;
-        this[_users_is_moderator] = is_moderator;
+        this[_users_is_guest] = is_guest;
     }
 
     get id() {
@@ -66,8 +66,8 @@ class User {
         return this[_users_is_admin];
     }
 
-    get is_moderator() {
-        return this[_users_is_moderator];
+    get is_guest() {
+        return this[_users_is_guest];
     }
 
     get JSON(){
@@ -82,7 +82,7 @@ class User {
             created_at:this.created_at,
             updated_at:this.updated_at,
             is_admin:this.is_admin,
-            is_moderator:this.is_moderator
+            is_guest:this.is_guest
         });
     }
 
@@ -109,11 +109,11 @@ class User {
             || typeof data.updated_at !== 'string'
             || !data.hasOwnProperty("is_admin")
             || typeof data.is_admin !== 'boolean'
-            || !data.hasOwnProperty("is_moderator")
-            || typeof data.is_moderator !== 'boolean'){
+            || !data.hasOwnProperty("is_guest")
+            || typeof data.is_guest !== 'boolean'){
             throw new Error(`Not a User: ${json}`);
         }
-        return new User(data.id, data.firstname, data.lastname, data.username, data.email, data.password, data.role, data.is_admin, data.is_moderator);
+        return new User(data.id, data.firstname, data.lastname, data.username, data.email, data.password, data.role, data.is_admin, data.is_guest);
     }
 }
 

@@ -8,6 +8,7 @@ const guestControllers = require("../controllers/guest.controllers");
 const userControllers = require("../controllers/user.controllers");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const auth = require("../Middleware/authenticate");
 let router=express.Router();
 
 /** Swagger Initialization - START */
@@ -145,11 +146,33 @@ router.post('/login', usersControllers.login);
 router.get("/register", usersControllers.registerForm);
 router.post("/register", usersControllers.register);
 
-router.get("/user", userControllers.test);
-router.get("/guest",  guestControllers.test);
-router.get("/admin",  adminControllers.test);
+router.get("/user", auth.authenticateToken, userControllers.test);
+router.get("/guest", auth.authenticateGuest, guestControllers.test);
+router.get("/admin", auth.authenticateAdmin,  adminControllers.test);
+/**
+ * @swagger
+ * /admin:
+ *   get:
+ *      description: Display admin page
+ *      tags:
+ *          - admin
+ *      parameters:
+ *          - in: header
+ *            name: authorization
+ *            description: Token of the user
+ *            required: false
+ *            type: string
+ *      responses:
+ *          '200':
+ *              description: Resource updated successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 
 router.get("/", (req, res) => {
+    console.log(req.headers);
     res.render("home", {
         posts: [
             {
