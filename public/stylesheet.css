@@ -26,3 +26,11 @@
 .list-group-item {
     background-color: #ffe76d;
 }
+
+.btn-dark {
+    color: #fdc007;
+}
+
+.btn-dark:hover, .btn-dark:focus {
+    color: #fdc007;
+}

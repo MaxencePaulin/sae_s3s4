@@ -27,10 +27,10 @@
 </div>
 
 <script>
-    let token = window.localStorage.getItem("token");
     let test = document.getElementById("test");
-    test.style.display = "none";
     if (token) {
         test.style.display = "block";
+    }else{
+        test.style.display = "none";
     }
 </script>
