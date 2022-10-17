@@ -83,7 +83,7 @@ exports.authenticateGuest = (req, res, next) => {
             if (error) {
                 return res.status(400).send({success: 0, data: error});
             }
-            if (results[0].is_guest === true) {
+            if (results[0].is_guest === true || results[0].is_admin === true) {
                 next();
             } else {
                 return res.status(401).send({success: 0, data: "Access denied"});

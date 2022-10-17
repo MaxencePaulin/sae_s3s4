@@ -8,7 +8,7 @@ const guestControllers = require("../controllers/guest.controllers");
 const userControllers = require("../controllers/user.controllers");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const auth = require("../Middleware/authenticate");
+const auth = require("../middleware/authenticate");
 let router=express.Router();
 
 /** Swagger Initialization - START */

@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Middleware
+// middleware
 app.use((req, res, next) =>{
     console.log("URL : "+req.path);
     console.log("Browser: "+ 
