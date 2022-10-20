@@ -6,6 +6,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 const mainRoutes = require("./routes/main.router.js");
 const hbengine = require("express-handlebars");
+const auth = require("./middleware/authenticate");
 
 // Instantiate server
 const app = express();
@@ -37,7 +38,7 @@ app.use((req, res, next) =>{
 
 app.use("/", mainRoutes);
 
-app.use("*",(req, res, next) => {
+app.use("*", auth.authenticateData, (req, res, next) => {
     const err = new Error("Not Found");
     err.status = 404;
     next(err);
@@ -45,7 +46,10 @@ app.use("*",(req, res, next) => {
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.render("error404.hbs");
+    let username = req.user ? req.user.username : "";
+    res.render("error404.hbs", {
+        username: username
+    });
 });
 
 app.listen(port, ()=>{

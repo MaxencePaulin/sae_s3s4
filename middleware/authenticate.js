@@ -4,6 +4,40 @@ const jwt = require("jsonwebtoken");
 const {lireUsers, lireIdUsers} = require("../services/users.service");
 dotenv.config();
 
+exports.authenticateData = (req, res, next) => {
+    // const token = req.headers["authorization"];
+    // recuperer le token stocker en cookie
+
+    const token = req.headers.cookie
+        ? req.headers.cookie
+            .split(";")
+            .filter((cookie) => cookie.startsWith("token="))[0]
+            .slice(6)
+        : null;
+    if (!token) {
+        next();
+    }else {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err) {
+                next();
+            }
+            req.user = decoded;
+            lireIdUsers(decoded.id,(error, results) => {
+                if (error) {
+                    return res.status(400).send({success: 0, data: error});
+                }
+                req.user = {
+                    id: decoded.id,
+                    iat: decoded.iat,
+                    exp: decoded.exp,
+                    username: results[0].username,
+                };
+                next();
+            });
+        });
+    }
+}
+
 exports.authenticateToken = (req, res, next) => {
     // const token = req.headers["authorization"];
 

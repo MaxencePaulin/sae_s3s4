@@ -141,9 +141,9 @@ router.get("/scenes", scenesControllers.listScenes);
  *              description: Bad request
  */
 
-router.get("/login", usersControllers.loginForm);
+router.get("/login", auth.authenticateData, usersControllers.loginForm);
 router.post('/login', usersControllers.login);
-router.get("/register", usersControllers.registerForm);
+router.get("/register", auth.authenticateData, usersControllers.registerForm);
 router.post("/register", usersControllers.register);
 
 router.get("/user", auth.authenticateToken, userControllers.test);
@@ -171,8 +171,9 @@ router.get("/admin", auth.authenticateAdmin,  adminControllers.test);
  *              description: Bad request
  */
 
-router.get("/", (req, res) => {
+router.get("/", auth.authenticateData, (req, res) => {
     console.log(req.headers);
+    let username = req.user ? req.user.username : "";
     res.render("home", {
         posts: [
             {
@@ -201,7 +202,8 @@ router.get("/", (req, res) => {
                 comments: ["En cours de développement"]
             }
 
-        ]
+        ],
+        username: username
     });
 });
 

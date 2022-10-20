@@ -12,12 +12,18 @@ exports.loginForm = (req, res) => {
             return res.status(400).send({success: 0, data: error});
         }
         console.log("Success");
-        res.render('login');
+        let username = req.user ? req.user.username : "";
+        res.render('login', {
+            username: username
+        });
     });
 }
 
 exports.registerForm = (req, res) => {
-    res.render('register');
+    let username = req.user ? req.user.username : "";
+    res.render('register', {
+        username: username
+    });
 };
 
 // POST

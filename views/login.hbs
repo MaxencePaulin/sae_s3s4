@@ -86,9 +86,12 @@
             console.log(data);
             if (data.success) {
                 // supprimer tout les cookies
-                document.cookie.split(";").forEach(function (c) {
-                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-                });
+                console.log(document.cookie);
+                if (document.cookie) {
+                    document.cookie.split(";").forEach(function (c) {
+                        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                    });
+                }
                 // ajoute le token dans un cookie
                 document.cookie = "token=" + data.token;
                 window.localStorage.setItem('token', data.token);
