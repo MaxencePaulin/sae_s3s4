@@ -1,7 +1,6 @@
-
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
-const {lireUsers, lireIdUsers} = require("../services/users.service");
+const {lireIdUsers} = require("../services/users.service");
 dotenv.config();
 
 exports.authenticateData = (req, res, next) => {
@@ -34,6 +33,26 @@ exports.authenticateData = (req, res, next) => {
                 };
                 next();
             });
+        });
+    }
+}
+
+exports.logged = (req, res, next) => {
+    // const token = req.headers["authorization"];
+    // recuperer le token stocker en cookie
+
+    const token = req.headers.cookie
+        ? req.headers.cookie
+            .split(";")
+            .filter((cookie) => cookie.startsWith("token="))[0]
+            .slice(6)
+        : null;
+    if (!token) {
+        next();
+    }else {
+        let username = req.user ? req.user.username : "";
+        res.render("logged", {
+            username: req.user.username,
         });
     }
 }

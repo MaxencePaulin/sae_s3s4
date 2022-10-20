@@ -1,0 +1,17 @@
+<<h1 class="text-warning">
+    Vous êtes déjà connecté !</h1>
+<h3 class="mt-5">
+    <a href="/">Retourner au menu principal</a>
+</h3>
+<button id="safeLogoutButton" class="btn btn-warning mt-5" type="submit">Se déconnecter</button>
+
+<script>
+    let safeLogoutButton = document.getElementById("safeLogoutButton");
+    safeLogoutButton.addEventListener("click", () => {
+        window.localStorage.removeItem("token");
+        document.cookie.split(";").forEach(function (c) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
+        window.location.href = "/";
+    });
+</script>

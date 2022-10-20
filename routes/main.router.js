@@ -141,9 +141,9 @@ router.get("/scenes", scenesControllers.listScenes);
  *              description: Bad request
  */
 
-router.get("/login", auth.authenticateData, usersControllers.loginForm);
+router.get("/login", auth.authenticateData, auth.logged, usersControllers.loginForm);
 router.post('/login', usersControllers.login);
-router.get("/register", auth.authenticateData, usersControllers.registerForm);
+router.get("/register", auth.authenticateData, auth.logged, usersControllers.registerForm);
 router.post("/register", usersControllers.register);
 
 router.get("/user", auth.authenticateToken, userControllers.test);
