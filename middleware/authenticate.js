@@ -52,7 +52,7 @@ exports.logged = (req, res, next) => {
     }else {
         let username = req.user ? req.user.username : "";
         res.render("logged", {
-            username: req.user.username,
+            username: username,
         });
     }
 }
