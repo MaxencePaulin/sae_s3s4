@@ -1,4 +1,3 @@
-const e = require("express");
 const fs = require("fs") ;
 const { User } = require("../models/users.model");
 
@@ -11,56 +10,60 @@ const test = (callback) => {
         return callback("erreur", null);
     }
 }
-const addUser= (req , callback)=>{
+
+const saveUsers = (users) => {
+    const dataJSON = JSON.stringify(users);
+    fs.writeFileSync("data/users.json", dataJSON);
+}
+
+const lireUsers = () => {
+    try {
+        let dataBuffer = fs.readFileSync("data/users.json");
+        const dataString= dataBuffer.toString();
+        return JSON.parse(dataString);
+    }
+    catch (e){
+        console.log("erreur lecture du fichier Users")
+        console.log(e);
+        return [];
+    }
+}
+
+const addUser= (user , callback)=>{
    try { 
-        let data = data();
+        let data = lireUsers();
         let maxId = getMaxId();
         let userObj=new User(maxId, 
-            req.body.firstname, 
-            req.body.lastname,
-            req.body.username,
-            req.body.email ,
-            req.body.password ,
+            user.firstname,
+            user.lastname,
+            user.username,
+            user.email ,
+            user.password ,
             "guest" ,
             false ,
             true);
-        saveUser(data.push(userObj.JSON()));
+        saveUsers(data.push(userObj.JSON()));
         return callback(null,[])
     }
     catch(e){
         console.log(" erreur lors de l'ajout de l'utilisateur");
         console.log(e);
-        return callback(e,[])
+        return callback("impossible d'ajouter l'user",null)
     }
 }
 
-function getMaxId(){
-    let data= data();
-    let tab_id=[];
-    if (data="erreur lors de l'ouverture du fichier"){
+function getMaxId(callback){
+    let data = lireUsers();
+    let maxId=0;
+    if (data.length === 0){
         return callback("erreur lors de l'ouverture du fichier",null);
     }
-    for (const user of data) {
-        tab_id.push(parseInt(user.id));
-    }
-    let maxId = Math.max(tab_id);
-    return maxId+1;
-}
-
-function data(){
-    try {
-        let datas = fs.readFileSync("data/users.json");
-        const data_string=datas.toString();
-        datas=JSON.parse(data_string);
-        return datas
-    }
-    catch (e){
-        return "erreur lors de l'ouverture du fichier"
-    }
-}
-const saveUsers = (users) => {
-    const dataJSON = JSON.stringify(users);
-    fs.writeFileSync("data/users.json", dataJSON);
+    data.forEach((element) => {
+        if (parseInt(element.id)>maxId){
+            maxId=element.id;
+        }
+    })
+    return maxId;
 }
 
 module.exports = {
