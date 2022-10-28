@@ -52,6 +52,20 @@ const addUser= (user , callback)=>{
     }
 }
 
+const deleteUser=(idUser , callback)=>{
+    try {
+        let data = lireUsers();
+        const indexToDelete=data.find(id => data.id==idUser)
+        data.splice(indexToDelete)
+        saveUsers(data)
+    }
+    catch (e){
+        console.log(" erreur lors de la suppression de l'utilisateur");
+        console.log(e);
+        return callback("impossible de supprimer l'user",null)
+    }
+}
+    
 function getMaxId(callback){
     let data = lireUsers();
     let maxId=0;
