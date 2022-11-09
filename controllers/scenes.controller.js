@@ -1,11 +1,11 @@
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config();
 // const datasource = process.env.DATASOURCE;
-const scenesService = require("../services/scenes.service.js");
-const {pagination} = require("../utils/page");
+import scenesService from "../services/scenes.service.js";
+import {pagination} from "../utils/page.js";
 
 // GET 
-exports.listScenes = (req, res, next) => {
+const listScenes = (req, res) => {
     scenesService.lireScenes((error, results) => {
         if (error) {
             return res.status(400).send({ success: 0, data: error });
@@ -20,7 +20,7 @@ exports.listScenes = (req, res, next) => {
     });
 };
 
-exports.listSceneById = (req, res, next) => {
+const listSceneById = (req, res) => {
     scenesService.lireIdScenes(req.params.id, (error, results) => {
         if (error) {
             return res.status(400).send({ success: 0, data: error });
@@ -29,3 +29,8 @@ exports.listSceneById = (req, res, next) => {
         return res.status(200).send({ success: 1, data: results});
     });
 };
+
+export default {
+    listScenes: listScenes,
+    listSceneById: listSceneById
+}

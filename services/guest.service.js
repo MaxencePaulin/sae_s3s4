@@ -8,6 +8,6 @@ const test = (callback) => {
     }
 }
 
-module.exports = {
+export default {
     test: test,
 }

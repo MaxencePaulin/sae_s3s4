@@ -1,11 +1,15 @@
-const userServices = require('../services/user.service');
+import adminService from '../services/admin.service.js';
 
-exports.test = (req, res) => {
-    userServices.test((error, results) => {
+const test = (req, res) => {
+    adminService.test((error, results) => {
         if (error) {
             return res.status(400).send({ success: 0, data: error });
         }
         const tokenDecode = req.user;
         return res.status(200).send({ success: 1, data: [results, tokenDecode] });
     });
+}
+
+export default {
+    test: test
 }

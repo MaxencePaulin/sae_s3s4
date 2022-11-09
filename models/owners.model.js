@@ -46,7 +46,7 @@ class AbstractOwners {
     async list(callback) {}
 }
 
-module.exports = {
-        Owner: Owner,
-        AbstractOwners: AbstractOwners,
+export  {
+    Owner,
+    AbstractOwners
 }

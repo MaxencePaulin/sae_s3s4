@@ -1,9 +1,9 @@
-const dotenv = require("dotenv");
-const jwt = require("jsonwebtoken");
-const {lireIdUsers} = require("../services/users.service");
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import usersService from "../services/users.service.js";
 dotenv.config();
 
-exports.authenticateData = (req, res, next) => {
+const authenticateData = (req, res, next) => {
     // const token = req.headers["authorization"];
     // recuperer le token stocker en cookie
 
@@ -21,7 +21,7 @@ exports.authenticateData = (req, res, next) => {
                 next();
             }
             req.user = decoded;
-            lireIdUsers(decoded.id,(error, results) => {
+            usersService.lireIdUsers(decoded.id,(error, results) => {
                 if (error) {
                     return res.status(400).send({success: 0, data: error});
                 }
@@ -37,7 +37,7 @@ exports.authenticateData = (req, res, next) => {
     }
 }
 
-exports.logged = (req, res, next) => {
+const logged = (req, res, next) => {
     // const token = req.headers["authorization"];
     // recuperer le token stocker en cookie
 
@@ -57,7 +57,7 @@ exports.logged = (req, res, next) => {
     }
 }
 
-exports.authenticateToken = (req, res, next) => {
+const authenticateToken = (req, res, next) => {
     // const token = req.headers["authorization"];
 
     const token = req.headers.cookie
@@ -81,7 +81,7 @@ exports.authenticateToken = (req, res, next) => {
     });
 };
 
-exports.authenticateAdmin = (req, res, next) => {
+const authenticateAdmin = (req, res, next) => {
     // const token = req.headers["authorization"];
     // recuperer le token stocker en cookie
 
@@ -100,7 +100,7 @@ exports.authenticateAdmin = (req, res, next) => {
             return res.status(401).send({success: 0, data: "Access denied"});
         }
         req.user = decoded;
-        lireIdUsers(decoded.id,(error, results) => {
+        usersService.lireIdUsers(decoded.id,(error, results) => {
             if (error) {
                 return res.status(400).send({success: 0, data: error});
             }
@@ -113,7 +113,7 @@ exports.authenticateAdmin = (req, res, next) => {
     });
 }
 
-exports.authenticateGuest = (req, res, next) => {
+const authenticateGuest = (req, res, next) => {
     // const token = req.headers["authorization"];
     // recuperer le token stocker en cookie
 
@@ -132,7 +132,7 @@ exports.authenticateGuest = (req, res, next) => {
             return res.status(401).send({success: 0, data: "Access denied"});
         }
         req.user = decoded;
-        lireIdUsers(decoded.id,(error, results) => {
+        usersService.lireIdUsers(decoded.id,(error, results) => {
             if (error) {
                 return res.status(400).send({success: 0, data: error});
             }
@@ -143,6 +143,14 @@ exports.authenticateGuest = (req, res, next) => {
             }
         });
     });
+}
+
+export default {
+    authenticateData: authenticateData,
+    logged: logged,
+    authenticateToken: authenticateToken,
+    authenticateAdmin: authenticateAdmin,
+    authenticateGuest: authenticateGuest
 }
 
 

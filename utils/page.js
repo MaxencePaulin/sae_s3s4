@@ -1,4 +1,4 @@
-exports.pagination = (req, results) => {
+export const pagination = (req, results) => {
     if (!req.query.page || req.query.page < 1) {
         req.query.page = 1;
     }

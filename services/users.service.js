@@ -1,7 +1,7 @@
 // Users service
-const fs = require("fs");
-const dotenv = require("dotenv");
-const {User} = require("../models/users.model");
+import fs from "fs";
+import dotenv from "dotenv";
+import { User } from "../models/users.model.js";
 dotenv.config();
 const users = JSON.parse(fs.readFileSync("data/users.json", "utf8"));
 
@@ -90,7 +90,7 @@ const lireIdUsers = (id, callback) => {
     }
 }
 
-module.exports = {
+export default {
     lireUsers: lireUsers,
     lireIdUsers: lireIdUsers,
     saveUsers: saveUsers,

@@ -1,12 +1,11 @@
-const usersService = require('../services/users.service');
-const bcrypt = require('bcrypt');
-const dotenv = require('dotenv');
-const usersServices = require("../services/users.service");
-const {generateTokenForUser} = require("../utils/jwtUtils");
-const {pagination} = require("../utils/page");
+import usersService from '../services/users.service.js';
+import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
+import { generateTokenForUser } from "../utils/jwtUtils.js";
+import { pagination } from "../utils/page.js";
 dotenv.config();
 
-exports.loginForm = (req, res) => {
+export const loginForm = (req, res) => {
     usersService.lireUsers((error, results) => {
         if (error) {
             return res.status(400).send({success: 0, data: error});
@@ -19,7 +18,7 @@ exports.loginForm = (req, res) => {
     });
 }
 
-exports.registerForm = (req, res) => {
+export const registerForm = (req, res) => {
     let username = req.user ? req.user.username : "";
     res.render('register', {
         username: username
@@ -27,7 +26,7 @@ exports.registerForm = (req, res) => {
 };
 
 // POST
-exports.register = (req, res) => {
+export const register = (req, res) => {
     const body = req.body;
     const saltRounds = 10;
     const salt = bcrypt.genSaltSync(saltRounds);
@@ -47,7 +46,7 @@ exports.register = (req, res) => {
     });
 }
 
-exports.login = (req, res) => {
+export const login = (req, res) => {
     const body = req.body;
     usersService.login(body.name, (error, results) => {
         if (error) {
@@ -67,7 +66,7 @@ exports.login = (req, res) => {
     });
 }
 
-exports.listUsers = (req, res, next) => {
+export const listUsers = (req, res) => {
     usersService.lireUsers(req, (error, results) => {
         if (error) {
             return res.status(400).send({success: 0, data: error});
@@ -77,7 +76,7 @@ exports.listUsers = (req, res, next) => {
     });
 }
 
-exports.listUserById = (req, res, next) => {
+export const listUserById = (req, res) => {
     usersService.lireIdUsers(req.params.id, (error, results) => {
         if (error) {
             return res.status(400).send({success: 0, data: error});
@@ -87,7 +86,7 @@ exports.listUserById = (req, res, next) => {
     });
 }
 
-exports.updateUser = (req, res) => {
+export const updateUser = (req, res) => {
     const body = req.body;
     const saltRounds = 10;
     const salt = bcrypt.genSaltSync(saltRounds);
@@ -105,11 +104,22 @@ exports.updateUser = (req, res) => {
     });
 }
 
-exports.deleteUser = (req, res) => {
+export const deleteUser = (req, res) => {
     usersService.deleteUser(req.params.id, (error, results) => {
         if (error) {
             return res.status(400).send({success: 0, data: error});
         }
         return res.status(200).send({success: 1, data: results});
     });
+}
+
+export default {
+    loginForm: loginForm,
+    registerForm: loginForm,
+    register: register,
+    login: login,
+    listUsers: listUsers,
+    listUserById: listUserById,
+    updateUser: updateUser,
+    deleteUser: deleteUser
 }

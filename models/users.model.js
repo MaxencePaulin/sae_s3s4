@@ -121,7 +121,7 @@ class AbstractUsers{
     async list(callback) {}
 }
 
-module.exports = {
+export {
     User,
     AbstractUsers
 }

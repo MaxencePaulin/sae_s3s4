@@ -46,7 +46,7 @@ class AbstractScenes {
     async list(callback) {}
 }
 
-module.exports = {
-    Scene: Scene,
-    AbstractScenes: AbstractScenes
+export {
+    Scene,
+    AbstractScenes
 }

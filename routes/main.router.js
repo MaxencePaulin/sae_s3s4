@@ -1,14 +1,14 @@
 // main.router.js
-const express = require("express");
-const usersControllers = require("../controllers/users.controllers");
-const ownersControllers = require("../controllers/owners.controllers");
-const scenesControllers = require("../controllers/scenes.controllers");
-const adminControllers = require("../controllers/admin.controllers");
-const guestControllers = require("../controllers/guest.controllers");
-const userControllers = require("../controllers/user.controllers");
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-const auth = require("../middleware/authenticate");
+import express from 'express';
+import usersController from '../controllers/users.controller.js';
+import ownersController from '../controllers/owners.controller.js';
+import scenesController from '../controllers/scenes.controller.js';
+import adminController from '../controllers/admin.controller.js';
+import guestController from '../controllers/guest.controller.js';
+import userController from '../controllers/user.controller.js';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import auth from '../middleware/authenticate.js';
 let router=express.Router();
 
 /** Swagger Initialization - START */
@@ -39,7 +39,7 @@ const swaggerDocs = swaggerJsdoc(swaggerOption);
 
 router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-router.get("owners/id=:id", ownersControllers.listOwnerById);
+router.get("owners/id=:id", ownersController.listOwnerById);
 /**
  * @swagger
  * /owners/id={id}:
@@ -62,7 +62,7 @@ router.get("owners/id=:id", ownersControllers.listOwnerById);
  *              description: Bad request
  */
 
-router.get("/owners",ownersControllers.listOwners);
+router.get("/owners",ownersController.listOwners);
 /**
  * @swagger
  * /owners:
@@ -90,7 +90,7 @@ router.get("/owners",ownersControllers.listOwners);
  *              description: Bad request
  */
 
-router.get("/scenes/id=:id", scenesControllers.listSceneById);
+router.get("/scenes/id=:id", scenesController.listSceneById);
 /**
  * @swagger
  * /scenes/id={id}:
@@ -113,7 +113,7 @@ router.get("/scenes/id=:id", scenesControllers.listSceneById);
  *              description: Bad request
  */
 
-router.get("/scenes", scenesControllers.listScenes);
+router.get("/scenes", scenesController.listScenes);
 /**
  * @swagger
  * /scenes:
@@ -141,14 +141,14 @@ router.get("/scenes", scenesControllers.listScenes);
  *              description: Bad request
  */
 
-router.get("/login", auth.authenticateData, auth.logged, usersControllers.loginForm);
-router.post('/login', usersControllers.login);
-router.get("/register", auth.authenticateData, auth.logged, usersControllers.registerForm);
-router.post("/register", usersControllers.register);
+router.get("/login", auth.authenticateData, auth.logged, usersController.loginForm);
+router.post('/login', usersController.login);
+router.get("/register", auth.authenticateData, auth.logged, usersController.registerForm);
+router.post("/register", usersController.register);
 
-router.get("/user", auth.authenticateToken, userControllers.test);
-router.get("/guest", auth.authenticateGuest, guestControllers.test);
-router.get("/admin", auth.authenticateAdmin,  adminControllers.test);
+router.get("/user", auth.authenticateToken, userController.test);
+router.get("/guest", auth.authenticateGuest, guestController.test);
+router.get("/admin", auth.authenticateAdmin,  adminController.test);
 /**
  * @swagger
  * /admin:
@@ -172,7 +172,7 @@ router.get("/admin", auth.authenticateAdmin,  adminControllers.test);
  */
 
 router.get("/", auth.authenticateData, (req, res) => {
-    console.log(req.headers);
+    // console.log(req.headers);
     let username = req.user ? req.user.username : "";
     res.render("home", {
         posts: [
@@ -207,4 +207,4 @@ router.get("/", auth.authenticateData, (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

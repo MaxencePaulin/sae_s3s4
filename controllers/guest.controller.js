@@ -1,6 +1,6 @@
-const guestServices = require('../services/guest.service');
+import guestServices from '../services/guest.service.js';
 
-exports.test = (req, res) => {
+const test = (req, res) => {
     guestServices.test((error, results) => {
         if (error) {
             return res.status(400).send({ success: 0, data: error });
@@ -8,4 +8,8 @@ exports.test = (req, res) => {
         const tokenDecode = req.user;
         return res.status(200).send({ success: 1, data: [results, tokenDecode] });
     });
+}
+
+export default {
+    test: test
 }

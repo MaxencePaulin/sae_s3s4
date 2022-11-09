@@ -1,3 +1,10 @@
+## Hiding secret variables
 .env
+## Hiding all modules
 node_modules/
+## Hiding .idea folder
 .idea/
+## Hiding .vscode folder
+.vscode/
+## Hiding package-lock.json
+package-lock.json

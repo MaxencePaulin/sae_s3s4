@@ -1,5 +1,5 @@
-const fs = require("fs") ;
-const { User } = require("../models/users.model");
+import fs from "fs";
+import { User } from "../models/users.model.js";
 
 const test = (callback) => {
     try {
@@ -66,6 +66,6 @@ function getMaxId(callback){
     return maxId;
 }
 
-module.exports = {
+export default{
     test: test,
 }

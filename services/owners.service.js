@@ -1,5 +1,5 @@
 // Owners service
-const fs = require("fs");
+import fs from "fs";
 
 const allOwners = () => {
     try {
@@ -50,7 +50,7 @@ const lireIdOwners = (id, callback) => {
     }
 }
 
-module.exports = {
+export default {
     lireOwners: lireOwners,
     lireIdOwners: lireIdOwners
 }

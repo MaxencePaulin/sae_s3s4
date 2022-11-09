@@ -1,5 +1,5 @@
 // Scenes service
-const fs = require("fs");
+import fs from "fs";
 
 const allScenes = () => {
     try {
@@ -50,7 +50,7 @@ const lireIdScenes = (id, callback) => {
     }
 }
 
-module.exports = {
+export default {
     lireScenes: lireScenes,
     lireIdScenes: lireIdScenes
 }
