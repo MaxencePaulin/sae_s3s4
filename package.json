@@ -23,12 +23,12 @@
     "postgres"
   ],
   "dependencies": {
-    "axios": "^0.27.2",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "jsonwebtoken": "^8.5.1",
+    "pg": "^8.8.0",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0"
   },

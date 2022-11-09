@@ -1,6 +1,7 @@
 // Imports
 import express from 'express';
 import dotenv from 'dotenv';
+import pgk from 'pg';
 import bodyParser from 'body-parser';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -9,9 +10,25 @@ import { default as mainRoutes } from './routes/main.router.js';
 import auth from "./middleware/authenticate.js";
 
 // Instantiate server
+const { Client } = pgk;
+
 const app = express();
 dotenv.config();
 const port = process.env.PORT;
+const pg_user = process.env.PG_USER;
+const pg_host = process.env.PG_HOST;
+const pg_database = process.env.PG_DATABASE;
+const pg_password = process.env.PG_PASSWORD;
+
+export const client = new Client({
+    user: pg_user,
+    host: pg_host,
+    database: pg_database,
+    password: pg_password,
+});
+
+client.connect();
+console.log(`Connecté à l'utilisateur [${pg_user}] dans la base [${pg_database}] sur le serveur [${pg_host}]`);
 
 // temporaire pour le front
 app.engine("hbs", hbengine.engine({
