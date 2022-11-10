@@ -102,65 +102,82 @@ CREATE TABLE if not exists users(
     carte_banquairre VARCHAR(50),
     adresse VARCHAR(50),
     mobile VARCHAR(10),
-    id_banqueVirtuelle INT NOT NULL,
-    id_genre INT NOT NULL,
-    id_nationalite INT NOT NULL,
-    id_QR_code INT NOT NULL,
-    id_role INT NOT NULL,
+    id_banqueVirtuelle INT,
+    id_genre INT,
+    id_nationalite INT,
+    id_QR_code INT,
+    id_role INT,
     PRIMARY KEY(id_user),
     UNIQUE(id_banqueVirtuelle),
     UNIQUE(id_QR_code),
+    constraint fk_banqueVirtuelle_users
     FOREIGN KEY(id_banqueVirtuelle) REFERENCES banqueVirtuelle(id_banqueVirtuelle),
+    constraint fk_genre_users
     FOREIGN KEY(id_genre) REFERENCES genre(id_genre),
+    constraint fk_nationalite_users
     FOREIGN KEY(id_nationalite) REFERENCES nationalite(id_nationalite),
+    constraint fk_QR_code_users
     FOREIGN KEY(id_QR_code) REFERENCES qr_code(id_QR_code),
+    constraint fk_roles_users
     FOREIGN KEY(id_role) REFERENCES ROLES(id_role)
 );
---pas fini au dessus et en dessous
-CREATE TABLE billet(
-   id_billet INT,
-   type_billet DECIMAL(15,2),
-   no_prix INT NOT NULL,
-   PRIMARY KEY(id_billet),
-   FOREIGN KEY(no_prix) REFERENCES prix(no_prix)
+
+CREATE TABLE if not exists billet(
+    id_billet serial,
+    type_billet numeric(15,2),
+    no_prix INT,
+    PRIMARY KEY(id_billet),
+    constraint fk_prix_billet
+    FOREIGN KEY(no_prix) REFERENCES prix(no_prix)
 );
 
-CREATE TABLE achete(
-   id_user INT,
-   id_billet INT,
-   date_debut_valide DATE,
-   date_fin_valide DATE,
-   PRIMARY KEY(id_user, id_billet, date_debut_valide, date_fin_valide),
-   FOREIGN KEY(id_user) REFERENCES users(id_user),
-   FOREIGN KEY(id_billet) REFERENCES billet(id_billet),
-   FOREIGN KEY(date_debut_valide, date_fin_valide) REFERENCES date_validite_billet(date_debut_valide, date_fin_valide)
+CREATE TABLE if not exists achete(
+    id_user INT,
+    id_billet INT,
+    date_debut_valide DATE,
+    date_fin_valide DATE,
+    PRIMARY KEY(id_user, id_billet, date_debut_valide, date_fin_valide),
+    constraint fk_users_achete
+    FOREIGN KEY(id_user) REFERENCES users(id_user),
+    constraint fk_billet_achete
+    FOREIGN KEY(id_billet) REFERENCES billet(id_billet),
+    constraint fk_date_validite_billet_achete
+    FOREIGN KEY(date_debut_valide, date_fin_valide) REFERENCES date_validite_billet(date_debut_valide, date_fin_valide)
 );
 
-CREATE TABLE reserve(
-   id_user INT,
-   id_emplacement INT,
-   date_debut_emplacement DATE,
-   date_fin_emplacement DATE,
-   PRIMARY KEY(id_user, id_emplacement, date_debut_emplacement, date_fin_emplacement),
-   FOREIGN KEY(id_user) REFERENCES users(id_user),
-   FOREIGN KEY(id_emplacement) REFERENCES emplacement(id_emplacement),
-   FOREIGN KEY(date_debut_emplacement, date_fin_emplacement) REFERENCES date_reservation(date_debut_emplacement, date_fin_emplacement)
+CREATE TABLE if not exists reserve(
+    id_user INT,
+    id_emplacement INT,
+    date_debut_emplacement DATE,
+    date_fin_emplacement DATE,
+    PRIMARY KEY(id_user, id_emplacement, date_debut_emplacement, date_fin_emplacement),
+    constraint fk_users_reserve
+    FOREIGN KEY(id_user) REFERENCES users(id_user),
+    constraint fk_emplacement_reserve
+    FOREIGN KEY(id_emplacement) REFERENCES emplacement(id_emplacement),
+    constraint fk_date_reservation_reserve
+    FOREIGN KEY(date_debut_emplacement, date_fin_emplacement) REFERENCES date_reservation(date_debut_emplacement, date_fin_emplacement)
 );
 
-CREATE TABLE permet(
-   id_droit INT,
-   id_role INT,
-   PRIMARY KEY(id_droit, id_role),
-   FOREIGN KEY(id_droit) REFERENCES droit(id_droit),
-   FOREIGN KEY(id_role) REFERENCES ROLES(id_role)
+CREATE TABLE if not exists permet(
+    id_droit INT,
+    id_role INT,
+    PRIMARY KEY(id_droit, id_role),
+    constraint fk_droit_permet
+    FOREIGN KEY(id_droit) REFERENCES droit(id_droit),
+    constraint fk_roles_permet
+    FOREIGN KEY(id_role) REFERENCES ROLES(id_role)
 );
 
-CREATE TABLE procede(
-   id_user INT,
-   id_achat INT,
-   date_achat DATE,
-   PRIMARY KEY(id_user, id_achat, date_achat),
-   FOREIGN KEY(id_user) REFERENCES users(id_user),
-   FOREIGN KEY(id_achat) REFERENCES Achat(id_achat),
-   FOREIGN KEY(date_achat) REFERENCES date_achat(date_achat)
+CREATE TABLE if not exists procede(
+    id_user INT,
+    id_achat INT,
+    date_achat DATE,
+    PRIMARY KEY(id_user, id_achat, date_achat),
+    constraint fk_users_procede
+    FOREIGN KEY(id_user) REFERENCES users(id_user),
+    constraint fk_achat_procede
+    FOREIGN KEY(id_achat) REFERENCES Achat(id_achat),
+    constraint fk_date_achat_procede
+    FOREIGN KEY(date_achat) REFERENCES date_achat(date_achat)
 );
