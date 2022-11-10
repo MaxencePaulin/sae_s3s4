@@ -1,5 +1,4 @@
 import {client} from "../server.js";
-import {callback} from "pg/lib/native/query.js";
 
 const test = (callback) => {
     try {
