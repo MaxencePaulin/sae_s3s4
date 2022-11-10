@@ -1,7 +1,8 @@
 // Imports
 import express from 'express';
 import dotenv from 'dotenv';
-import pgk from 'pg';
+import pg from 'pg';
+import db from './db/db.js';
 import bodyParser from 'body-parser';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -10,7 +11,7 @@ import { default as mainRoutes } from './routes/main.router.js';
 import auth from "./middleware/authenticate.js";
 
 // Instantiate server
-const { Client } = pgk;
+const { Client } = pg;
 
 const app = express();
 dotenv.config();
@@ -29,6 +30,10 @@ export const client = new Client({
 
 client.connect();
 console.log(`Connecté à l'utilisateur [${pg_user}] dans la base [${pg_database}] sur le serveur [${pg_host}]`);
+
+db.sync()
+    .then(() => console.log("Synchronisation de la base de données réussie"))
+    .catch(err => console.log(err));
 
 // temporaire pour le front
 app.engine("hbs", hbengine.engine({

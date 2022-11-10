@@ -69,7 +69,7 @@ CREATE TABLE if not exists date_reservation(
 );
 
 CREATE TABLE if not exists nationalite(
-    id_nationalite INT,
+    id_nationalite serial,
     nom_nationalite VARCHAR(50),
     PRIMARY KEY(id_nationalite)
 );
@@ -93,20 +93,20 @@ CREATE TABLE if not exists date_validite_billet(
 
 CREATE TABLE if not exists users(
     id_user serial,
-    username VARCHAR(50), -- a changer dans le mcd
-    mdp VARCHAR(50),
-    mail VARCHAR(50),
+    login VARCHAR(50), -- a changer dans le mcd
+    password VARCHAR(255), -- a changer dans le mcd car sera stocker HASHER
+    email VARCHAR(50), -- a changer dans le mcd
     prenom VARCHAR(50),
     nom VARCHAR(50),
     date_naissance DATE,
     carte_banquairre VARCHAR(50),
     adresse VARCHAR(50),
     mobile VARCHAR(10),
-    id_banqueVirtuelle INT,
+    id_banqueVirtuelle int,
     id_genre INT,
     id_nationalite INT,
     id_QR_code INT,
-    id_role INT,
+    id_role INT DEFAULT 1,
     PRIMARY KEY(id_user),
     UNIQUE(id_banqueVirtuelle),
     UNIQUE(id_QR_code),

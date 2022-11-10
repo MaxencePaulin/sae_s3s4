@@ -10,6 +10,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import auth from '../middleware/authenticate.js';
 let router=express.Router();
+import {findProfesseur} from "../controllers/professeur.controller.js";
 
 /** Swagger Initialization - START */
 const swaggerOption = {
@@ -36,6 +37,8 @@ const swaggerDocs = swaggerJsdoc(swaggerOption);
 // localhost:3000/
 
 // Configuration des routes
+
+router.get("/professeur", findProfesseur);
 
 router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
