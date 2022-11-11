@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
-dotenv.config();
-// const datasource = process.env.DATASOURCE;
 import ownersService from "../services/owners.service.js";
 import { pagination } from "../utils/page.js";
 
+dotenv.config();
+
 // GET 
-const listOwners = (req, res, next) => {
+const listOwners = (req, res) => {
     ownersService.lireOwners(req, (error, results) => {
         if (error) {
             return res.status(400).send({ success: 0, data: error });
@@ -19,7 +19,7 @@ const listOwners = (req, res, next) => {
     });
 };
 
-const listOwnerById = (req, res, next) => {
+const listOwnerById = (req, res) => {
     ownersService.lireIdOwners(req.params.id, (error, results) => {
         if (error) {
             return res.status(400).send({ success: 0, data: error });

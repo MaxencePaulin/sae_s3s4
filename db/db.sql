@@ -1,21 +1,21 @@
-drop table if exists procede;
-drop table if exists permet;
-drop table if exists reserve;
-drop table if exists achete;
-drop table if exists billet;
-drop table if exists users;
-drop table if exists date_validite_billet;
-drop table if exists date_achat;
-drop table if exists genre;
-drop table if exists nationalite;
-drop table if exists date_reservation;
-drop table if exists prix;
-drop table if exists banqueVirtuelle;
-drop table if exists Achat;
-drop table if exists qr_code;
-drop table if exists ROLES;
-drop table if exists emplacement;
-drop table if exists droit;
+-- drop table if exists procede;
+-- drop table if exists permet;
+-- drop table if exists reserve;
+-- drop table if exists achete;
+-- drop table if exists billet;
+-- drop table if exists users;
+-- drop table if exists date_validite_billet;
+-- drop table if exists date_achat;
+-- drop table if exists genre;
+-- drop table if exists nationalite;
+-- drop table if exists date_reservation;
+-- drop table if exists prix;
+-- drop table if exists banqueVirtuelle;
+-- drop table if exists Achat;
+-- drop table if exists qr_code;
+-- drop table if exists ROLES;
+-- drop table if exists emplacement;
+-- drop table if exists droit;
 --
 -- CREATE TABLE if not exists droit(
 --     id_droit serial,
@@ -352,7 +352,7 @@ CREATE TABLE if not exists users(
     bankcard VARCHAR(50),
     address VARCHAR(50),
     mobile VARCHAR(10),
-    id_role INT NOT NULL,
+    id_role INT NOT NULL default 1,
     id_virtualaccount INT NOT NULL,
     id_prestataire INT,
     id_genre INT NOT NULL,

@@ -2,7 +2,6 @@
 import express from 'express';
 import usersController from '../controllers/users.controller.js';
 import ownersController from '../controllers/owners.controller.js';
-import scenesController from '../controllers/scenes.controller.js';
 import adminController from '../controllers/admin.controller.js';
 import guestController from '../controllers/guest.controller.js';
 import userController from '../controllers/user.controller.js';
@@ -73,57 +72,6 @@ router.get("/owners",ownersController.listOwners);
  *      description: List all owners
  *      tags:
  *          - owners
- *      parameters:
- *          - in: query
- *            name: page
- *            description: Number of the page
- *            required: false
- *            type: integer
- *          - in: query
- *            name: limit
- *            description: Limit of result per page
- *            required: false
- *            type: integer
- *      responses:
- *          '200':
- *              description: Resource updated successfully
- *          '500':
- *              description: Internal server error
- *          '400':
- *              description: Bad request
- */
-
-router.get("/scenes/id=:id", scenesController.listSceneById);
-/**
- * @swagger
- * /scenes/id={id}:
- *   get:
- *      description: Display scene with id = {id}
- *      tags:
- *          - scenes
- *      parameters:
- *          - in: path
- *            name: id
- *            description: Scene ID
- *            required: true
- *            type: integer
- *      responses:
- *          '200':
- *              description: Resource updated successfully
- *          '500':
- *              description: Internal server error
- *          '400':
- *              description: Bad request
- */
-
-router.get("/scenes", scenesController.listScenes);
-/**
- * @swagger
- * /scenes:
- *   get:
- *      description: Display all scene
- *      tags:
- *          - scenes
  *      parameters:
  *          - in: query
  *            name: page

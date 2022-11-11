@@ -1,5 +1,6 @@
 // Imports
 import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import pg from 'pg';
 import db from './db/db.js';
@@ -7,8 +8,19 @@ import bodyParser from 'body-parser';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import hbengine from 'express-handlebars';
+
+// Routes
+import sceneRoutes from './routes/scene.router.js';
 import { default as mainRoutes } from './routes/main.router.js';
+
 import auth from "./middleware/authenticate.js";
+
+// Database connection
+db.authenticate().then(() => {
+    console.log('Connection à la base avec sequelize réussie.');
+}).catch((err) => {
+    console.error('Impossible de se connecter à la base de données: '+ err);
+});
 
 // Instantiate server
 const { Client } = pg;
@@ -31,9 +43,8 @@ export const client = new Client({
 client.connect();
 console.log(`Connecté à l'utilisateur [${pg_user}] dans la base [${pg_database}] sur le serveur [${pg_host}]`);
 
-db.sync()
-    .then(() => console.log("Synchronisation de la base de données réussie"))
-    .catch(err => console.log(err));
+// cors
+app.use(cors("*"));
 
 // temporaire pour le front
 app.engine("hbs", hbengine.engine({
@@ -63,6 +74,7 @@ app.use((req, res, next) =>{
     next();
 });
 
+app.use("/scene", sceneRoutes);
 app.use("/", mainRoutes);
 
 app.use("*", auth.authenticateData, (req, res, next) => {
@@ -79,6 +91,6 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(port, ()=>{
-    console.log(`Le serveur ecoute sur port ${port}, lien : http://localhost:${port}`);
-});
+db.sync().then(() => {
+    app.listen(port, console.log(`Le serveur écoute sur le port ${port}`));
+}).catch(err => console.log("Error: " + err));
