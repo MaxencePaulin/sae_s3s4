@@ -14,7 +14,7 @@ const add = (body, callback) => {
 
 const find = (callback) => {
     Scene.findAll().then(data => {
-        if (!data) {
+        if (data.length === 0) {
             return callback("Aucune scene", null);
         }
         return callback(null, data);
@@ -25,7 +25,7 @@ const find = (callback) => {
 
 const findById = (id, callback) => {
     Scene.findByPk(id).then(data => {
-        if (!data) {
+        if (data.length === 0) {
             return callback("Aucune scene avec cet id", null);
         }
         return callback(null, data);

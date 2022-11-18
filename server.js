@@ -11,7 +11,8 @@ import hbengine from 'express-handlebars';
 
 // Routes
 import sceneRoutes from './routes/scene.router.js';
-import { default as mainRoutes } from './routes/main.router.js';
+import userRoutes from './routes/user.router.js';
+import mainRoutes from './routes/main.router.js';
 
 import auth from "./middleware/authenticate.js";
 
@@ -75,6 +76,7 @@ app.use((req, res, next) =>{
 });
 
 app.use("/scene", sceneRoutes);
+app.use("/user", userRoutes);
 app.use("/", mainRoutes);
 
 app.use("*", auth.authenticateData, (req, res, next) => {
