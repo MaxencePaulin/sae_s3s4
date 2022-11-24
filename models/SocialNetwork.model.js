@@ -7,14 +7,16 @@ const SocialNetwork = db.define ('socialnetwork', {
         primaryKey: true,
         serial: true,
         autoIncrement: true,
-        allowNull: flase,
+        allowNull: false,
     },
     libelle_socialnetwork: {
-        type DataTypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     page_socialnetwork: {
-        type DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
     }
-});
+}, {timestamps: false, freezeTableName: true});
+
+export default SocialNetwork;
