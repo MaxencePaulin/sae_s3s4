@@ -18,7 +18,7 @@ drop table if exists price;
 drop table if exists date_validity_ticket;
 drop table if exists droit;
 drop table if exists virtualaccount;
-drop table if exists qr_code;
+drop table if exists qr_code; -- 8
 drop table if exists service;
 drop table if exists typeprestataire;
 drop table if exists role;
@@ -88,7 +88,7 @@ CREATE TABLE if not exists virtualaccount(
 
 CREATE TABLE if not exists droit(
     id_droit serial,
-    llibelle_droit VARCHAR(50),
+    libelle_droit VARCHAR(50),
     PRIMARY KEY(id_droit)
 );
 
@@ -107,7 +107,7 @@ CREATE TABLE if not exists price(
 
 CREATE TABLE if not exists place(
     id_place serial,
-    no_place INT,
+    name_place VARCHAR(50),
     PRIMARY KEY(id_place)
 );
 
