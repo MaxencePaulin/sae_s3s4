@@ -61,6 +61,7 @@ const User = db.define('users', {
     id_virtualaccount: {
         type: DataTypes.INTEGER,
         foreignKey: true,
+        allowNull: false,
         references: {
             model: 'virtualaccount',
             key: 'id_virtualaccount'

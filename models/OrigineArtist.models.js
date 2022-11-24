@@ -5,7 +5,6 @@ const OrigineArtist = db.define('origineartist', {
     id_artist: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        serial: true,
         allowNull: false,
         foreignKey: true,
         references: {
@@ -15,6 +14,7 @@ const OrigineArtist = db.define('origineartist', {
     },
     id_nationality: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,
         foreignKey: true,
         references: {

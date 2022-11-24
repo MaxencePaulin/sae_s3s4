@@ -5,7 +5,6 @@ const Make = db.define('make', {
     id_artist: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        serial: true,
         allowNull: false,
         foreignKey: true,
         references: {
@@ -15,6 +14,7 @@ const Make = db.define('make', {
     },
     id_musicstyle: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false,   
         foreignKey: true,
         references: {
