@@ -23,3 +23,6 @@ const Make = db.define('make', {
         },
     },
 }, {timestamps: false, freezeTableName: true});
+
+
+export default Make;

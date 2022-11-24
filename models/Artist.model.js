@@ -1,7 +1,7 @@
 import {DataTypes} from "sequelize" ;
 import db from '../db/db.js' ;
 
-const Artist = db.define('admin',{
+const Artist = db.define('artist',{
     id_artist :{
         type : DataTypes.INTEGER,
         primaryKey : true ,
@@ -26,5 +26,5 @@ const Artist = db.define('admin',{
     }, 
 }, {timestamps:false , freezeTableName:true});
     
-export default Admin ;
+export default Artist; 
 

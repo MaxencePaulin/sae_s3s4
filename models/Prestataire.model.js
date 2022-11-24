@@ -23,3 +23,5 @@ const Prestataire = db.define('prestataire', {
         },
     },
 }, {timestamps: false, freezeTableName: true});
+
+export default Prestataire;

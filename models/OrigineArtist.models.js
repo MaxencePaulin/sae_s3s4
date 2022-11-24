@@ -24,3 +24,4 @@ const OrigineArtist = db.define('origineartist', {
     },
 }, {timestamps: false, freezeTableName: true});
         
+export default OrigineArtist;

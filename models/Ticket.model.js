@@ -23,3 +23,5 @@ const Ticket = db.define('ticket', {
         },
     },
 }, {timestamps: false, freezeTableName: true});
+
+export default Ticket;
