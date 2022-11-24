@@ -164,10 +164,10 @@ CREATE TABLE if not exists users(
     bankcard VARCHAR(50),
     address VARCHAR(50),
     mobile VARCHAR(10),
+    genre VARCHAR(255),
     id_role INT NOT NULL default 1,
     id_virtualaccount INT NOT NULL,
     id_prestataire INT,
-    genre VARCHAR(255),
     PRIMARY KEY(id_user),
     UNIQUE(id_virtualaccount),
     constraint fk_role_user
