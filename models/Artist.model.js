@@ -1,4 +1,4 @@
-import {DataTypes} from sequelize ;
+import {DataTypes} from "sequelize" ;
 import db from '../db/db.js' ;
 
 const Artist = db.define('admin',{
