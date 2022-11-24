@@ -6,6 +6,7 @@ const Artist = db.define('artist',{
         type : DataTypes.INTEGER,
         primaryKey : true ,
         serial : true ,
+        autoIncrement : true ,
         allowNull : false ,
     },
     name :{
