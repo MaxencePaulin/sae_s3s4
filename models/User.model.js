@@ -45,14 +45,9 @@ const User = db.define('users', {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    id_qr_code: {
-        type: DataTypes.INTEGER,
+    genre: {
+        type: DataTypes.STRING,
         allowNull: true,
-        foreignKey: true,
-        references: {
-            model: 'qr_code',
-            key: 'id_qr_code'
-        }
     },
     id_role: {
         type: DataTypes.INTEGER,
@@ -78,16 +73,7 @@ const User = db.define('users', {
             model: 'prestataire',
             key: 'id_prestataire'
         }
-    },
-    id_genre: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        foreignKey: true,
-        references: {
-            model: 'genre',
-            key: 'id_genre'
-        }
-    },
+    }
 }, {timestamps: false, freezeTableName: true});
 
 export default User;
