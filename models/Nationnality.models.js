@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
 import db from '../db/db.js';
 
-const Nationnality = db.define ('nationnality', {
+const Nationality = db.define ('nationality', {
     id_nationnality: {
-        type = DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         serial: true,
         autoIncrement: true, 
@@ -13,4 +13,6 @@ const Nationnality = db.define ('nationnality', {
         type: DataTypes.STRING,
         allowNull: false,
     }
-});
+}, {timestamps: false, freezeTableName: true});
+
+export default Nationality;

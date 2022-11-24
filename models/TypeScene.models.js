@@ -13,4 +13,6 @@ const TypeScene = db.define ('typescene', {
         type: DataTypes.STRING,
         allowNull: false,
     }
-});
+}, {timestamps: false, freezeTableName: true});
+
+export default TypeScene;

@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import db from '../db/db.js';
 
-const MusicStyle = db.define ('muscistyle', {
+const MusicStyle = db.define ('musicstyle', {
     id_musicstyle: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -13,4 +13,6 @@ const MusicStyle = db.define ('muscistyle', {
         type: DataTypes.STRING,
         allowNull: false,
     }
-});
+}, {timestamps: false, freezeTableName: true});
+
+export default MusicStyle;
