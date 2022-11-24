@@ -4,6 +4,7 @@ drop table if exists access;
 drop table if exists proposes;
 drop table if exists origineuser;
 drop table if exists concert;
+drop table if exists have;
 drop table if exists make;
 drop table if exists origineartist;
 drop table if exists users;
@@ -16,8 +17,8 @@ drop table if exists place;
 drop table if exists price;
 drop table if exists date_validity_ticket;
 drop table if exists droit;
-drop table if exists qr_code;
 drop table if exists virtualaccount;
+drop table if exists qr_code;
 drop table if exists service;
 drop table if exists typeprestataire;
 drop table if exists role;
@@ -177,11 +178,11 @@ CREATE TABLE if not exists users(
     FOREIGN KEY(id_prestataire) REFERENCES prestataire(id_prestataire)
 );
 
-CREATE TABLE if not exists orgineartist(
+CREATE TABLE if not exists origineartist(
     id_artist INT,
     id_nationality INT,
     PRIMARY KEY(id_artist, id_nationality),
-    constraint fk_artist_orgineartist
+    constraint fk_artist_origineartist
     FOREIGN KEY(id_artist) REFERENCES artist(id_artist),
     constraint fk_nationalite_originartist
     FOREIGN KEY(id_nationality) REFERENCES nationality(id_nationality)
