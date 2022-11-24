@@ -1,18 +1,53 @@
-import { DataTypes } from "sequelize";
-import db from '../db/db.js';
+import { DataTypes} from 'sequelize' ;
+import db from '../db/db.js' ;
 
-const  Service = db.define('service' , {
-    id_service:{
-        type: DataTypes.INTEGER,
-        primaryKey: true ,
-        serial: true ,
+const Reserve = db.define('reserve' , {
+    id_user: {
+        type : DataTypes.INT,
+        primaryKey : true ,
+        serial : true ,
         autoIncrement: true ,
-        allowNull : false
-    },
-    libelle_service:{
-        type: DataTypes.STRING ,
-         allowNull : false ,
-    }
-} , {timestamps: false , freezeTableName: true}):
+        allowNull : false ,
+        foreignKey: true,
+        references: {
+            model: 'user',
+            key: 'id_user'
+        }
 
-export default Service; 
+    },
+    id_place: {
+        type : DataTypes.INT,
+        primaryKey : true ,
+        serial : true ,
+        autoIncrement: true ,
+        allowNull : false ,
+        foreignKey: true,
+        references: {
+            model: 'place',
+            key: 'id_placetable'
+        }
+    },
+    date_start_placereserved: {
+        type : DataTypes.DATE,
+        primaryKey : true ,
+        allowNull : false ,
+        foreignKey: true,
+        references: {
+            model: 'date_reserve',
+            key: 'date_start_placereserved'
+        }
+    },
+    date_end_placereserved: {
+        type : DataTypes.DATE,
+        primaryKey : true ,
+        allowNull : false ,
+        foreignKey: true,
+        references: {
+            model: 'date_reserve',
+            key: 'date_end_placereserved'
+        }
+    },
+
+},{timestamps: true , freezeTableName: true});
+
+export default Reserve ;
