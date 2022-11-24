@@ -4,7 +4,7 @@ drop table if exists access;
 drop table if exists proposes;
 drop table if exists origineuser;
 drop table if exists concert;
-drop table if exists do;
+drop table if exists make;
 drop table if exists origineartist;
 drop table if exists users;
 drop table if exists ticket;
@@ -69,6 +69,12 @@ CREATE TABLE if not exists service(
     PRIMARY KEY(id_service)
 );
 
+CREATE TABLE if not exists qr_code(
+    id_qr_code serial,
+    qr_code TEXT,
+    PRIMARY KEY(id_qr_code)
+);
+
 CREATE TABLE if not exists virtualaccount(
     id_virtualaccount serial,
     amount numeric(15,2),
@@ -77,12 +83,6 @@ CREATE TABLE if not exists virtualaccount(
     constraint fk_qr_code_virtualaccount
     FOREIGN KEY(id_qr_code) REFERENCES qr_code(id_qr_code)
 
-);
-
-CREATE TABLE if not exists qr_code(
-    id_qr_code serial,
-    qr_code TEXT,
-    PRIMARY KEY(id_qr_code)
 );
 
 CREATE TABLE if not exists droit(
@@ -187,7 +187,7 @@ CREATE TABLE if not exists orgineartist(
     FOREIGN KEY(id_nationality) REFERENCES nationality(id_nationality)
 );
 
-CREATE TABLE if not exists do(
+CREATE TABLE if not exists make(
     id_artist INT,
     id_musicstyle INT,
     PRIMARY KEY(id_artist, id_musicstyle),
