@@ -1,27 +1,26 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/db.js';
 
-const Scene = db.define('scene', {
-    id_scene: {
+const OrigineArtist = db.define('origineartist', {
+    id_artist: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         serial: true,
-        autoIncrement: true,
         allowNull: false,
+        foreignKey: true,
+        references: {
+            model: 'artist',
+            key: 'id_artist',
+        },
     },
-    libelle_scene: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    id_typescene: {
+    id_nationality: {
         type: DataTypes.INTEGER,
         allowNull: false,
         foreignKey: true,
         references: {
-            model: 'typescene',
-            key: 'id_typescene',
+            model: 'nationality',
+            key: 'id_nationality',
         },
     },
 }, {timestamps: false, freezeTableName: true});
-
-export default Scene;
+        
