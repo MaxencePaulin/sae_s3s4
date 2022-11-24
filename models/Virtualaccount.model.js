@@ -12,8 +12,17 @@ const Virtualaccount = db.define('virtualaccount', {
     amount: {
         type: DataTypes.FLOAT,
         allowNull: true,
-        default: 0.00,
+        defaultValue: 0.00,
     },
+    id_qr_code: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        foreignKey: true,
+        references: {
+            model: 'qr_code',
+            key: 'id_qr_code',
+        }
+    }
 }, {timestamps: false, freezeTableName: true});
 
 export default Virtualaccount;

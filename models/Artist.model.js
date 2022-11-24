@@ -1,11 +1,12 @@
 import {DataTypes} from "sequelize" ;
 import db from '../db/db.js' ;
 
-const Artist = db.define('admin',{
-    idartist :{
+const Artist = db.define('artist',{
+    id_artist :{
         type : DataTypes.INTEGER,
         primaryKey : true ,
         serial : true ,
+        autoIncrement : true ,
         allowNull : false ,
     },
     name :{
@@ -20,16 +21,11 @@ const Artist = db.define('admin',{
         type : DataTypes.TEXT ,
         allowNull : false ,
     },
-    id_genre :{
-        type : DataTypes.INTEGER,
+    genre :{
+        type : DataTypes.STRING,
         allowNull : false ,
-        foreignKey : true ,
-        references : { 
-            model : 'genre' , 
-            key : 'id_genre'
-        },
     }, 
 }, {timestamps:false , freezeTableName:true});
     
-export default Admin ;
+export default Artist; 
 
