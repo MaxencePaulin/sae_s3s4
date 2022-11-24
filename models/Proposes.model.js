@@ -3,18 +3,18 @@ import db from '../db/db.js' ;
 
 const Proposes = db.define('proposes' , {
     id_prestataire: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,
         references: {
-            model: 'role',
+            model: 'prestataire',
             key: 'id_prestataire'
         }
 
     },
     id_service: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,

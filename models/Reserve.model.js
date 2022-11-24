@@ -3,28 +3,24 @@ import db from '../db/db.js' ;
 
 const Reserve = db.define('reserve' , {
     id_user: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
-        serial : true ,
-        autoIncrement: true ,
         allowNull : false ,
         foreignKey: true,
         references: {
-            model: 'user',
+            model: 'users',
             key: 'id_user'
         }
 
     },
     id_place: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
-        serial : true ,
-        autoIncrement: true ,
         allowNull : false ,
         foreignKey: true,
         references: {
             model: 'place',
-            key: 'id_placetable'
+            key: 'id_place'
         }
     },
     date_start_placereserved: {
@@ -47,7 +43,6 @@ const Reserve = db.define('reserve' , {
             key: 'date_end_placereserved'
         }
     },
-
 },{timestamps: true , freezeTableName: true});
 
 export default Reserve ;

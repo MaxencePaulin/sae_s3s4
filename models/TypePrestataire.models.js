@@ -10,7 +10,7 @@ const TypePrestataire = db.define('typeprestataire', {
         allowNull: false,
     },
     libelle_typeprestataire: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
     }
 }, {timestamps: false, freezeTableName: true});

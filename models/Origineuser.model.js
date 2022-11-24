@@ -1,9 +1,9 @@
 import { DataTypes} from 'sequelize' ;
 import db from '../db/db.js' ;
 
-const Origineuser = db.define('originuser' , {
+const Origineuser = db.define('origineuser' , {
     id_nationality: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,
@@ -13,12 +13,12 @@ const Origineuser = db.define('originuser' , {
         }
     },
     id_user: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,
         references: {
-            model: 'user',
+            model: 'users',
             key: 'id_user'
         }
 

@@ -3,7 +3,7 @@ import db from '../db/db.js' ;
 
 const Concert = db.define('concert' , {
     id_artist: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,
@@ -14,7 +14,7 @@ const Concert = db.define('concert' , {
 
     },
     id_scene: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,

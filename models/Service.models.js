@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import db from '../db/db.js';
 
-const Services = db.define('service', {
+const Service = db.define('service', {
     id_service: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -15,4 +15,4 @@ const Services = db.define('service', {
     }
 }, {timestamps: false, freezeTableName: true});
 
-export default Services;
+export default Service;

@@ -3,7 +3,7 @@ import db from '../db/db.js' ;
 
 const Have = db.define('have' , {
     id_artist: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,
@@ -14,7 +14,7 @@ const Have = db.define('have' , {
 
     },
     id_socialnetwork: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,

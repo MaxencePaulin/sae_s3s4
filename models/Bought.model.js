@@ -3,23 +3,19 @@ import db from '../db/db.js' ;
 
 const Bought = db.define('bought' , {
     id_user: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
-        serial : true ,
-        autoIncrement: true ,
         allowNull : false ,
         foreignKey: true,
         references: {
-            model: 'user',
+            model: 'users',
             key: 'id_user'
         }
 
     },
     id_ticket: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
-        serial : true ,
-        autoIncrement: true ,
         allowNull : false ,
         foreignKey: true,
         references: {
@@ -47,7 +43,6 @@ const Bought = db.define('bought' , {
             key: 'date_end_validity'
         }
     },
-
 },{timestamps: true , freezeTableName: true});
 
 export default Bought ;

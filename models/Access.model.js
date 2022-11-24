@@ -3,7 +3,7 @@ import db from '../db/db.js' ;
 
 const Access = db.define('access' , {
     id_role: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,
@@ -14,7 +14,7 @@ const Access = db.define('access' , {
 
     },
     id_droit: {
-        type : DataTypes.INT,
+        type : DataTypes.INTEGER,
         primaryKey : true ,
         allowNull : false ,
         foreignKey: true,
