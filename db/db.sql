@@ -210,7 +210,7 @@ CREATE TABLE if not exists have(
 CREATE TABLE if not exists concert(
     id_artist INT,
     id_scene INT,
-    date_consert DATE,
+    date_concert DATE,
     PRIMARY KEY(id_artist, id_scene),
     constraint fk_artist_concert
     FOREIGN KEY(id_artist) REFERENCES artist(id_artist),
