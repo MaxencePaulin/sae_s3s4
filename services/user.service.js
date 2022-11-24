@@ -1,5 +1,6 @@
-import fs from "fs";
-import { User } from "../models/users.model.js";
+import User from '../models/User.model.js';
+import Qr_code from "../models/Qr_code.model.js";
+import Virtualaccount from "../models/Virtualaccount.model.js";
 
 const test = (callback) => {
     try {
@@ -11,75 +12,77 @@ const test = (callback) => {
     }
 }
 
-const saveUsers = (users) => {
-    const dataJSON = JSON.stringify(users);
-    fs.writeFileSync("data/users.json", dataJSON);
-}
-
-const lireUsers = () => {
-    try {
-        let dataBuffer = fs.readFileSync("data/users.json");
-        const dataString= dataBuffer.toString();
-        return JSON.parse(dataString);
-    }
-    catch (e){
-        console.log("erreur lecture du fichier Users")
-        console.log(e);
-        return [];
-    }
-}
-
-const addUser= (user , callback)=>{
-   try { 
-        let data = lireUsers();
-        let maxId = getMaxId();
-        let userObj=new User(maxId, 
-            user.firstname,
-            user.lastname,
-            user.username,
-            user.email ,
-            user.password ,
-            "guest" ,
-            false ,
-            true);
-        saveUsers(data.push(userObj.JSON()));
-        return callback(null,[])
-    }
-    catch(e){
-        console.log(" erreur lors de l'ajout de l'utilisateur");
-        console.log(e);
-        return callback("impossible d'ajouter l'user",null)
-    }
-}
-
-const deleteUser=(idUser , callback)=>{
-    try {
-        let data = lireUsers();
-        const indexToDelete=data.find(id => data.id==idUser)
-        data.splice(indexToDelete)
-        saveUsers(data)
-    }
-    catch (e){
-        console.log(" erreur lors de la suppression de l'utilisateur");
-        console.log(e);
-        return callback("impossible de supprimer l'user",null)
-    }
-}
-    
-function getMaxId(callback){
-    let data = lireUsers();
-    let maxId=0;
-    if (data.length === 0){
-        return callback("erreur lors de l'ouverture du fichier",null);
-    }
-    data.forEach((element) => {
-        if (parseInt(element.id)>maxId){
-            maxId=element.id;
+const getUsers = (callback) => {
+    User.findAll().then(data => {
+        if (data.length === 0) {
+            return callback("Aucun utilisateur", null);
         }
-    })
-    return maxId;
+        return callback(null, data);
+    }).catch(e => {
+        return callback({ locationError: "getUsers", error: e.message }, null);
+    });
+}
+
+const getUserById = (id, callback) => {
+    User.findByPk(id).then(data => {
+        if (!data) {
+            return callback("Aucun utilisateur avec cet id", null);
+        }
+        return callback(null, data);
+    }).catch(e => {
+        return callback({ locationError: "getUserById", error: e.message }, null);
+    });
+}
+
+// const addUser = (body, callback) => {
+//     let lastIdQr_code;
+//     let lastIdVirtualaccount;
+//     Qr_code.max('id_qr_code').then(data => {
+//         Qr_code.create()
+//
+//
+//         body.id_qr_code = !data ? 1 : data+1;
+//         body.id_virtualaccount = body.id_qr_code;
+//         User.create(body).then(data => {
+//             return callback(null, data);
+//         }).catch(e => {
+//             console.log(e);
+//             return callback({ locationError: "addUser", error: e.message }, null);
+//         });
+//     }).catch(e => {
+//         console.log(e);
+//         return callback({ locationError: "addUser", error: e.message }, null);
+//     });
+// }
+
+const updateUser = (id, body, callback) => {
+    User.update(body, {where: {id_user: id}}).then(data => {
+        if (data[0] === 0) {
+            return callback("Aucun utilisateur avec cet id", null);
+        }
+        return callback(null, "Utilisateur modifié avec succès");
+    }).catch(e => {
+        return callback({locationError: "updateUser", error: e.message}, null);
+    });
+}
+
+const deleteUser = (id, callback) => {
+    User.destroy({ where: { id_user: id } }).then(data => {
+        console.log(data);
+        if (data === 0) {
+            return callback("Aucun utilisateur avec cet id", null);
+        }
+        return callback(null, data);
+    }).catch(e => {
+        return callback({ locationError: "deleteUser", error: e.message }, null);
+    });
 }
 
 export default{
-    test: test,
+    test,
+    getUsers,
+    getUserById,
+    // addUser,
+    updateUser,
+    deleteUser,
 }
