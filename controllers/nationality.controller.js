@@ -1,7 +1,7 @@
-import Natioanlity from '../models/Natioanlity.model.js';
+import Nationality from '../models/Nationality.model.js';
 
 export const findAll = (req, res) => {
-    Natioanlity.findAll().then(data => {
+    Nationality.findAll().then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -12,7 +12,7 @@ export const findAll = (req, res) => {
 
 export const findOne = (req, res) => {
     const id = parseInt(req.params.id);
-    Natioanlity.findByPk(id).then(data => {
+    Nationality.findByPk(id).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -23,7 +23,7 @@ export const findOne = (req, res) => {
 
 export const create = (req, res) => {
     const body = req.body;
-    Natioanlity.create(body).then(data => {
+    Nationality.create(body).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -35,16 +35,16 @@ export const create = (req, res) => {
 export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
-    Natioanlity.update(body, {
+    Nationality.update(body, {
         where: { id: id }
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Natioanlity was updated successfully."
+                message: "Nationality was updated successfully."
             });
         } else {
             res.send({
-                message: `Cannot update Natioanlity with id=${id}. Maybe Natioanlity was not found or req.body is empty!`
+                message: `Cannot update Nationality with id=${id}. Maybe Nationality was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,16 +56,16 @@ export const update = (req, res) => {
 
 export const remove = (req, res) => {
     const id = parseInt(req.params.id);
-    Natioanlity.destroy({
+    Nationality.destroy({
         where: { id: id }
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Natioanlity was deleted successfully!"
+                message: "Nationality was deleted successfully!"
             });
         } else {
             res.send({
-                message: `Cannot delete Natioanlity with id=${id}. Maybe Natioanlity was not found!`
+                message: `Cannot delete Nationality with id=${id}. Maybe Nationality was not found!`
             });
         }
     }).catch(e => {
@@ -76,11 +76,11 @@ export const remove = (req, res) => {
 }
 
 export const removeAll = (req, res) => {
-    Natioanlity.destroy({
+    Nationality.destroy({
         where: {},
         truncate: false
     }).then(data => {
-        res.send({ message: `${data} Natioanlity were deleted successfully!` });
+        res.send({ message: `${data} Nationality were deleted successfully!` });
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."
