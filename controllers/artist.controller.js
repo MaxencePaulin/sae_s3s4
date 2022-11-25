@@ -1,7 +1,7 @@
-import Have from '../models/Have.model.js';
+import Artist from '../models/Artist.model.js';
 
 export const findAll = (req, res) => {
-    Have.findAll().then(data => {
+    Artist.findAll().then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -12,7 +12,7 @@ export const findAll = (req, res) => {
 
 export const findOne = (req, res) => {
     const id = parseInt(req.params.id);
-    Have.findByPk(id).then(data => {
+    Artist.findByPk(id).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -23,7 +23,7 @@ export const findOne = (req, res) => {
 
 export const create = (req, res) => {
     const body = req.body;
-    Have.create(body).then(data => {
+    Artist.create(body).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -35,16 +35,16 @@ export const create = (req, res) => {
 export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
-    Have.update(body, {
+    Artist.update(body, {
         where: { id: id }
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Have was updated successfully."
+                message: "Artist was updated successfully."
             });
         } else {
             res.send({
-                message: `Cannot update Have with id=${id}. Maybe Have was not found or req.body is empty!`
+                message: `Cannot update Artist with id=${id}. Maybe Artist was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,16 +56,16 @@ export const update = (req, res) => {
 
 export const remove = (req, res) => {
     const id = parseInt(req.params.id);
-    Have.destroy({
+    Artist.destroy({
         where: { id: id }
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Have was deleted successfully!"
+                message: "Artist was deleted successfully!"
             });
         } else {
             res.send({
-                message: `Cannot delete Have with id=${id}. Maybe Have was not found!`
+                message: `Cannot delete Artist with id=${id}. Maybe Artist was not found!`
             });
         }
     }).catch(e => {
@@ -76,11 +76,11 @@ export const remove = (req, res) => {
 }
 
 export const removeAll = (req, res) => {
-    Have.destroy({
+    Artist.destroy({
         where: {},
         truncate: false
     }).then(data => {
-        res.send({ message: `${data} Have were deleted successfully!` });
+        res.send({ message: `${data} Artist were deleted successfully!` });
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."
