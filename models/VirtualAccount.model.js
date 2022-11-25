@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/db.js';
 
-const Virtualaccount = db.define('virtualaccount', {
+const VirtualAccount = db.define('virtualaccount', {
     id_virtualaccount: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -25,4 +25,4 @@ const Virtualaccount = db.define('virtualaccount', {
     }
 }, {timestamps: false, freezeTableName: true});
 
-export default Virtualaccount;
+export default VirtualAccount;

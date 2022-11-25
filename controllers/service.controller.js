@@ -1,7 +1,7 @@
-import Scene from '../models/Scene.model.js';
+import Service from '../models/Service.model.js';
 
 export const findAll = (req, res) => {
-    Scene.findAll().then(data => {
+    Service.findAll().then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -12,7 +12,7 @@ export const findAll = (req, res) => {
 
 export const findOne = (req, res) => {
     const id = parseInt(req.params.id);
-    Scene.findByPk(id).then(data => {
+    Service.findByPk(id).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -23,7 +23,7 @@ export const findOne = (req, res) => {
 
 export const create = (req, res) => {
     const body = req.body;
-    Scene.create(body).then(data => {
+    Service.create(body).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -35,7 +35,7 @@ export const create = (req, res) => {
 export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
-    Scene.update(body, {
+    Service.update(body, {
         where: { id: id }
     }).then(data => {
         if (data === 1) {
@@ -56,7 +56,7 @@ export const update = (req, res) => {
 
 export const remove = (req, res) => {
     const id = parseInt(req.params.id);
-    Scene.destroy({
+    Service.destroy({
         where: { id: id }
     }).then(data => {
         if (data === 1) {
@@ -76,7 +76,7 @@ export const remove = (req, res) => {
 }
 
 export const removeAll = (req, res) => {
-    Scene.destroy({
+    Service.destroy({
         where: {},
         truncate: false
     }).then(data => {

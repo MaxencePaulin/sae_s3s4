@@ -1,6 +1,6 @@
-import User from '../models/User.model.js';
+import User from '../models/_Users.model.js';
 import Qr_code from "../models/Qr_code.model.js";
-import Virtualaccount from "../models/Virtualaccount.model.js";
+import Virtualaccount from "../models/VirtualAccount.model.js";
 
 const test = (callback) => {
     try {
