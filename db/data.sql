@@ -1,3 +1,85 @@
+insert into nationality(id_nationality,libelle_nationality)values
+(1,'Algerian'),
+(2,'American'),
+(3,'Argentinian'),
+(4,'Australian'),
+(5,'Austrian'),
+(6,'Belgian'),
+(7,'Bolivian'),
+(8,'Brazilian'),
+(9,'British'),
+(10,'Bulgarian'),
+(11,'Canadian'),
+(12,'Chilean'),
+(13,'Chinese'),
+(14,'Colombian'),
+(15,'Croatian'),
+(16,'Cuban'),
+(17,'Czech'),
+(18,'Danish'),
+(19,'Dutch'),
+(20,'Ecuadorian'),
+(21,'Egyptian'),
+(22,'English'),
+(23,'Estonian'),
+(24,'Finnish'),
+(25,'French'),
+(26,'German'),
+(27,'Greek'),
+(28,'Guatemalan'),
+(29,'Haitian'),
+(30,'Honduran'),
+(31,'Hungarian'),
+(32,'Icelandic'),
+(33,'Indian'),
+(34,'Indonesian'),
+(35,'Iranian'),
+(36,'Irish'),
+(37,'Israeli'),
+(38,'Italian'),
+(39,'Japanese'),
+(40,'Jordanian'),
+(41,'Kazakh'),
+(42,'Kenyan'),
+(43,'Korean'),
+(44,'Latvian'),
+(45,'Lithuanian'),
+(46,'Luxembourgish'),
+(47,'Malaysian'),
+(48,'Mexican'),
+(49,'Mongolian'),
+(50,'Moroccan'),
+(51,'New Zealand'),
+(52,'Nicaraguan'),
+(53,'Norwegian'),
+(54,'Pakistani'),
+(55,'Panamanian'),
+(56,'Paraguayan'),
+(57,'Peruvian'),
+(58,'Polish'),
+(59,'Portuguese'),
+(60,'Romanian'),
+(61,'Russian'),
+(62,'Saudi Arabian'),
+(63,'Scottish'),
+(64,'Serbian'),
+(65,'Singaporean'),
+(66,'Slovak'),
+(67,'Slovenian'),
+(68,'South African'),
+(69,'Spanish'),
+(70,'Swedish'),
+(71,'Swiss'),
+(72,'Taiwanese'),
+(73,'Thai'),
+(74,'Tunisian'),
+(75,'Turkish'),
+(76,'Ukrainian'),
+(77,'Uruguayan'),
+(78,'Venezuelan'),
+(79,'Vietnamese'),
+(80,'Welsh');
+
 insert into typescene(id_typescene,libelle_typescene)values
 (1,'exterieur'),
 (2,'interieur'),
@@ -181,3 +263,39 @@ insert into reserve (id_user,id_place,date_start_placereserved,date_end_placeres
 (1,3,'2021-01-01','2021-12-31'),
 (1,4,'2022-01-01','2022-12-31'),
 (2,1,'2023-01-01','2023-12-31');
+
+insert into origineuser(id_nationality,id_user)values
+(1,1),
+(2,2),
+(3,3),
+(4,4);
+
+insert into concert(id_artist,id_scene,date_concert)values
+(1,1,'2020-01-01'),
+(2,2,'2021-01-01'),
+(3,3,'2022-01-01'),
+(4,4,'2023-01-01');
+
+insert into have(id_artist,id_socialnetwork)values
+(1,1),
+(2,2),
+(3,3),
+(4,4);
+
+insert into musicstyle(id_musicstyle,libelle_musicstyle)values
+(1,'rock'),
+(2,'pop'),
+(3,'rap'),
+(4,'jazz');
+
+insert into make(id_artist,id_musicstyle)values
+(1,1),
+(2,2),
+(3,3),
+(4,4);
+
+insert into origineartist(id_artist,id_nationality)values
+(1,1),
+(2,2),
+(3,3),
+(4,4);
