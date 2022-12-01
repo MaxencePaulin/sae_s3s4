@@ -1,4 +1,5 @@
-import Users from '../models/_Users.model.js';
+import { model } from '../db/db.js';
+const Users = model.Users;
 
 export const findAll = (req, res) => {
     Users.findAll().then(data => {

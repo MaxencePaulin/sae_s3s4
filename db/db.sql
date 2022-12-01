@@ -107,7 +107,7 @@ CREATE TABLE if not exists price(
 
 CREATE TABLE if not exists place(
     id_place serial,
-    no_place INT,
+    no_place VARCHAR(255),
     PRIMARY KEY(id_place)
 );
 
