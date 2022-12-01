@@ -12,8 +12,9 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id = parseInt(req.params.id);
-    OrigineArtist.findByPk(id).then(data => {
+    const id_artist = parseInt(req.params.id_artist);
+    const id_nationality = parseInt(req.params.id_nationality);
+    OrigineArtist.findByPk(id_artist ,id_nationality).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -34,10 +35,11 @@ export const create = (req, res) => {
 }
 
 export const update = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_artist = parseInt(req.params.id_artist);
+    const id_nationality = parseInt(req.params.id_nationality);
     const body = req.body;
     OrigineArtist.update(body, {
-        where: { id: id }
+        where: { id_artist: id_artist , id_nationality: id_nationality }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -45,7 +47,7 @@ export const update = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot update OrigineArtist with id=${id}. Maybe OrigineArtist was not found or req.body is empty!`
+                message: `Cannot update OrigineArtist with id_artist=${id_artist} and id_nationality=${id_nationality}. Maybe OrigineArtist was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,9 +58,10 @@ export const update = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_artist = parseInt(req.params.id_artist);
+    const id_nationality = parseInt(req.params.id_nationality);
     OrigineArtist.destroy({
-        where: { id: id }
+        where: { id_artist: id_artist , id_nationality: id_nationality }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -66,7 +69,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete OrigineArtist with id=${id}. Maybe OrigineArtist was not found!`
+                message: `Cannot delete OrigineArtist with id_artist=${id_artist} and id_nationality=${id_nationality}. Maybe OrigineArtist was not found!`
             });
         }
     }).catch(e => {

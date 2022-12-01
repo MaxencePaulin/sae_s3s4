@@ -12,8 +12,10 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id = parseInt(req.params.id);
-    Make.findByPk(id).then(data => {
+    const id_artist = parseInt(req.params.id_artist);
+    const id_musicstyle = parseInt(req.params.id_musicstyle);
+
+    Make.findByPk(id_artist , id_musicstyle).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -34,10 +36,12 @@ export const create = (req, res) => {
 }
 
 export const update = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_artist = parseInt(req.params.id_artist);
+    const id_musicstyle = parseInt(req.params.id_musicstyle);
+
     const body = req.body;
     Make.update(body, {
-        where: { id: id }
+        where: { id_artist: id_artist , id_musicstyle= id_musicstyle }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -45,7 +49,7 @@ export const update = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot update Make with id=${id}. Maybe Make was not found or req.body is empty!`
+                message: `Cannot update Make with id_artist=${id_artist} and id_musicstyle=${id_musicstyle}. Maybe Make was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,9 +60,10 @@ export const update = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_artist = parseInt(req.params.id_artist);
+    const id_musicstyle = parseInt(req.params.id_musicstyle);
     Make.destroy({
-        where: { id: id }
+        where: { id_artist: id_artist , id_musicstyle: id_musicstyle }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -66,7 +71,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Make with id=${id}. Maybe Make was not found!`
+                message: `Cannot delete Make with with id_artist=${id_artist} and id_musicstyle=${id_musicstyle}. Maybe Make was not found!`
             });
         }
     }).catch(e => {

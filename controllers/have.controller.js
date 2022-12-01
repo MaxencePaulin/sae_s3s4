@@ -12,8 +12,10 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id = parseInt(req.params.id);
-    Have.findByPk(id).then(data => {
+    const id_artist = parseInt(req.params.id_artist);
+    const id_socialnetwork = parseInt(req.params.id_socialnetwork);
+
+    Have.findByPk(id_artist, id_socialnetwork).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -34,10 +36,12 @@ export const create = (req, res) => {
 }
 
 export const update = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_artist = parseInt(req.params.id_artist);
+    const id_socialnetwork = parseInt(req.params.id_socialnetwork);
+
     const body = req.body;
     Have.update(body, {
-        where: { id: id }
+        where: { id_artist: id_artist, id_socialnetwork: id_socialnetwork }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -45,7 +49,7 @@ export const update = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot update Have with id=${id}. Maybe Have was not found or req.body is empty!`
+                message: `Cannot update Have with id_artist=${id_artist} and id_socialnetwork=${id_socialnetwork}. Maybe Have was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,9 +60,10 @@ export const update = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_artist = parseInt(req.params.id_artist);
+    const id_socialnetwork = parseInt(req.params.id_socialnetwork);
     Have.destroy({
-        where: { id: id }
+        where: { id_artist: id_artist, id_socialnetwork: id_socialnetwork }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -66,7 +71,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Have with id=${id}. Maybe Have was not found!`
+                message: `Cannot delete Have with id_artist=${id_artist} and id_socialnetwork=${id_socialnetwork}. Maybe Have was not found!`
             });
         }
     }).catch(e => {

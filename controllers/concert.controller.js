@@ -12,8 +12,9 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id = parseInt(req.params.id);
-    Concert.findByPk(id).then(data => {
+    const id_artist = parseInt(req.params.id_artist);
+    const id_scene = parseInt(req.params.id_scene);
+    Concert.findByPk(id_artist, id_scene).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -34,10 +35,11 @@ export const create = (req, res) => {
 }
 
 export const update = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_artist = parseInt(req.params.id_artist);
+    const id_scene = parseInt(req.params.id_scene);
     const body = req.body;
     Concert.update(body, {
-        where: { id: id }
+        where: { id_artist: id_artist , id_scene : id_scene }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -45,7 +47,7 @@ export const update = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot update Concert with id=${id}. Maybe Concert was not found or req.body is empty!`
+                message: `Cannot update Concert with id_artist=${id_artist} and id_scene=${id_scene}. Maybe Concert was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,9 +58,10 @@ export const update = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_artist = parseInt(req.params.id_artist);
+    const id_scene = parseInt(req.params.id_scene);
     Concert.destroy({
-        where: { id: id }
+        where: { id_artist: id_artist , id_scene : id_scene }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -66,7 +69,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Concert with id=${id}. Maybe Concert was not found!`
+                message: `Cannot delete Concert with id_artist=${id_artist} and id_scene=${id_scene}. Maybe Concert was not found!`
             });
         }
     }).catch(e => {
