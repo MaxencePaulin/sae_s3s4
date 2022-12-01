@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', findAll);
 /**
  * @swagger
- * /:
+ * /users:
  *   get:
  *      description: Return all users
  *      tags:
@@ -18,7 +18,7 @@ router.get('/', findAll);
  *              description: Internal server error
  *          '400':
  *              description: Bad request
- * */
+ */
 
 router.get('/:id', findOne);
 /**
@@ -40,7 +40,7 @@ router.get('/:id', findOne);
  *              description: Internal server error
  *          '400':
  *              description: Bad request
- * */
+ */
 
 router.post('/', create);
 /**
@@ -98,8 +98,7 @@ router.post('/', create);
  *              description: Internal server error
  *          '400':
  *              description: Bad request
- * */
-
+ */
 
 router.put('/:id', update);
 router.put('/:id', update);
