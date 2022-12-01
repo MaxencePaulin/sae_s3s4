@@ -23,7 +23,7 @@ router.get('/', findAll);
 router.get('/:id', findOne);
 /**
  * @swagger
- * /{id}:
+ * /users/{id}:
  *   get:
  *      description: Return user by id
  *      tags:
@@ -45,7 +45,7 @@ router.get('/:id', findOne);
 router.post('/', create);
 /**
  * @swagger
- * /:
+ * /users:
  *   post:
  *      description: Create a user
  *      tags:
