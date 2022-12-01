@@ -43,6 +43,6 @@ const Bought = db.define('bought' , {
             key: 'date_end_validity'
         }
     },
-},{timestamps: true , freezeTableName: true});
+},{timestamps: false, freezeTableName: true});
 
 export default Bought ;

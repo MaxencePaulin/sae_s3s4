@@ -12,8 +12,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id = parseInt(req.params.id);
-    TypePrestataire.findByPk(id).then(data => {
+    const id_typeprestataire = parseInt(req.params.id_typeprestataire);
+    TypePrestataire.findByPk(id_typeprestataire).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -34,10 +34,10 @@ export const create = (req, res) => {
 }
 
 export const update = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_typeprestataire = parseInt(req.params.id_typeprestataire);
     const body = req.body;
     TypePrestataire.update(body, {
-        where: { id: id }
+        where: { id_typeprestataire: id_typeprestataire }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -45,7 +45,7 @@ export const update = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot update Proposes with id=${id}. Maybe Proposes was not found or req.body is empty!`
+                message: `Cannot update Proposes with id_typeprestataire=${id_typeprestataire}. Maybe Proposes was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,9 +56,9 @@ export const update = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_typeprestataire = parseInt(req.params.id_typeprestataire);
     TypePrestataire.destroy({
-        where: { id: id }
+        where: { id_typeprestataire: id_typeprestataire }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -66,7 +66,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Proposes with id=${id}. Maybe Proposes was not found!`
+                message: `Cannot delete Proposes with id_typeprestataire=${id_typeprestataire}. Maybe Proposes was not found!`
             });
         }
     }).catch(e => {

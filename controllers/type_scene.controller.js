@@ -12,8 +12,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id = parseInt(req.params.id);
-    TypeScene.findByPk(id).then(data => {
+    const id_type = parseInt(req.params.id_typescene);
+    TypeScene.findByPk(id_type).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -34,10 +34,10 @@ export const create = (req, res) => {
 }
 
 export const update = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_type = parseInt(req.params.id_typescene);
     const body = req.body;
     TypeScene.update(body, {
-        where: { id: id }
+        where: { id_typescene: id_type }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -45,7 +45,7 @@ export const update = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot update Proposes with id=${id}. Maybe Proposes was not found or req.body is empty!`
+                message: `Cannot update Proposes with id_typescene=${id_type}. Maybe Proposes was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,9 +56,9 @@ export const update = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_type = parseInt(req.params.id_typescene);
     TypeScene.destroy({
-        where: { id: id }
+        where: { id_typescene: id_type }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -66,7 +66,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Proposes with id=${id}. Maybe Proposes was not found!`
+                message: `Cannot delete Proposes with id_typescene=${id_type}. Maybe Proposes was not found!`
             });
         }
     }).catch(e => {
@@ -76,7 +76,7 @@ export const remove = (req, res) => {
     });
 }
 
-export const removeAll = (req, res) => {
+export const removeAll = (req, res) => { 
     TypeScene.destroy({
         where: {},
         truncate: false
