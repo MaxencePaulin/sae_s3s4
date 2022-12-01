@@ -8,6 +8,8 @@ import bodyParser from 'body-parser';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import hbengine from 'express-handlebars';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 // Routes
 import sceneRoutes from './routes/scene.router.js';
@@ -18,6 +20,8 @@ import auth from "./middleware/authenticate.js";
 
 // Routes v2
 import usersRoutes from './routes/_users.router.js';
+import swaggerJsdoc from "swagger-jsdoc";
+import router from "./routes/main.router.js";
 
 // Database connection
 db.authenticate().then(() => {
@@ -77,6 +81,30 @@ app.use((req, res, next) =>{
         JSON.stringify(req.ip));
     next();
 });
+
+/** Swagger Initialization - START */
+const swaggerOption = {
+    swaggerDefinition: (swaggerJsdoc.Options = {
+        info: {
+            title: "SAE S3S4",
+            description: "API documentation",
+            contact: {
+                name: [
+                    "Maxence PAULIN",
+                    "Baptiste LAVAL",
+                    "Antoine PERRIN",
+                    "Antoine LACHAT",
+                    "Taha MOUMEN"
+                ],
+            },
+            servers: ["http://localhost:3000/"],
+        },
+    }),
+    apis: ["server.js", "./routes/*.js"],
+};
+const swaggerDocs = swaggerJsdoc(swaggerOption);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/users', usersRoutes);
 

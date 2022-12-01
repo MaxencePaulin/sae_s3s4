@@ -5,41 +5,15 @@ import ownersController from '../controllers/owners.controller.js';
 import adminController from '../controllers/admin.controller.js';
 import guestController from '../controllers/guest.controller.js';
 import userController from '../controllers/user.controller.js';
-import swaggerJsdoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
 import auth from '../middleware/authenticate.js';
 let router=express.Router();
 import {findProfesseur} from "../controllers/professeur.controller.js";
-
-/** Swagger Initialization - START */
-const swaggerOption = {
-    swaggerDefinition: (swaggerJsdoc.Options = {
-        info: {
-            title: "SAE S3S4",
-            description: "API documentation",
-            contact: {
-                name: [
-                    "Maxence PAULIN",
-                    "Baptiste LAVAL",
-                    "Antoine PERRIN",
-                    "Antoine LACHAT",
-                    "Taha MOUMEN"
-                ],
-            },
-            servers: ["http://localhost:3000/"],
-        },
-    }),
-    apis: ["server.js", "./routes/*.js"],
-};
-const swaggerDocs = swaggerJsdoc(swaggerOption);
 
 // localhost:3000/
 
 // Configuration des routes
 
 router.get("/professeur", findProfesseur);
-
-router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 router.get("owners/id=:id", ownersController.listOwnerById);
 /**
