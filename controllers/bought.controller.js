@@ -12,7 +12,9 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_user = parseInt(req.params.id_user);
+    const id_ticket = parseInt(req.params.id_ticket);
+    
     Bought.findByPk(id).then(data => {
         res.send(data);
     }).catch(e => {
