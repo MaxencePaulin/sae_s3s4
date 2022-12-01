@@ -1,4 +1,5 @@
-import MusicStyle from '../models/MusicStyle.model.js';
+import model from '../models/index.js';
+const MusicStyle = model.MusicStyle;
 
 export const findAll = (req, res) => {
     MusicStyle.findAll().then(data => {

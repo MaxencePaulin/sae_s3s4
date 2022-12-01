@@ -1,4 +1,5 @@
-import Make from '../models/Make.model.js';
+import model from '../models/index.js';
+const Make = model.Make;
 
 export const findAll = (req, res) => {
     Make.findAll().then(data => {

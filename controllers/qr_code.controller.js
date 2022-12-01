@@ -1,4 +1,5 @@
-import Qr_code from '../models/Qr_code.model.js';
+import model from '../models/index.js';
+const Qr_code = model.Qr_code;
 
 export const findAll = (req, res) => {
     Qr_code.findAll().then(data => {

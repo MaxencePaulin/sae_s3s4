@@ -1,4 +1,5 @@
-import TypeScene from '../models/TypeScene.model.js';
+import model from '../models/index.js';
+const TypeScene = model.TypeScene;
 
 export const findAll = (req, res) => {
     TypeScene.findAll().then(data => {

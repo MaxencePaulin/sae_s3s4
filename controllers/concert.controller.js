@@ -1,4 +1,5 @@
-import Concert from '../models/Concert.model.js';
+import model from '../models/index.js';
+const Concert = model.Concert;
 
 export const findAll = (req, res) => {
     Concert.findAll().then(data => {

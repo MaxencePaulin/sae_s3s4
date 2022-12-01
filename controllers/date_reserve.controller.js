@@ -1,4 +1,5 @@
-import Date_reserve from '../models/Date_reserve.model.js';
+import model from '../models/index.js';
+const Date_reserve = model.Date_reserve;
 
 export const findAll = (req, res) => {
     Date_reserve.findAll().then(data => {

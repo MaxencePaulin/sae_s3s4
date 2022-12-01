@@ -1,4 +1,5 @@
-import Droit from '../models/Droit.model.js';
+import model from '../models/index.js';
+const Droit = model.Droit;
 
 export const findAll = (req, res) => {
     Droit.findAll().then(data => {

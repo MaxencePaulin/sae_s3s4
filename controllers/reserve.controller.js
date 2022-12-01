@@ -1,4 +1,5 @@
-import Reserve from '../models/Reserve.model.js';
+import model from '../models/index.js';
+const Reserve = model.Reserve;
 
 export const findAll = (req, res) => {
     Reserve.findAll().then(data => {

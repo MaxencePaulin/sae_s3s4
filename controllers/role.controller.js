@@ -1,4 +1,5 @@
-import Role from '../models/Role.model.js';
+import model from '../models/index.js';
+const Role = model.Role;
 
 export const findAll = (req, res) => {
     Role.findAll().then(data => {

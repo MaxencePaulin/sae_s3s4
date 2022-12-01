@@ -1,4 +1,5 @@
-import TypePrestataire from '../models/TypePrestataire.model.js';
+import model from '../models/index.js';
+const TypePrestataire = model.TypePrestataire;
 
 export const findAll = (req, res) => {
     TypePrestataire.findAll().then(data => {

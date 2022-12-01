@@ -1,4 +1,5 @@
-import Ticket from '../models/Ticket.model.js';
+import model from '../models/index.js';
+const Ticket = model.Ticket;
 
 export const findAll = (req, res) => {
     Ticket.findAll().then(data => {

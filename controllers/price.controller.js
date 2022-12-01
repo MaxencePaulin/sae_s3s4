@@ -1,4 +1,5 @@
-import Price from '../models/Price.model.js';
+import model from '../models/index.js';
+const Price = model.Price;
 
 export const findAll = (req, res) => {
     Price.findAll().then(data => {

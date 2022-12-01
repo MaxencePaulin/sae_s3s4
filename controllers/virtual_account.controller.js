@@ -1,4 +1,5 @@
-import VirtualAccount from '../models/VirtualAccount.model.js';
+import model from '../models/index.js';
+const VirtualAccount = model.VirtualAccount;
 
 export const findAll = (req, res) => {
     VirtualAccount.findAll().then(data => {

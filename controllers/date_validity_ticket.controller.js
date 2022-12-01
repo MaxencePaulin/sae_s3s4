@@ -1,4 +1,5 @@
-import Date_validity_ticket from '../models/Date_validity_ticket.model.js';
+import model from '../models/index.js';
+const Date_validity_ticket = model.Date_validity_ticket;
 
 export const findAll = (req, res) => {
     Date_validity_ticket.findAll().then(data => {

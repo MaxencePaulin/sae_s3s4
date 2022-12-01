@@ -1,4 +1,5 @@
-import Have from '../models/Have.model.js';
+import model from '../models/index.js';
+const Have = model.Have;
 
 export const findAll = (req, res) => {
     Have.findAll().then(data => {

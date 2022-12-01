@@ -1,4 +1,5 @@
-import Service from '../models/Service.model.js';
+import model from '../models/index.js';
+const Service = model.Service;
 
 export const findAll = (req, res) => {
     Service.findAll().then(data => {

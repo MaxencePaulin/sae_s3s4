@@ -1,4 +1,5 @@
-import Place from '../models/Place.model.js';
+import model from '../models/index.js';
+const Place = model.Place;
 
 export const findAll = (req, res) => {
     Place.findAll().then(data => {

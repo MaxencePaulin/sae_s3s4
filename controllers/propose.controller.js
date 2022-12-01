@@ -1,4 +1,5 @@
-import Proposes from '../models/Proposes.model.js';
+import model from '../models/index.js';
+const Proposes = model.Proposes;
 
 export const findAll = (req, res) => {
     Proposes.findAll().then(data => {

@@ -1,4 +1,5 @@
-import Prestataire from '../models/Prestataire.model.js';
+import model from '../models/index.js';
+const Prestataire = model.Prestataire;
 
 export const findAll = (req, res) => {
     Prestataire.findAll().then(data => {

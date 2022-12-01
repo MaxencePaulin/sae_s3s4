@@ -1,4 +1,5 @@
-import SocialNetwork from '../models/SocialNetwork.model.js';
+import model from '../models/index.js';
+const SocialNetwork = model.SocialNetwork;
 
 export const findAll = (req, res) => {
     SocialNetwork.findAll().then(data => {

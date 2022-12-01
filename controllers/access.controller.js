@@ -1,4 +1,5 @@
-import Access from '../models/Access.model.js';
+import model from '../models/index.js';
+const Access = model.Access;
 
 export const findAll = (req, res) => {
     Access.findAll().then(data => {

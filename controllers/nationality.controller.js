@@ -1,4 +1,5 @@
-import Nationality from '../models/Nationality.model.js';
+import model from '../models/index.js';
+const Nationality = model.Nationality;
 
 export const findAll = (req, res) => {
     Nationality.findAll().then(data => {

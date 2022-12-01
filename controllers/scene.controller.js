@@ -1,4 +1,5 @@
-import Scene from '../models/Scene.model.js';
+import model from '../models/index.js';
+const Scene = model.Scene;
 
 export const findAll = (req, res) => {
     Scene.findAll().then(data => {

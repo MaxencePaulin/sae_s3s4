@@ -16,6 +16,9 @@ import mainRoutes from './routes/main.router.js';
 
 import auth from "./middleware/authenticate.js";
 
+// Routes v2
+import usersRoutes from './routes/_users.router.js';
+
 // Database connection
 db.authenticate().then(() => {
     console.log('Connection à la base avec sequelize réussie.');
@@ -74,6 +77,8 @@ app.use((req, res, next) =>{
         JSON.stringify(req.ip));
     next();
 });
+
+app.use('/users', usersRoutes);
 
 app.use("/scene", sceneRoutes);
 app.use("/user", userRoutes);

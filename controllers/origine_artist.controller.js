@@ -1,4 +1,5 @@
-import OrigineArtist from '../models/OrigineArtist.model.js';
+import model from '../models/index.js';
+const OrigineArtist = model.OrigineArtist;
 
 export const findAll = (req, res) => {
     OrigineArtist.findAll().then(data => {
