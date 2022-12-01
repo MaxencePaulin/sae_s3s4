@@ -24,6 +24,6 @@ const Have = db.define('have' , {
         }
     },
 
-},{timestamps: true , freezeTableName: true});
+},{timestamps: false, freezeTableName: true});
 
 export default Have ;

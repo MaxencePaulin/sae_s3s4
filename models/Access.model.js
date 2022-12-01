@@ -24,6 +24,6 @@ const Access = db.define('access' , {
         }
     },
 
-},{timestamps: true , freezeTableName: true});
+},{timestamps: false, freezeTableName: true});
 
 export default Access ;

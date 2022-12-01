@@ -28,6 +28,6 @@ const Concert = db.define('concert' , {
         allowNull : false
     }
 
-},{timestamps: true , freezeTableName: true});
+},{timestamps: false, freezeTableName: true});
 
 export default Concert ;

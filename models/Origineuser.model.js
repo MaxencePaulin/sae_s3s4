@@ -24,6 +24,6 @@ const Origineuser = db.define('origineuser' , {
 
     },
 
-},{timestamps: true , freezeTableName: true});
+},{timestamps: false, freezeTableName: true});
 
 export default Origineuser ;
