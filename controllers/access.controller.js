@@ -14,7 +14,7 @@ export const findAll = (req, res) => {
 export const findOne = (req, res) => {
     const id_role = parseInt(req.params.id_role);
     const id_droit = parseInt(req.params.id_droit);
-    Access.findByPk([id_role, id_droit]).then(data => {
+    Access.findByPk(id_role,id_droit).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -35,10 +35,11 @@ export const create = (req, res) => {
 }
 
 export const update = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_role = parseInt(req.params.id_role);
+    const id_droit = parseInt(req.params.id_droit);
     const body = req.body;
     Access.update(body, {
-        where: { id: id }
+        where: { id_role: id_role , id_droit: id_droit }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -46,7 +47,7 @@ export const update = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot update Access with id=${id}. Maybe Access was not found or req.body is empty!`
+                message: `Cannot update Access with id_role=${id_role} and id_droit=${id_droit}. Maybe Access was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -57,9 +58,10 @@ export const update = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_role = parseInt(req.params.id_role);
+    const id_droit = parseInt(req.params.id_droit);
     Access.destroy({
-        where: { id: id }
+        where: { id_role: id_role , id_droit: id_droit }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -67,7 +69,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Access with id=${id}. Maybe Access was not found!`
+                message: `Cannot delete Access with id_role=${id_role} and id_droit=${id_droit}. Maybe Access was not found!`
             });
         }
     }).catch(e => {
