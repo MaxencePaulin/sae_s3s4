@@ -43,6 +43,6 @@ const Reserve = db.define('reserve' , {
             key: 'date_end_placereserved'
         }
     },
-},{timestamps: true , freezeTableName: true});
+},{timestamps: false, freezeTableName: true});
 
 export default Reserve ;

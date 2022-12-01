@@ -24,6 +24,6 @@ const Proposes = db.define('proposes' , {
         }
     },
 
-},{timestamps: true , freezeTableName: true});
+},{timestamps: false, freezeTableName: true});
 
 export default Proposes ;
