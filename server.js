@@ -128,3 +128,5 @@ app.use((err, req, res, next) => {
 db.sync().then(() => {
     app.listen(port, console.log(`Le serveur écoute sur le port ${port}`));
 }).catch(err => console.log("Error: " + err));
+
+aa
