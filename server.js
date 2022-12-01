@@ -20,7 +20,6 @@ import auth from "./middleware/authenticate.js";
 
 // Routes v2
 import usersRoutes from './routes/_users.router.js';
-import swaggerJsdoc from "swagger-jsdoc";
 import router from "./routes/main.router.js";
 
 // Database connection
