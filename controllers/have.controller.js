@@ -2,7 +2,7 @@ import model from '../models/index.js';
 const Have = model.Have;
 
 export const findAll = (req, res) => {
-    Have.findAll().then(data => {
+    Have.findAll({include: [{model: model.Artist}, {model: model.SocialNetwork}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -15,7 +15,8 @@ export const findOne = (req, res) => {
     const id_artist = parseInt(req.params.id_artist);
     const id_socialnetwork = parseInt(req.params.id_socialnetwork);
 
-    Have.findByPk(id_artist, id_socialnetwork).then(data => {
+    Have.findOne({where: {id_artist: id_artist, id_socialnetwork: id_socialnetwork},
+        include: [{model: model.Artist}, {model: model.SocialNetwork}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

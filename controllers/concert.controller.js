@@ -2,7 +2,8 @@ import model from '../models/index.js';
 const Concert = model.Concert;
 
 export const findAll = (req, res) => {
-    Concert.findAll().then(data => {
+    Concert.findAll({include: [{model: model.Artist}, {model: model.Scene,
+            include: [{model: model.TypeScene}]}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -14,7 +15,9 @@ export const findAll = (req, res) => {
 export const findOne = (req, res) => {
     const id_artist = parseInt(req.params.id_artist);
     const id_scene = parseInt(req.params.id_scene);
-    Concert.findByPk(id_artist, id_scene).then(data => {
+    Concert.findOne({where: {id_artist: id_artist, id_scene: id_scene},
+        include: [{model: model.Artist}, {model: model.Scene,
+            include: [{model: model.TypeScene}]}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

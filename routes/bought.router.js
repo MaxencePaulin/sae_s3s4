@@ -1,5 +1,5 @@
 import express from 'express';
-import { findAll, findOne, create, update, remove, removeAll } from '../controllers/bought.controller.js';
+import { findAll, findOne, create, remove, removeAll } from '../controllers/bought.controller.js';
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/', findAll);
  *   get:
  *      description: Return all bought
  *      tags:
- *          - Bought_route
+ *          - Bought_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -22,12 +22,6 @@ router.get('/', findAll);
 
 router.get('/:id', findOne);
 router.post('/', create);
-
-router.put('/:id', update);
-
-router.get('/:id', findOne);
-router.post('/', create);
-router.put('/:id', update);
 router.delete('/:id', remove);
 router.delete('/', removeAll);
 

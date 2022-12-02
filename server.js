@@ -22,6 +22,8 @@ import auth from "./middleware/authenticate.js";
 import usersRoutes from './routes/_users.router.js';
 import accessRoutes from './routes/access.router.js';
 import artistRoutes from './routes/artist.router.js';
+import boughtRoutes from './routes/bought.router.js';
+import concertRoutes from './routes/concert.router.js';
 import ticketRoutes from './routes/ticket.router.js';
 import qr_codeRouter from "./routes/qr_code.router.js";
 
@@ -111,6 +113,8 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use('/users', usersRoutes);
 app.use('/access', accessRoutes);
 app.use('/artist', artistRoutes);
+app.use('/bought', boughtRoutes);
+app.use('/concert', concertRoutes);
 app.use('/ticket', ticketRoutes);
 app.use("/scene", sceneRoutes);
 app.use("/user", userRoutes);

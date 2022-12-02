@@ -2,7 +2,8 @@ import model from '../models/index.js';
 const Proposes = model.Proposes;
 
 export const findAll = (req, res) => {
-    Proposes.findAll().then(data => {
+    Proposes.findAll({include: [{model: model.Prestataire, include: [{model: model.TypePrestataire}]},
+            {model: model.Service}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -14,7 +15,9 @@ export const findAll = (req, res) => {
 export const findOne = (req, res) => {
     const id_prestataire = parseInt(req.params.id_prestataire);
     const id_service = parseInt(req.params.id_service);
-    Proposes.findByPk(id_prestataire , id_service).then(data => {
+    Proposes.findOne({where: {id_prestataire: id_prestataire, id_service: id_service},
+        include: [{model: model.Prestataire, include: [{model: model.TypePrestataire}]},
+                {model: model.Service}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

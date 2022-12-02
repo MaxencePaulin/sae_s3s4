@@ -2,7 +2,7 @@ import model from '../models/index.js';
 const Origineuser = model.Origineuser;
 
 export const findAll = (req, res) => {
-    Origineuser.findAll().then(data => {
+    Origineuser.findAll({include: [{model: model.Nationality}, {model: model.Users}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -14,7 +14,8 @@ export const findAll = (req, res) => {
 export const findOne = (req, res) => {
     const id_user = parseInt(req.params.id_user);
     const id_nationality = parseInt(req.params.id_nationality);   
-    Origineuser.findByPk(id_nationality , id_user).then(data => {
+    Origineuser.findOne({where: {id_nationality: id_nationality, id_user: id_user},
+        include: [{model: model.Nationality}, {model: model.Users}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

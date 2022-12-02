@@ -2,7 +2,8 @@ import model from '../models/index.js';
 const Reserve = model.Reserve;
 
 export const findAll = (req, res) => {
-    Reserve.findAll().then(data => {
+    Reserve.findAll({include: [{model: model.Users}, {model: model.Place},
+            {model: model.Date_reserve}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -16,7 +17,10 @@ export const findOne = (req, res) => {
     const id_place = parseInt(req.body.id_ticket);
     const date_start_placereserved = req.body.date_start_placereserved;
     const date_end_placereserved = req.body.date_end_placereserved;
-    Reserve.findByPk(id_user , id_place , date_start_placereserved , date_end_placereserved).then(data => {
+    Reserve.findOne({where: {id_user: id_user, id_place: id_place,
+            date_start_placereserved: date_start_placereserved, date_end_placereserved: date_end_placereserved},
+        include: [{model: model.Users}, {model: model.Place},
+                {model: model.Date_reserve}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

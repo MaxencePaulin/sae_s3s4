@@ -2,7 +2,7 @@ import model from '../models/index.js';
 const Bought = model.Bought;
 
 export const findAll = (req, res) => {
-    Bought.findAll().then(data => {
+    Bought.findAll({include: [{model: model.Users}, {model: model.Ticket}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -16,7 +16,9 @@ export const findOne = (req, res) => {
     const id_ticket = parseInt(req.body.id_ticket);
     const date_start_validity = req.body.date_start_validity ;
     const date_end_validity = req.body.date_end_validity ;
-    Bought.findByPk(id_user , id_ticket , date_start_validity , date_end_validity).then(data => {
+    Bought.findOne({where: {id_user: id_user, id_ticket: id_ticket , date_start_validity: date_start_validity,
+            date_end_validity: date_end_validity},
+            include: [{model: model.Users}, {model: model.Ticket}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

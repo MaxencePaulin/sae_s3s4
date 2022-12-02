@@ -10,7 +10,7 @@ router.get('/', findAll);
  *   get:
  *      description: Return all users
  *      tags:
- *          - Users_route
+ *          - Users_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -27,7 +27,7 @@ router.get('/:id', findOne);
  *   get:
  *      description: Return user by id
  *      tags:
- *          - Users_route
+ *          - Users_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -49,7 +49,7 @@ router.post('/', create);
  *   post:
  *      description: Create a user
  *      tags:
- *          - Users_route
+ *          - Users_routes
  *      parameters:
  *          - in: body
  *            name: user

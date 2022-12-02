@@ -10,7 +10,7 @@ router.get('/', findAll);
  *   get:
  *      description: Return all qr_code
  *      tags:
- *          - Qr_code_route
+ *          - Qr_code_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -27,7 +27,7 @@ router.get('/:id', findOne);
  *   get:
  *      description: Return one qr_code
  *      tags:
- *          - Qr_code_route
+ *          - Qr_code_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -52,7 +52,7 @@ router.post('/', create);
  *   post:
  *      description: Create a new qr_code
  *      tags:
- *          - Qr_code_route
+ *          - Qr_code_routes
  *      parameters:
  *          - in: body
  *            name: qr_code
@@ -83,7 +83,7 @@ router.put('/:id', update);
  *   put:
  *      description: Update a qr_code
  *      tags:
- *          - Qr_code_route
+ *          - Qr_code_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -120,7 +120,7 @@ router.delete('/:id', remove);
  *   delete:
  *      description: Delete a qr_code
  *      tags:
- *          - Qr_code_route
+ *          - Qr_code_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -144,7 +144,7 @@ router.delete('/', removeAll);
  *   delete:
  *      description: Delete all qr_code
  *      tags:
- *          - Qr_code_route
+ *          - Qr_code_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully

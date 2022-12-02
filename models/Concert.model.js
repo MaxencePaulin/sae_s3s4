@@ -11,7 +11,6 @@ const Concert = db.define('concert' , {
             model: 'artist',
             key: 'id_artist'
         }
-
     },
     id_scene: {
         type : DataTypes.INTEGER,
@@ -27,7 +26,6 @@ const Concert = db.define('concert' , {
         type : DataTypes.DATE ,
         allowNull : false
     }
-
 },{timestamps: false, freezeTableName: true});
 
 export default Concert ;

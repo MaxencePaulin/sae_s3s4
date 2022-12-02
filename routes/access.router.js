@@ -10,7 +10,7 @@ router.get('/', findAll);
  *   get:
  *      description: Return all access
  *      tags:
- *          - Access_route
+ *          - Access_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -27,7 +27,7 @@ router.get('/:id_role/:id_droit', findOne);
  *   get:
  *      description: Return user by id
  *      tags:
- *          - Access_route
+ *          - Access_routes
  *      parameters:
  *          - in: path
  *            name: id_role
@@ -53,7 +53,7 @@ router.post('/', create);
  *   post:
  *      description: Create an access
  *      tags:
- *          - Access_route
+ *          - Access_routes
  *      parameters:
  *          - in: body
  *            name: user
@@ -84,7 +84,7 @@ router.delete('/:id_role/:id_droit', remove);
  *   delete:
  *      description: Delete an access
  *      tags:
- *          - Access_route
+ *          - Access_routes
  *      parameters:
  *          - in: path
  *            name: id_role
@@ -110,7 +110,7 @@ router.delete('/', removeAll);
  *   delete:
  *      description: Delete all access
  *      tags:
- *          - Access_route
+ *          - Access_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully

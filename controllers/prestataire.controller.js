@@ -2,7 +2,7 @@ import model from '../models/index.js';
 const Prestataire = model.Prestataire;
 
 export const findAll = (req, res) => {
-    Prestataire.findAll().then(data => {
+    Prestataire.findAll({include: [{model: model.TypePrestataire}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -13,7 +13,7 @@ export const findAll = (req, res) => {
 
 export const findOne = (req, res) => {
     const id = parseInt(req.params.id);
-    Prestataire.findByPk(id).then(data => {
+    Prestataire.findByPk(id, {include: [{model: model.TypePrestataire}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

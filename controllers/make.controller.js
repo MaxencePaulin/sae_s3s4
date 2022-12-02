@@ -2,7 +2,7 @@ import model from '../models/index.js';
 const Make = model.Make;
 
 export const findAll = (req, res) => {
-    Make.findAll().then(data => {
+    Make.findAll({include: [{model: model.Artist}, {model: model.MusicStyle}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -15,7 +15,8 @@ export const findOne = (req, res) => {
     const id_artist = parseInt(req.params.id_artist);
     const id_musicstyle = parseInt(req.params.id_musicstyle);
 
-    Make.findByPk(id_artist , id_musicstyle).then(data => {
+    Make.findOne({where: {id_artist: id_artist , id_musicstyle: id_musicstyle},
+        include: [{model: model.Artist}, {model: model.MusicStyle}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

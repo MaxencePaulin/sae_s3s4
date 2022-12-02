@@ -14,7 +14,8 @@ export const findAll = (req, res) => {
 export const findOne = (req, res) => {
     const date_start_validity = req.body.date_start_validity;
     const date_end_validity = req.body.date_end_validity;
-    Date_validity_ticket.findByPk(date_start_validity, date_end_validity).then(data => {
+    Date_validity_ticket.findOne({where: {date_start_validity: date_start_validity,
+            date_end_validity: date_end_validity}}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

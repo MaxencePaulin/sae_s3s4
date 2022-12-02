@@ -10,7 +10,7 @@ router.get('/', findAll);
  *   get:
  *      description: Return all artist
  *      tags:
- *          - Artist_route
+ *          - Artist_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -27,7 +27,7 @@ router.get('/:id', findOne);
  *   get:
  *      description: Return artist by id_artiste
  *      tags:
- *          - Artist_route
+ *          - Artist_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -42,7 +42,6 @@ router.get('/:id', findOne);
  *              description: Bad request
  */
 
-
 router.post('/', create);
 /**
  * @swagger
@@ -50,7 +49,7 @@ router.post('/', create);
  *   post:
  *      description: Create an artist
  *      tags:
- *          - Artist_route
+ *          - Artist_routes
  *      parameters:
  *          - in: body
  *            name: artist
@@ -90,7 +89,7 @@ router.put('/:id', update);
  *   put:
  *      description: Update an artist
  *      tags:
- *          - Artist_route
+ *          - Artist_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -134,7 +133,7 @@ router.delete('/:id', remove);
  *   delete:
  *      description: Delete an artist
  *      tags:
- *          - Artist_route
+ *          - Artist_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -156,7 +155,7 @@ router.delete('/', removeAll);
  *   delete:
  *      description: Delete all artist
  *      tags:
- *          - Artist_route
+ *          - Artist_routes
  *      responses:
  *          '200':
  *              description: Resource deleted successfully

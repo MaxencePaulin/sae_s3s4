@@ -10,7 +10,7 @@ router.get('/', findAll);
  *   get:
  *      description: Return all ticket
  *      tags:
- *          - Ticket_route
+ *          - Ticket_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -26,7 +26,7 @@ router.get('/:id', findOne);
  *   get:
  *      description: Return one ticket
  *      tags:
- *          - Ticket_route
+ *          - Ticket_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -50,7 +50,7 @@ router.post('/', create);
  *   post:
  *      description: Create one ticket
  *      tags:
- *          - Ticket_route
+ *          - Ticket_routes
  *      parameters:
  *          - in: body
  *            name: ticket
@@ -84,7 +84,7 @@ router.put('/:id', update);
  *   put:
  *      description: Update one ticket
  *      tags:
- *          - Ticket_route
+ *          - Ticket_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -124,7 +124,7 @@ router.delete('/:id', remove);
  *   delete:
  *      description: Delete one ticket
  *      tags:
- *          - Ticket_route
+ *          - Ticket_routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -148,7 +148,7 @@ router.delete('/', removeAll);
  *   delete:
  *      description: Delete all ticket
  *      tags:
- *          - Ticket_route
+ *          - Ticket_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
