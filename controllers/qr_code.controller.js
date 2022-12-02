@@ -37,15 +37,15 @@ export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
     Qr_code.update(body, {
-        where: { id: id }
+        where: { id_qr_code: id }
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Proposes was updated successfully."
+                message: "Qr_code was updated successfully."
             });
         } else {
             res.send({
-                message: `Cannot update Proposes with id=${id}. Maybe Proposes was not found or req.body is empty!`
+                message: `Cannot update Qr_code with id_qr_code=${id}. Maybe Qr_code was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -62,11 +62,11 @@ export const remove = (req, res) => {
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Proposes was deleted successfully!"
+                message: "Qr_code was deleted successfully!"
             });
         } else {
             res.send({
-                message: `Cannot delete Proposes with id=${id}. Maybe Proposes was not found!`
+                message: `Cannot delete Qr_code with id_qr_code=${id}. Maybe Qr_code was not found!`
             });
         }
     }).catch(e => {
@@ -81,7 +81,7 @@ export const removeAll = (req, res) => {
         where: {},
         truncate: false
     }).then(data => {
-        res.send({ message: `${data} Proposes were deleted successfully!` });
+        res.send({ message: `${data} Qr_code were deleted successfully!` });
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."

@@ -37,15 +37,15 @@ export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
     Service.update(body, {
-        where: { id: id }
+        where: { id_service: id }
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Proposes was updated successfully."
+                message: "Service was updated successfully."
             });
         } else {
             res.send({
-                message: `Cannot update Proposes with id=${id}. Maybe Proposes was not found or req.body is empty!`
+                message: `Cannot update Service with id=${id}. Maybe Service was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -62,11 +62,11 @@ export const remove = (req, res) => {
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Proposes was deleted successfully!"
+                message: "Service was deleted successfully!"
             });
         } else {
             res.send({
-                message: `Cannot delete Proposes with id=${id}. Maybe Proposes was not found!`
+                message: `Cannot delete Service with id=${id}. Maybe Service was not found!`
             });
         }
     }).catch(e => {
@@ -81,7 +81,7 @@ export const removeAll = (req, res) => {
         where: {},
         truncate: false
     }).then(data => {
-        res.send({ message: `${data} Proposes were deleted successfully!` });
+        res.send({ message: `${data} Service were deleted successfully!` });
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."

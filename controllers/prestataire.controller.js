@@ -37,7 +37,7 @@ export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
     Prestataire.update(body, {
-        where: { id: id }
+        where: { id_prestataire: id }
     }).then(data => {
         if (data === 1) {
             res.send({

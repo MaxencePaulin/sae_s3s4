@@ -37,7 +37,7 @@ export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
     Place.update(body, {
-        where: { id: id }
+        where: { id_place: id }
     }).then(data => {
         if (data === 1) {
             res.send({

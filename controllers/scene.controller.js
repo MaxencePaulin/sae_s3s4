@@ -37,15 +37,15 @@ export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
     Scene.update(body, {
-        where: { id: id }
+        where: { id_scene: id }
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Proposes was updated successfully."
+                message: "Scene was updated successfully."
             });
         } else {
             res.send({
-                message: `Cannot update Proposes with id=${id}. Maybe Proposes was not found or req.body is empty!`
+                message: `Cannot update Scene with id=${id}. Maybe Scene was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -66,7 +66,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Proposes with id=${id}. Maybe Proposes was not found!`
+                message: `Cannot delete Scene with id=${id}. Maybe Scene was not found!`
             });
         }
     }).catch(e => {
@@ -81,7 +81,7 @@ export const removeAll = (req, res) => {
         where: {},
         truncate: false
     }).then(data => {
-        res.send({ message: `${data} Proposes were deleted successfully!` });
+        res.send({ message: `${data} Scene were deleted successfully!` });
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."

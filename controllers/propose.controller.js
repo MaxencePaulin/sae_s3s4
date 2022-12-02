@@ -12,8 +12,9 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id = parseInt(req.params.id);
-    Proposes.findByPk(id).then(data => {
+    const id_prestataire = parseInt(req.params.id_prestataire);
+    const id_service = parseInt(req.params.id_service);
+    Proposes.findByPk(id_prestataire , id_service).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -34,10 +35,11 @@ export const create = (req, res) => {
 }
 
 export const update = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_prestataire = parseInt(req.params.id_prestataire);
+    const id_service = parseInt(req.params.id_service);
     const body = req.body;
     Proposes.update(body, {
-        where: { id: id }
+        where: { id_prestataire: id_prestataire , id_service : id_service }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -45,7 +47,7 @@ export const update = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot update Proposes with id=${id}. Maybe Proposes was not found or req.body is empty!`
+                message: `Cannot update Proposes with id_prestatair=${id_prestataire} and id_service=${id_service} Maybe Proposes was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,9 +58,10 @@ export const update = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id_prestataire = parseInt(req.params.id_prestataire);
+    const id_service = parseInt(req.params.id_service);
     Proposes.destroy({
-        where: { id: id }
+        where: { id_prestataire: id_prestataire , id_service : id_service }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -66,7 +69,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Proposes with id=${id}. Maybe Proposes was not found!`
+                message: `Cannot delete Proposes with id_prestatair=${id_prestataire} and id_service=${id_service}. Maybe Proposes was not found!`
             });
         }
     }).catch(e => {
