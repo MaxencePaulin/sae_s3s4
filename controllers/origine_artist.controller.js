@@ -34,28 +34,28 @@ export const create = (req, res) => {
     });
 }
 
-export const update = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_nationality = parseInt(req.params.id_nationality);
-    const body = req.body;
-    OrigineArtist.update(body, {
-        where: { id_artist: id_artist , id_nationality: id_nationality }
-    }).then(data => {
-        if (data === 1) {
-            res.send({
-                message: "OrigineArtist was updated successfully."
-            });
-        } else {
-            res.send({
-                message: `Cannot update OrigineArtist with id_artist=${id_artist} and id_nationality=${id_nationality}. Maybe OrigineArtist was not found or req.body is empty!`
-            });
-        }
-    }).catch(e => {
-        res.status(500).send({
-            message: e.message || "Some error occurred."
-        });
-    });
-}
+// export const update = (req, res) => {
+//     const id_artist = parseInt(req.params.id_artist);
+//     const id_nationality = parseInt(req.params.id_nationality);
+//     const body = req.body;
+//     OrigineArtist.update(body, {
+//         where: { id_artist: id_artist , id_nationality: id_nationality }
+//     }).then(data => {
+//         if (data === 1) {
+//             res.send({
+//                 message: "OrigineArtist was updated successfully."
+//             });
+//         } else {
+//             res.send({
+//                 message: `Cannot update OrigineArtist with id_artist=${id_artist} and id_nationality=${id_nationality}. Maybe OrigineArtist was not found or req.body is empty!`
+//             });
+//         }
+//     }).catch(e => {
+//         res.status(500).send({
+//             message: e.message || "Some error occurred."
+//         });
+//     });
+// }
 
 export const remove = (req, res) => {
     const id_artist = parseInt(req.params.id_artist);

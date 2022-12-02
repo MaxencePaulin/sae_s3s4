@@ -35,29 +35,29 @@ export const create = (req, res) => {
     });
 }
 
-export const update = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_socialnetwork = parseInt(req.params.id_socialnetwork);
-
-    const body = req.body;
-    Have.update(body, {
-        where: { id_artist: id_artist, id_socialnetwork: id_socialnetwork }
-    }).then(data => {
-        if (data === 1) {
-            res.send({
-                message: "Have was updated successfully."
-            });
-        } else {
-            res.send({
-                message: `Cannot update Have with id_artist=${id_artist} and id_socialnetwork=${id_socialnetwork}. Maybe Have was not found or req.body is empty!`
-            });
-        }
-    }).catch(e => {
-        res.status(500).send({
-            message: e.message || "Some error occurred."
-        });
-    });
-}
+// export const update = (req, res) => {
+//     const id_artist = parseInt(req.params.id_artist);
+//     const id_socialnetwork = parseInt(req.params.id_socialnetwork);
+//
+//     const body = req.body;
+//     Have.update(body, {
+//         where: { id_artist: id_artist, id_socialnetwork: id_socialnetwork }
+//     }).then(data => {
+//         if (data === 1) {
+//             res.send({
+//                 message: "Have was updated successfully."
+//             });
+//         } else {
+//             res.send({
+//                 message: `Cannot update Have with id_artist=${id_artist} and id_socialnetwork=${id_socialnetwork}. Maybe Have was not found or req.body is empty!`
+//             });
+//         }
+//     }).catch(e => {
+//         res.status(500).send({
+//             message: e.message || "Some error occurred."
+//         });
+//     });
+// }
 
 export const remove = (req, res) => {
     const id_artist = parseInt(req.params.id_artist);

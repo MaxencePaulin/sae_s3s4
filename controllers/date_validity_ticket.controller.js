@@ -12,8 +12,9 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id = parseInt(req.params.id);
-    Date_validity_ticket.findByPk(id).then(data => {
+    const date_start_validity = req.body.date_start_validity;
+    const date_end_validity = req.body.date_end_validity;
+    Date_validity_ticket.findByPk(date_start_validity, date_end_validity).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -33,32 +34,33 @@ export const create = (req, res) => {
     });
 }
 
-export const update = (req, res) => {
-    const id = parseInt(req.params.id);
-    const body = req.body;
-    Date_validity_ticket.update(body, {
-        where: { id: id }
-    }).then(data => {
-        if (data === 1) {
-            res.send({
-                message: "Date_validity_ticket was updated successfully."
-            });
-        } else {
-            res.send({
-                message: `Cannot update Date_validity_ticket with id=${id}. Maybe Date_validity_ticket was not found or req.body is empty!`
-            });
-        }
-    }).catch(e => {
-        res.status(500).send({
-            message: e.message || "Some error occurred."
-        });
-    });
-}
+// export const update = (req, res) => {
+//     const id = parseInt(req.params.id);
+//     const body = req.body;
+//     Date_validity_ticket.update(body, {
+//         where: { id: id }
+//     }).then(data => {
+//         if (data === 1) {
+//             res.send({
+//                 message: "Date_validity_ticket was updated successfully."
+//             });
+//         } else {
+//             res.send({
+//                 message: `Cannot update Date_validity_ticket with id=${id}. Maybe Date_validity_ticket was not found or req.body is empty!`
+//             });
+//         }
+//     }).catch(e => {
+//         res.status(500).send({
+//             message: e.message || "Some error occurred."
+//         });
+//     });
+// }
 
 export const remove = (req, res) => {
-    const id = parseInt(req.params.id);
+    const date_start_validity = req.body.date_start_validity;
+    const date_end_validity = req.body.date_end_validity;
     Date_validity_ticket.destroy({
-        where: { id: id }
+        where: { date_start_validity: date_start_validity, date_end_validity: date_end_validity }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -66,7 +68,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Date_validity_ticket with id=${id}. Maybe Date_validity_ticket was not found!`
+                message: `Cannot delete Date_validity_ticket with this primary Key. Maybe Date_validity_ticket was not found!`
             });
         }
     }).catch(e => {

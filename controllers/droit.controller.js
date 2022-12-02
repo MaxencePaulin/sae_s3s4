@@ -37,7 +37,7 @@ export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
     Droit.update(body, {
-        where: { id: id }
+        where: { id_droit: id }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -58,7 +58,7 @@ export const update = (req, res) => {
 export const remove = (req, res) => {
     const id = parseInt(req.params.id);
     Droit.destroy({
-        where: { id: id }
+        where: { id_droit: id }
     }).then(data => {
         if (data === 1) {
             res.send({

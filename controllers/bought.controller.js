@@ -70,10 +70,10 @@ export const create = (req, res) => {
 export const remove = (req, res) => {
     const id_user = parseInt(req.body.id_user);
     const id_ticket = parseInt(req.body.id_ticket);
-    const date_start_validity_old = req.body.date_start_validity;
-    const date_end_validity_old = req.body.date_end_validity;
+    const date_start_validity = req.body.date_start_validity;
+    const date_end_validity = req.body.date_end_validity;
     Bought.destroy({
-        where: { id_user: id_user , id_ticket: id_ticket , date_start_validity : date_start_validity_old, date_end_validity: date_end_validity_old}
+        where: { id_user: id_user , id_ticket: id_ticket , date_start_validity : date_start_validity, date_end_validity: date_end_validity}
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -81,7 +81,7 @@ export const remove = (req, res) => {
             });
         } else {
             res.send({
-                message: `Cannot delete Bought with this pirmary Key. Maybe Bought was not found!`
+                message: `Cannot delete Bought with this primary Key. Maybe Bought was not found!`
             });
         }
     }).catch(e => {
