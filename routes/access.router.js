@@ -1,5 +1,5 @@
 import express from 'express';
-import { findAll, findOne, create, update, remove, removeAll } from '../controllers/access.controller.js';
+import { findAll, findOne, create, remove, removeAll } from '../controllers/access.controller.js';
 
 const router = express.Router();
 
@@ -58,45 +58,6 @@ router.post('/', create);
  *          - in: body
  *            name: user
  *            description: The acces to create.
- *            schema:
- *               type: object
- *               required:
- *                   - id_role
- *                   - id_droit
- *               properties:
- *                   id_role:
- *                       type: integer
- *                   id_droit:
- *                       type: integer
- *      responses:
- *          '200':
- *              description: Resource added successfully
- *          '500':
- *              description: Internal server error
- *          '400':
- *              description: Bad request
- */
-
-router.put('/:id_role/:id_droit', update);
-/**
- * @swagger
- * /access/{id_role}/{id_droit}:
- *   put:
- *      description: Update an access
- *      tags:
- *          - Access_route
- *      parameters:
- *          - in: path
- *            name: id_role
- *            type: integer
- *            required: true
- *          - in: path
- *            name: id_droit
- *            type: integer
- *            required: true
- *          - in: body
- *            name: user
- *            description: The acces to update.
  *            schema:
  *               type: object
  *               required:
