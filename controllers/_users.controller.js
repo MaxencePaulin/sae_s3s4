@@ -2,7 +2,9 @@ import model from '../models/index.js';
 const Users = model.Users;
 
 export const findAll = (req, res) => {
-    Users.findAll().then(data => {
+    Users.findAll({include: [{model: model.Role},
+            {model: model.VirtualAccount, include: [{model: model.Qr_code}]},
+            {model: model.Prestataire}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -13,7 +15,9 @@ export const findAll = (req, res) => {
 
 export const findOne = (req, res) => {
     const id = parseInt(req.params.id);
-    Users.findByPk(id).then(data => {
+    Users.findByPk(id, {include: [{model: model.Role},
+            {model: model.VirtualAccount, include: [{model: model.Qr_code}]},
+            {model: model.Prestataire}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
