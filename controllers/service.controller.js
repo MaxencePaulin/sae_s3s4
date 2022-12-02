@@ -58,7 +58,7 @@ export const update = (req, res) => {
 export const remove = (req, res) => {
     const id = parseInt(req.params.id);
     Service.destroy({
-        where: { id: id }
+        where: { id_service: id }
     }).then(data => {
         if (data === 1) {
             res.send({

@@ -58,7 +58,7 @@ export const update = (req, res) => {
 export const remove = (req, res) => {
     const id = parseInt(req.params.id);
     Qr_code.destroy({
-        where: { id: id }
+        where: { id_qr_code: id }
     }).then(data => {
         if (data === 1) {
             res.send({

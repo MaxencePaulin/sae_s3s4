@@ -58,7 +58,7 @@ export const update = (req, res) => {
 export const remove = (req, res) => {
     const id = parseInt(req.params.id);
     Price.destroy({
-        where: { id: id }
+        where: { id_price: id }
     }).then(data => {
         if (data === 1) {
             res.send({

@@ -34,34 +34,34 @@ export const create = (req, res) => {
     });
 }
 
-export const update = (req, res) => {
-    const id_prestataire = parseInt(req.params.id_prestataire);
-    const id_service = parseInt(req.params.id_service);
-    const body = req.body;
-    Proposes.update(body, {
-        where: { id_prestataire: id_prestataire , id_service : id_service }
-    }).then(data => {
-        if (data === 1) {
-            res.send({
-                message: "Proposes was updated successfully."
-            });
-        } else {
-            res.send({
-                message: `Cannot update Proposes with id_prestatair=${id_prestataire} and id_service=${id_service} Maybe Proposes was not found or req.body is empty!`
-            });
-        }
-    }).catch(e => {
-        res.status(500).send({
-            message: e.message || "Some error occurred."
-        });
-    });
-}
+// export const update = (req, res) => {
+//     const id_prestataire = parseInt(req.params.id_prestataire);
+//     const id_service = parseInt(req.params.id_service);
+//     const body = req.body;
+//     Proposes.update(body, {
+//         where: { id_prestataire: id_prestataire , id_service : id_service }
+//     }).then(data => {
+//         if (data === 1) {
+//             res.send({
+//                 message: "Proposes was updated successfully."
+//             });
+//         } else {
+//             res.send({
+//                 message: `Cannot update Proposes with id_prestatair=${id_prestataire} and id_service=${id_service} Maybe Proposes was not found or req.body is empty!`
+//             });
+//         }
+//     }).catch(e => {
+//         res.status(500).send({
+//             message: e.message || "Some error occurred."
+//         });
+//     });
+// }
 
 export const remove = (req, res) => {
     const id_prestataire = parseInt(req.params.id_prestataire);
     const id_service = parseInt(req.params.id_service);
     Proposes.destroy({
-        where: { id_prestataire: id_prestataire , id_service : id_service }
+        where: { id_prestataire: id_prestataire , id_service: id_service }
     }).then(data => {
         if (data === 1) {
             res.send({
