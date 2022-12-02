@@ -61,7 +61,7 @@ export const remove = (req, res) => {
     const id_artist = parseInt(req.params.id_artist);
     const id_scene = parseInt(req.params.id_scene);
     Concert.destroy({
-        where: { id_artist: id_artist , id_scene : id_scene }
+        where: { id_artist: id_artist , id_scene: id_scene }
     }).then(data => {
         if (data === 1) {
             res.send({

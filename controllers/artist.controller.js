@@ -37,7 +37,7 @@ export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
     Artist.update(body, {
-        where: { id: id }
+        where: { id_artist: id }
     }).then(data => {
         if (data === 1) {
             res.send({
@@ -58,7 +58,7 @@ export const update = (req, res) => {
 export const remove = (req, res) => {
     const id = parseInt(req.params.id);
     Artist.destroy({
-        where: { id: id }
+        where: { id_artist: id }
     }).then(data => {
         if (data === 1) {
             res.send({
