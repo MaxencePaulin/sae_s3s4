@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', findAll);
 /**
  * @swagger
- * /scene/{id}:
+ * /scene:
  *   get:
  *      description: Display scenes
  *      tags:

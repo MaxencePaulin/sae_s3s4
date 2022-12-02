@@ -2,7 +2,7 @@ import model from '../models/index.js';
 const Scene = model.Scene;
 
 export const findAll = (req, res) => {
-    Scene.findAll().then(data => {
+    Scene.findAll({include: [{model: model.TypeScene}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -13,7 +13,7 @@ export const findAll = (req, res) => {
 
 export const findOne = (req, res) => {
     const id = parseInt(req.params.id);
-    Scene.findByPk(id).then(data => {
+    Scene.findByPk(id, {include: [{model: model.TypeScene}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
