@@ -12,8 +12,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_socialnetwork = parseInt(req.params.id_socialnetwork);
+    const id_artist = parseInt(req.query.id_artist);
+    const id_socialnetwork = parseInt(req.query.id_socialnetwork);
 
     Have.findOne({where: {id_artist: id_artist, id_socialnetwork: id_socialnetwork},
         include: [{model: model.Artist}, {model: model.SocialNetwork}]}).then(data => {
@@ -61,8 +61,8 @@ export const create = (req, res) => {
 // }
 
 export const remove = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_socialnetwork = parseInt(req.params.id_socialnetwork);
+    const id_artist = parseInt(req.query.id_artist);
+    const id_socialnetwork = parseInt(req.query.id_socialnetwork);
     Have.destroy({
         where: { id_artist: id_artist, id_socialnetwork: id_socialnetwork }
     }).then(data => {

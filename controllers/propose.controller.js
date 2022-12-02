@@ -2,7 +2,8 @@ import model from '../models/index.js';
 const Proposes = model.Proposes;
 
 export const findAll = (req, res) => {
-    Proposes.findAll({include: [{model: model.Prestataire, include: [{model: model.TypePrestataire}]},
+    Proposes.findAll({include: [{model: model.Prestataire,
+            include: [{model: model.TypePrestataire}]},
             {model: model.Service}]}).then(data => {
         res.send(data);
     }).catch(e => {
@@ -13,8 +14,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_prestataire = parseInt(req.params.id_prestataire);
-    const id_service = parseInt(req.params.id_service);
+    const id_prestataire = parseInt(req.query.id_prestataire);
+    const id_service = parseInt(req.query.id_service);
     Proposes.findOne({where: {id_prestataire: id_prestataire, id_service: id_service},
         include: [{model: model.Prestataire, include: [{model: model.TypePrestataire}]},
                 {model: model.Service}]}).then(data => {
@@ -61,8 +62,8 @@ export const create = (req, res) => {
 // }
 
 export const remove = (req, res) => {
-    const id_prestataire = parseInt(req.params.id_prestataire);
-    const id_service = parseInt(req.params.id_service);
+    const id_prestataire = parseInt(req.query.id_prestataire);
+    const id_service = parseInt(req.query.id_service);
     Proposes.destroy({
         where: { id_prestataire: id_prestataire , id_service: id_service }
     }).then(data => {

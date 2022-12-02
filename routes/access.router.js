@@ -20,20 +20,20 @@ router.get('/', findAll);
  *              description: Bad request
  */
 
-router.get('/:id_role/:id_droit', findOne);
+router.get('/one', findOne);
 /**
  * @swagger
- * /access/{id_role}/{id_droit}:
+ * /access/one:
  *   get:
  *      description: Return user by id
  *      tags:
  *          - Access_routes
  *      parameters:
- *          - in: path
+ *          - in: query
  *            name: id_role
  *            type: integer
  *            required: true
- *          - in: path
+ *          - in: query
  *            name: id_droit
  *            type: integer
  *            required: true
@@ -77,20 +77,20 @@ router.post('/', create);
  *              description: Bad request
  */
 
-router.delete('/:id_role/:id_droit', remove);
+router.delete('/one', remove);
 /**
  * @swagger
- * /access/{id_role}/{id_droit}:
+ * /access:
  *   delete:
  *      description: Delete an access
  *      tags:
  *          - Access_routes
  *      parameters:
- *          - in: path
+ *          - in: query
  *            name: id_role
  *            type: integer
  *            required: true
- *          - in: path
+ *          - in: query
  *            name: id_droit
  *            type: integer
  *            required: true

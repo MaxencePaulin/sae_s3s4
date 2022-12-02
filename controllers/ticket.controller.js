@@ -2,7 +2,7 @@ import model from '../models/index.js';
 const Ticket = model.Ticket;
 
 export const findAll = (req, res) => {
-    Ticket.findAll().then(data => {
+    Ticket.findAll({include: [{model: model.Price}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -13,7 +13,7 @@ export const findAll = (req, res) => {
 
 export const findOne = (req, res) => {
     const id = parseInt(req.params.id);
-    Ticket.findByPk(id).then(data => {
+    Ticket.findByPk(id, {include: [{model: model.Price}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

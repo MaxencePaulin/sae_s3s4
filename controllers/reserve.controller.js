@@ -13,10 +13,10 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_user = parseInt(req.body.id_user);
-    const id_place = parseInt(req.body.id_ticket);
-    const date_start_placereserved = req.body.date_start_placereserved;
-    const date_end_placereserved = req.body.date_end_placereserved;
+    const id_user = parseInt(req.query.id_user);
+    const id_place = parseInt(req.query.id_ticket);
+    const date_start_placereserved = req.query.date_start_placereserved;
+    const date_end_placereserved = req.query.date_end_placereserved;
     Reserve.findOne({where: {id_user: id_user, id_place: id_place,
             date_start_placereserved: date_start_placereserved, date_end_placereserved: date_end_placereserved},
         include: [{model: model.Users}, {model: model.Place},
@@ -63,10 +63,10 @@ export const create = (req, res) => {
 // }
 
 export const remove = (req, res) => {
-    const id_user = parseInt(req.body.id_user);
-    const id_place = parseInt(req.body.id_ticket);
-    const date_start_placereserved = req.body.date_start_placereserved;
-    const date_end_placereserved = req.body.date_end_placereserved;
+    const id_user = parseInt(req.query.id_user);
+    const id_place = parseInt(req.query.id_ticket);
+    const date_start_placereserved = req.query.date_start_placereserved;
+    const date_end_placereserved = req.query.date_end_placereserved;
     Reserve.destroy({
         where: { id_user: id_user , id_place: id_place , date_start_placereserved:date_start_placereserved , date_end_placereserved:date_end_placereserved }
     }).then(data => {

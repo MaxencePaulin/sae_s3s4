@@ -12,8 +12,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_nationality = parseInt(req.params.id_nationality);
+    const id_artist = parseInt(req.query.id_artist);
+    const id_nationality = parseInt(req.query.id_nationality);
     OrigineArtist.findOne({where: {id_artist: id_artist, id_nationality: id_nationality},
         include: [{model: model.Artist}, {model: model.Nationality}]}).then(data => {
         res.send(data);
@@ -59,8 +59,8 @@ export const create = (req, res) => {
 // }
 
 export const remove = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_nationality = parseInt(req.params.id_nationality);
+    const id_artist = parseInt(req.query.id_artist);
+    const id_nationality = parseInt(req.query.id_nationality);
     OrigineArtist.destroy({
         where: { id_artist: id_artist , id_nationality: id_nationality }
     }).then(data => {

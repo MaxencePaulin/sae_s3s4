@@ -12,8 +12,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_role = parseInt(req.params.id_role);
-    const id_droit = parseInt(req.params.id_droit);
+    const id_role = parseInt(req.query.id_role);
+    const id_droit = parseInt(req.query.id_droit);
     Access.findOne({where: {id_role: id_role, id_droit: id_droit},
         include: [{model: model.Role}, {model: model.Droit}]}).then(data => {
         res.send(data);
@@ -60,8 +60,8 @@ export const create = (req, res) => {
 // }
 
 export const remove = (req, res) => {
-    const id_role = parseInt(req.params.id_role);
-    const id_droit = parseInt(req.params.id_droit);
+    const id_role = parseInt(req.query.id_role);
+    const id_droit = parseInt(req.query.id_droit);
     Access.destroy({
         where: { id_role: id_role , id_droit: id_droit }
     }).then(data => {

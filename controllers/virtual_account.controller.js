@@ -2,7 +2,7 @@ import model from '../models/index.js';
 const VirtualAccount = model.VirtualAccount;
 
 export const findAll = (req, res) => {
-    VirtualAccount.findAll().then(data => {
+    VirtualAccount.findAll({include: [{model: model.Qr_code}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -12,8 +12,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_account = parseInt(req.params.id_virtualaccount);
-    VirtualAccount.findByPk(id_account).then(data => {
+    const id = parseInt(req.params.id);
+    VirtualAccount.findByPk(id, {include: [{model: model.Qr_code}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -41,11 +41,11 @@ export const update = (req, res) => {
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Proposes was updated successfully."
+                message: "VirtualAccount was updated successfully."
             });
         } else {
             res.send({
-                message: `Cannot update Proposes with id=${id_account}. Maybe Proposes was not found or req.body is empty!`
+                message: `Cannot update VirtualAccount with id=${id_account}. Maybe VirtualAccount was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -62,11 +62,11 @@ export const remove = (req, res) => {
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Proposes was deleted successfully!"
+                message: "VirtualAccount was deleted successfully!"
             });
         } else {
             res.send({
-                message: `Cannot delete Proposes with id_virtualaccount=${id_account}. Maybe Proposes was not found!`
+                message: `Cannot delete VirtualAccount with id_virtualaccount=${id_account}. Maybe VirtualAccount was not found!`
             });
         }
     }).catch(e => {
@@ -81,7 +81,7 @@ export const removeAll = (req, res) => {
         where: {},
         truncate: false
     }).then(data => {
-        res.send({ message: `${data} Proposes were deleted successfully!` });
+        res.send({ message: `${data} VirtualAccount were deleted successfully!` });
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."

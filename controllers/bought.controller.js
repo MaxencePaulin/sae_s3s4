@@ -12,10 +12,10 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_user = parseInt(req.body.id_user);
-    const id_ticket = parseInt(req.body.id_ticket);
-    const date_start_validity = req.body.date_start_validity ;
-    const date_end_validity = req.body.date_end_validity ;
+    const id_user = parseInt(req.query.id_user);
+    const id_ticket = parseInt(req.query.id_ticket);
+    const date_start_validity = req.query.date_start_validity ;
+    const date_end_validity = req.query.date_end_validity ;
     Bought.findOne({where: {id_user: id_user, id_ticket: id_ticket , date_start_validity: date_start_validity,
             date_end_validity: date_end_validity},
             include: [{model: model.Users}, {model: model.Ticket}]}).then(data => {
@@ -70,10 +70,10 @@ export const create = (req, res) => {
 // }
 
 export const remove = (req, res) => {
-    const id_user = parseInt(req.body.id_user);
-    const id_ticket = parseInt(req.body.id_ticket);
-    const date_start_validity = req.body.date_start_validity;
-    const date_end_validity = req.body.date_end_validity;
+    const id_user = parseInt(req.query.id_user);
+    const id_ticket = parseInt(req.query.id_ticket);
+    const date_start_validity = req.query.date_start_validity;
+    const date_end_validity = req.query.date_end_validity;
     Bought.destroy({
         where: { id_user: id_user , id_ticket: id_ticket , date_start_validity : date_start_validity, date_end_validity: date_end_validity}
     }).then(data => {

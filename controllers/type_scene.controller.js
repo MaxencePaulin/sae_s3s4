@@ -12,7 +12,7 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_type = parseInt(req.params.id_typescene);
+    const id_type = parseInt(req.params.id);
     TypeScene.findByPk(id_type).then(data => {
         res.send(data);
     }).catch(e => {
@@ -34,18 +34,18 @@ export const create = (req, res) => {
 }
 
 export const update = (req, res) => {
-    const id_type = parseInt(req.params.id_typescene);
+    const id_type = parseInt(req.params.id);
     const body = req.body;
     TypeScene.update(body, {
         where: { id_typescene: id_type }
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Proposes was updated successfully."
+                message: "TypeScene was updated successfully."
             });
         } else {
             res.send({
-                message: `Cannot update Proposes with id_typescene=${id_type}. Maybe Proposes was not found or req.body is empty!`
+                message: `Cannot update TypeScene with id_typescene=${id_type}. Maybe TypeScene was not found or req.body is empty!`
             });
         }
     }).catch(e => {
@@ -56,17 +56,17 @@ export const update = (req, res) => {
 }
 
 export const remove = (req, res) => {
-    const id_type = parseInt(req.params.id_typescene);
+    const id_type = parseInt(req.params.id);
     TypeScene.destroy({
         where: { id_typescene: id_type }
     }).then(data => {
         if (data === 1) {
             res.send({
-                message: "Proposes was deleted successfully!"
+                message: "TypeScene was deleted successfully!"
             });
         } else {
             res.send({
-                message: `Cannot delete Proposes with id_typescene=${id_type}. Maybe Proposes was not found!`
+                message: `Cannot delete TypeScene with id_typescene=${id_type}. Maybe TypeScene was not found!`
             });
         }
     }).catch(e => {
@@ -81,7 +81,7 @@ export const removeAll = (req, res) => {
         where: {},
         truncate: false
     }).then(data => {
-        res.send({ message: `${data} Proposes were deleted successfully!` });
+        res.send({ message: `${data} TypeScene were deleted successfully!` });
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."

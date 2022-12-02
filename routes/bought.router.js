@@ -20,9 +20,9 @@ router.get('/', findAll);
  *              description: Bad request
  */
 
-router.get('/:id', findOne);
+router.get('/one', findOne);
 router.post('/', create);
-router.delete('/:id', remove);
+router.delete('/one', remove);
 router.delete('/', removeAll);
 
 export default router;

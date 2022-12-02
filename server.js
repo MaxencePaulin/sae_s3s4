@@ -12,7 +12,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 // Routes
-import sceneRoutes from './routes/scene.router.js';
+
 import userRoutes from './routes/user.router.js';
 import mainRoutes from './routes/main.router.js';
 
@@ -24,8 +24,29 @@ import accessRoutes from './routes/access.router.js';
 import artistRoutes from './routes/artist.router.js';
 import boughtRoutes from './routes/bought.router.js';
 import concertRoutes from './routes/concert.router.js';
+import dateReserveRoutes from './routes/date_reserve.router.js';
+import dateValidityTicketRoutes from './routes/date_validity_ticket.router.js';
+import droitRoutes from './routes/droit.router.js';
+import haveRoutes from './routes/have.router.js';
+import makeRoutes from './routes/make.router.js';
+import musicStyleRoutes from './routes/music_style.router.js';
+import nationalityRoutes from './routes/nationality.router.js';
+import origineArtistRoutes from './routes/origine_artist.router.js';
+import origineUserRoutes from './routes/origine_user.router.js';
+import placeRoutes from './routes/place.router.js';
+import prestataireRoutes from './routes/prestataire.router.js';
+import priceRoutes from './routes/price.router.js';
+import proposeRoutes from './routes/propose.router.js';
+import qrCodeRoutes from './routes/qr_code.router.js';
+import reserveRoutes from './routes/reserve.router.js';
+import roleRoutes from './routes/role.router.js';
+import sceneRoutes from './routes/scene.router.js';
+import serviceRoutes from './routes/service.router.js';
+import socialNetworkRoutes from './routes/social_network.router.js';
 import ticketRoutes from './routes/ticket.router.js';
-import qr_codeRouter from "./routes/qr_code.router.js";
+import typePrestataireRoutes from './routes/type_prestataire.router.js';
+import typeSceneRoutes from './routes/type_scene.router.js';
+import virtualAccountRoutes from './routes/virtual_account.router.js';
 
 // Database connection
 db.authenticate().then(() => {
@@ -115,8 +136,30 @@ app.use('/access', accessRoutes);
 app.use('/artist', artistRoutes);
 app.use('/bought', boughtRoutes);
 app.use('/concert', concertRoutes);
+app.use('/datereserve', dateReserveRoutes);
+app.use('/datevalidityticket', dateValidityTicketRoutes);
+app.use('/droit', droitRoutes);
+app.use('/have', haveRoutes);
+app.use('/make', makeRoutes);
+app.use('/musicstyle', musicStyleRoutes);
+app.use('/nationality', nationalityRoutes);
+app.use('/origineartist', origineArtistRoutes);
+app.use('/origineuser', origineUserRoutes);
+app.use('/place', placeRoutes);
+app.use('/prestataire', prestataireRoutes);
+app.use('/price', priceRoutes);
+app.use('/propose', proposeRoutes);
+app.use('/qrcode', qrCodeRoutes);
+app.use('/reserve', reserveRoutes);
+app.use('/role', roleRoutes);
+app.use('/scene', sceneRoutes);
+app.use('/service', serviceRoutes);
+app.use('/socialnetwork', socialNetworkRoutes);
 app.use('/ticket', ticketRoutes);
-app.use("/scene", sceneRoutes);
+app.use('/typeprestataire', typePrestataireRoutes);
+app.use('/typescene', typeSceneRoutes);
+app.use('/virtualaccount', virtualAccountRoutes);
+
 app.use("/user", userRoutes);
 app.use("/", mainRoutes);
 

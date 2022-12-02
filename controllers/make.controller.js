@@ -12,8 +12,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_musicstyle = parseInt(req.params.id_musicstyle);
+    const id_artist = parseInt(req.query.id_artist);
+    const id_musicstyle = parseInt(req.query.id_musicstyle);
 
     Make.findOne({where: {id_artist: id_artist , id_musicstyle: id_musicstyle},
         include: [{model: model.Artist}, {model: model.MusicStyle}]}).then(data => {
@@ -61,8 +61,8 @@ export const create = (req, res) => {
 // }
 
 export const remove = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_musicstyle = parseInt(req.params.id_musicstyle);
+    const id_artist = parseInt(req.query.id_artist);
+    const id_musicstyle = parseInt(req.query.id_musicstyle);
     Make.destroy({
         where: { id_artist: id_artist , id_musicstyle: id_musicstyle }
     }).then(data => {

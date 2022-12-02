@@ -1,5 +1,5 @@
 import express from 'express';
-import { findAll, findOne, create, update, remove, removeAll } from '../controllers/concert.controller.js';
+import { findAll, findOne, create, remove, removeAll } from '../controllers/concert.controller.js';
 
 const router = express.Router();
 
@@ -20,20 +20,20 @@ router.get('/', findAll);
  *              description: Bad request
  */
 
-router.get('/:id_artist/:id_scene', findOne);
+router.get('/one', findOne);
 /**
  * @swagger
- * /concert/{id_artist}/{id_scene}:
+ * /concert/one:
  *   get:
  *      description: Return artist by id_artiste
  *      tags:
  *          - Concert_routes
  *      parameters:
- *          - in: path
+ *          - in: query
  *            name: id_artist
  *            type: integer
  *            required: true
- *          - in: path
+ *          - in: query
  *            name: id_scene
  *            type: integer
  *            required: true
@@ -47,8 +47,7 @@ router.get('/:id_artist/:id_scene', findOne);
  */
 
 router.post('/', create);
-router.put('/:id', update);
-router.delete('/:id', remove);
+router.delete('/one', remove);
 router.delete('/', removeAll);
 
 export default router;

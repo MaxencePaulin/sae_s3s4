@@ -12,8 +12,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const date_start_placereserved = req.body.date_start_placereserved;
-    const date_end_placereserved = req.body.date_end_placereserved;
+    const date_start_placereserved = req.query.date_start_placereserved;
+    const date_end_placereserved = req.query.date_end_placereserved;
     Date_reserve.findOne({where: {date_start_placereserved: date_start_placereserved,
             date_end_placereserved: date_end_placereserved}}).then(data => {
         res.send(data);
@@ -58,8 +58,8 @@ export const create = (req, res) => {
 // }
 
 export const remove = (req, res) => {
-    const date_start_placereserved = req.body.date_start_placereserved;
-    const date_end_placereserved = req.body.date_end_placereserved;
+    const date_start_placereserved = req.query.date_start_placereserved;
+    const date_end_placereserved = req.query.date_end_placereserved;
     Date_reserve.destroy({
         where: { date_start_placereserved: date_start_placereserved, date_end_placereserved: date_end_placereserved }
     }).then(data => {

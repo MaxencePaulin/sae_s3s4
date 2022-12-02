@@ -13,8 +13,8 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_scene = parseInt(req.params.id_scene);
+    const id_artist = parseInt(req.query.id_artist);
+    const id_scene = parseInt(req.query.id_scene);
     Concert.findOne({where: {id_artist: id_artist, id_scene: id_scene},
         include: [{model: model.Artist}, {model: model.Scene,
             include: [{model: model.TypeScene}]}]}).then(data => {
@@ -37,32 +37,32 @@ export const create = (req, res) => {
     });
 }
 
-export const update = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_scene = parseInt(req.params.id_scene);
-    const body = req.body;
-    Concert.update(body, {
-        where: { id_artist: id_artist , id_scene : id_scene }
-    }).then(data => {
-        if (data === 1) {
-            res.send({
-                message: "Concert was updated successfully."
-            });
-        } else {
-            res.send({
-                message: `Cannot update Concert with id_artist=${id_artist} and id_scene=${id_scene}. Maybe Concert was not found or req.body is empty!`
-            });
-        }
-    }).catch(e => {
-        res.status(500).send({
-            message: e.message || "Some error occurred."
-        });
-    });
-}
+// export const update = (req, res) => {
+//     const id_artist = parseInt(req.query.id_artist);
+//     const id_scene = parseInt(req.query.id_scene);
+//     const body = req.body;
+//     Concert.update(body, {
+//         where: { id_artist: id_artist , id_scene : id_scene }
+//     }).then(data => {
+//         if (data === 1) {
+//             res.send({
+//                 message: "Concert was updated successfully."
+//             });
+//         } else {
+//             res.send({
+//                 message: `Cannot update Concert with id_artist=${id_artist} and id_scene=${id_scene}. Maybe Concert was not found or req.body is empty!`
+//             });
+//         }
+//     }).catch(e => {
+//         res.status(500).send({
+//             message: e.message || "Some error occurred."
+//         });
+//     });
+// }
 
 export const remove = (req, res) => {
-    const id_artist = parseInt(req.params.id_artist);
-    const id_scene = parseInt(req.params.id_scene);
+    const id_artist = parseInt(req.query.id_artist);
+    const id_scene = parseInt(req.query.id_scene);
     Concert.destroy({
         where: { id_artist: id_artist , id_scene: id_scene }
     }).then(data => {

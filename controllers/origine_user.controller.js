@@ -2,7 +2,12 @@ import model from '../models/index.js';
 const Origineuser = model.Origineuser;
 
 export const findAll = (req, res) => {
-    Origineuser.findAll({include: [{model: model.Nationality}, {model: model.Users}]}).then(data => {
+    Origineuser.findAll({include: [{model: model.Nationality}, {model: model.Users,
+        include: [{model: model.Role}, {model: model.VirtualAccount, include: [{
+            model: model.Qr_code
+            }]},
+            {model: model.Prestataire, include: [{model: model.TypePrestataire}]},
+        ]}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -12,10 +17,15 @@ export const findAll = (req, res) => {
 }
 
 export const findOne = (req, res) => {
-    const id_user = parseInt(req.params.id_user);
-    const id_nationality = parseInt(req.params.id_nationality);   
+    const id_user = parseInt(req.query.id_user);
+    const id_nationality = parseInt(req.query.id_nationality);
     Origineuser.findOne({where: {id_nationality: id_nationality, id_user: id_user},
-        include: [{model: model.Nationality}, {model: model.Users}]}).then(data => {
+        include: [{model: model.Nationality}, {model: model.Users,
+            include: [{model: model.Role}, {model: model.VirtualAccount, include: [{
+                    model: model.Qr_code
+                }]},
+                {model: model.Prestataire, include: [{model: model.TypePrestataire}]},
+            ]}]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -59,8 +69,8 @@ export const create = (req, res) => {
 // }
 
 export const remove = (req, res) => {
-    const id_user = parseInt(req.params.id_user);
-    const id_nationality = parseInt(req.params.id_nationality);   
+    const id_user = parseInt(req.query.id_user);
+    const id_nationality = parseInt(req.query.id_nationality);
     Origineuser.destroy({
         where: {id_nationality: id_nationality , id_user: id_user}
     }).then(data => {
