@@ -20,6 +20,10 @@ import auth from "./middleware/authenticate.js";
 
 // Routes v2
 import usersRoutes from './routes/_users.router.js';
+import accessRoutes from './routes/access.router.js';
+import artistRoutes from './routes/artist.router.js';
+import ticketRoutes from './routes/ticket.router.js';
+import qr_codeRouter from "./routes/qr_code.router.js";
 
 // Database connection
 db.authenticate().then(() => {
@@ -105,7 +109,9 @@ const swaggerDocs = swaggerJsdoc(swaggerOption);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/users', usersRoutes);
-
+app.use('/access', accessRoutes);
+app.use('/artist', artistRoutes);
+app.use('/ticket', ticketRoutes);
 app.use("/scene", sceneRoutes);
 app.use("/user", userRoutes);
 app.use("/", mainRoutes);

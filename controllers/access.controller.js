@@ -14,9 +14,10 @@ export const findAll = (req, res) => {
 export const findOne = (req, res) => {
     const id_role = parseInt(req.params.id_role);
     const id_droit = parseInt(req.params.id_droit);
-    Access.findByPk(id_role,id_droit).then(data => {
+    Access.findOne({where: {id_role: id_role, id_droit: id_droit}}).then(data => {
         res.send(data);
     }).catch(e => {
+        console.log(e)
         res.status(500).send({
             message: e.message || "Some error occurred."
         });

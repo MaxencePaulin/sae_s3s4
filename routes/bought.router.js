@@ -4,6 +4,27 @@ import { findAll, findOne, create, update, remove, removeAll } from '../controll
 const router = express.Router();
 
 router.get('/', findAll);
+/**
+ * @swagger
+ * /bought:
+ *   get:
+ *      description: Return all bought
+ *      tags:
+ *          - Bought_route
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+
+router.get('/:id', findOne);
+router.post('/', create);
+
+router.put('/:id', update);
+
 router.get('/:id', findOne);
 router.post('/', create);
 router.put('/:id', update);
