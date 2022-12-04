@@ -62,76 +62,76 @@ model.VirtualAccount = VirtualAccount;
 
 // Association :
 
-model.Users.belongsTo(model.Role, {foreignKey: 'id_role', onDelete: 'CASCADE'});
-model.Users.belongsTo(model.VirtualAccount, {foreignKey: 'id_virtualaccount', onDelete: 'CASCADE'});
-model.Users.belongsTo(model.Prestataire, {foreignKey: 'id_prestataire', onDelete: 'CASCADE'});
-model.Role.hasMany(model.Users, {foreignKey: 'id_role', onDelete: 'CASCADE'});
-model.VirtualAccount.hasOne(model.Users, {foreignKey: 'id_virtualaccount', onDelete: 'CASCADE'});
-model.Prestataire.hasOne(model.Users, {foreignKey: 'id_prestataire', onDelete: 'CASCADE'});
+model.Users.belongsTo(model.Role, {foreignKey: 'id_role', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Users.belongsTo(model.VirtualAccount, {foreignKey: 'id_virtualaccount', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Users.belongsTo(model.Prestataire, {foreignKey: 'id_prestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Role.hasMany(model.Users, {foreignKey: 'id_role', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.VirtualAccount.hasOne(model.Users, {foreignKey: 'id_virtualaccount', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Prestataire.hasOne(model.Users, {foreignKey: 'id_prestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Access.belongsTo(model.Role, {foreignKey: 'id_role', onDelete: 'CASCADE'});
-model.Access.belongsTo(model.Droit, {foreignKey: 'id_droit', onDelete: 'CASCADE'});
-model.Role.hasMany(model.Access, {foreignKey: 'id_role', onDelete: 'CASCADE'});
-model.Droit.hasMany(model.Access, {foreignKey: 'id_droit', onDelete: 'CASCADE'});
+model.Access.belongsTo(model.Role, {foreignKey: 'id_role', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Access.belongsTo(model.Droit, {foreignKey: 'id_droit', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Role.hasMany(model.Access, {foreignKey: 'id_role', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Droit.hasMany(model.Access, {foreignKey: 'id_droit', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Bought.belongsTo(model.Users, {foreignKey: 'id_user', onDelete: 'CASCADE'});
-model.Bought.belongsTo(model.Ticket, {foreignKey: 'id_ticket', onDelete: 'CASCADE'});
-model.Bought.belongsTo(model.Date_validity_ticket, {foreignKey: 'date_start_validity', onDelete: 'CASCADE'});
-model.Bought.belongsTo(model.Date_validity_ticket, {foreignKey: 'date_end_validity', onDelete: 'CASCADE'});
-model.Users.hasMany(model.Bought, {foreignKey: 'id_user', onDelete: 'CASCADE'});
-model.Ticket.hasMany(model.Bought, {foreignKey: 'id_ticket', onDelete: 'CASCADE'});
-model.Date_validity_ticket.hasMany(model.Bought, {foreignKey: 'date_start_validity', onDelete: 'CASCADE'});
-model.Date_validity_ticket.hasMany(model.Bought, {foreignKey: 'date_end_validity', onDelete: 'CASCADE'});
+model.Bought.belongsTo(model.Users, {foreignKey: 'id_user', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Bought.belongsTo(model.Ticket, {foreignKey: 'id_ticket', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Bought.belongsTo(model.Date_validity_ticket, {foreignKey: 'date_start_validity', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Bought.belongsTo(model.Date_validity_ticket, {foreignKey: 'date_end_validity', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Users.hasMany(model.Bought, {foreignKey: 'id_user', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Ticket.hasMany(model.Bought, {foreignKey: 'id_ticket', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Date_validity_ticket.hasMany(model.Bought, {foreignKey: 'date_start_validity', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Date_validity_ticket.hasMany(model.Bought, {foreignKey: 'date_end_validity', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Concert.belongsTo(model.Artist, {foreignKey: 'id_artist', onDelete: 'CASCADE'});
-model.Concert.belongsTo(model.Scene, {foreignKey: 'id_scene', onDelete: 'CASCADE'});
-model.Artist.hasMany(model.Concert, {foreignKey: 'id_artist', onDelete: 'CASCADE'});
-model.Scene.hasMany(model.Concert, {foreignKey: 'id_scene', onDelete: 'CASCADE'});
+model.Concert.belongsTo(model.Artist, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Concert.belongsTo(model.Scene, {foreignKey: 'id_scene', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Artist.hasMany(model.Concert, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Scene.hasMany(model.Concert, {foreignKey: 'id_scene', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Have.belongsTo(model.Artist, {foreignKey: 'id_artist', onDelete: 'CASCADE'});
-model.Have.belongsTo(model.SocialNetwork, {foreignKey: 'id_socialnetwork', onDelete: 'CASCADE'});
-model.Artist.hasMany(model.Have, {foreignKey: 'id_artist', onDelete: 'CASCADE'});
-model.SocialNetwork.hasMany(model.Have, {foreignKey: 'id_socialnetwork', onDelete: 'CASCADE'});
+model.Have.belongsTo(model.Artist, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Have.belongsTo(model.SocialNetwork, {foreignKey: 'id_socialnetwork', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Artist.hasMany(model.Have, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.SocialNetwork.hasMany(model.Have, {foreignKey: 'id_socialnetwork', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Make.belongsTo(model.Artist, {foreignKey: 'id_artist', onDelete: 'CASCADE'});
-model.Make.belongsTo(model.MusicStyle, {foreignKey: 'id_musicstyle', onDelete: 'CASCADE'});
-model.Artist.hasMany(model.Make, {foreignKey: 'id_artist', onDelete: 'CASCADE'});
-model.MusicStyle.hasMany(model.Make, {foreignKey: 'id_musicstyle', onDelete: 'CASCADE'});
+model.Make.belongsTo(model.Artist, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Make.belongsTo(model.MusicStyle, {foreignKey: 'id_musicstyle', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Artist.hasMany(model.Make, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.MusicStyle.hasMany(model.Make, {foreignKey: 'id_musicstyle', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.OrigineArtist.belongsTo(model.Artist, {foreignKey: 'id_artist', onDelete: 'CASCADE'});
-model.OrigineArtist.belongsTo(model.Nationality, {foreignKey: 'id_nationality', onDelete: 'CASCADE'});
-model.Artist.hasMany(model.OrigineArtist, {foreignKey: 'id_artist', onDelete: 'CASCADE'});
-model.Nationality.hasMany(model.OrigineArtist, {foreignKey: 'id_nationality', onDelete: 'CASCADE'});
+model.OrigineArtist.belongsTo(model.Artist, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.OrigineArtist.belongsTo(model.Nationality, {foreignKey: 'id_nationality', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Artist.hasMany(model.OrigineArtist, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Nationality.hasMany(model.OrigineArtist, {foreignKey: 'id_nationality', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Origineuser.belongsTo(model.Users, {foreignKey: 'id_user', onDelete: 'CASCADE'});
-model.Origineuser.belongsTo(model.Nationality, {foreignKey: 'id_nationality', onDelete: 'CASCADE'});
-model.Users.hasMany(model.Origineuser, {foreignKey: 'id_user', onDelete: 'CASCADE'});
-model.Nationality.hasMany(model.Origineuser, {foreignKey: 'id_nationality', onDelete: 'CASCADE'});
+model.Origineuser.belongsTo(model.Users, {foreignKey: 'id_user', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Origineuser.belongsTo(model.Nationality, {foreignKey: 'id_nationality', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Users.hasMany(model.Origineuser, {foreignKey: 'id_user', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Nationality.hasMany(model.Origineuser, {foreignKey: 'id_nationality', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Prestataire.belongsTo(model.TypePrestataire, {foreignKey: 'id_typeprestataire', onDelete: 'CASCADE'});
-model.TypePrestataire.hasMany(model.Prestataire, {foreignKey: 'id_typeprestataire', onDelete: 'CASCADE'});
+model.Prestataire.belongsTo(model.TypePrestataire, {foreignKey: 'id_typeprestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.TypePrestataire.hasMany(model.Prestataire, {foreignKey: 'id_typeprestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Proposes.belongsTo(model.Prestataire, {foreignKey: 'id_prestataire', onDelete: 'CASCADE'});
-model.Proposes.belongsTo(model.Service, {foreignKey: 'id_service', onDelete: 'CASCADE'});
-model.Prestataire.hasMany(model.Proposes, {foreignKey: 'id_prestataire', onDelete: 'CASCADE'});
-model.Service.hasMany(model.Proposes, {foreignKey: 'id_service', onDelete: 'CASCADE'});
+model.Proposes.belongsTo(model.Prestataire, {foreignKey: 'id_prestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Proposes.belongsTo(model.Service, {foreignKey: 'id_service', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Prestataire.hasMany(model.Proposes, {foreignKey: 'id_prestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Service.hasMany(model.Proposes, {foreignKey: 'id_service', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Reserve.belongsTo(model.Users, {foreignKey: 'id_user', onDelete: 'CASCADE'});
-model.Reserve.belongsTo(model.Place, {foreignKey: 'id_place', onDelete: 'CASCADE'});
-model.Reserve.belongsTo(model.Date_reserve, {foreignKey: 'date_start_placereserved', onDelete: 'CASCADE'});
-model.Reserve.belongsTo(model.Date_reserve, {foreignKey: 'date_end_placereserved', onDelete: 'CASCADE'});
-model.Users.hasMany(model.Reserve, {foreignKey: 'id_user', onDelete: 'CASCADE'});
-model.Place.hasMany(model.Reserve, {foreignKey: 'id_place', onDelete: 'CASCADE'});
-model.Date_reserve.hasMany(model.Reserve, {foreignKey: 'date_start_placereserved', onDelete: 'CASCADE'});
-model.Date_reserve.hasMany(model.Reserve, {foreignKey: 'date_end_placereserved', onDelete: 'CASCADE'});
+model.Reserve.belongsTo(model.Users, {foreignKey: 'id_user', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Reserve.belongsTo(model.Place, {foreignKey: 'id_place', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Reserve.belongsTo(model.Date_reserve, {foreignKey: 'date_start_placereserved', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Reserve.belongsTo(model.Date_reserve, {foreignKey: 'date_end_placereserved', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Users.hasMany(model.Reserve, {foreignKey: 'id_user', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Place.hasMany(model.Reserve, {foreignKey: 'id_place', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Date_reserve.hasMany(model.Reserve, {foreignKey: 'date_start_placereserved', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Date_reserve.hasMany(model.Reserve, {foreignKey: 'date_end_placereserved', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Scene.belongsTo(model.TypeScene, {foreignKey: 'id_typescene', onDelete: 'CASCADE'});
-model.TypeScene.hasMany(model.Scene, {foreignKey: 'id_typescene', onDelete: 'CASCADE'});
+model.Scene.belongsTo(model.TypeScene, {foreignKey: 'id_typescene', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.TypeScene.hasMany(model.Scene, {foreignKey: 'id_typescene', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.Ticket.belongsTo(model.Price, {foreignKey: 'id_price', onDelete: 'CASCADE'});
-model.Price.hasMany(model.Ticket, {foreignKey: 'id_price', onDelete: 'CASCADE'});
+model.Ticket.belongsTo(model.Price, {foreignKey: 'id_price', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Price.hasMany(model.Ticket, {foreignKey: 'id_price', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.VirtualAccount.belongsTo(model.Qr_code, {foreignKey: 'id_qr_code', onDelete: 'CASCADE'});
-model.Qr_code.hasMany(model.VirtualAccount, {foreignKey: 'id_qr_code', onDelete: 'CASCADE'});
+model.VirtualAccount.belongsTo(model.Qr_code, {foreignKey: 'id_qr_code', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Qr_code.hasMany(model.VirtualAccount, {foreignKey: 'id_qr_code', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
 export default model;

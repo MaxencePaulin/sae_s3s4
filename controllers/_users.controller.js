@@ -64,7 +64,8 @@ export const remove = (req, res) => {
     Users.destroy({
         where: { id_user: id }
     }).then(data => {
-        if (data[0] === 1) {
+        console.log(data);
+        if (data === 1) {
             res.send({
                 message: "Users was deleted successfully!"
             });

@@ -82,8 +82,7 @@ CREATE TABLE if not exists virtualaccount(
     id_qr_code INT ,
     PRIMARY KEY(id_virtualaccount) ,
     constraint fk_qr_code_virtualaccount
-    FOREIGN KEY(id_qr_code) REFERENCES qr_code(id_qr_code)
-
+    FOREIGN KEY(id_qr_code) REFERENCES qr_code(id_qr_code) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists droit(
@@ -132,7 +131,7 @@ CREATE TABLE if not exists scene(
     id_typescene INT NOT NULL,
     PRIMARY KEY(id_scene),
     constraint fk_typescene_scene
-    FOREIGN KEY(id_typescene) REFERENCES typescene(id_typescene)
+    FOREIGN KEY(id_typescene) REFERENCES typescene(id_typescene) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists prestataire(
@@ -141,7 +140,7 @@ CREATE TABLE if not exists prestataire(
     id_typeprestataire INT NOT NULL,
     PRIMARY KEY(id_prestataire),
     constraint fk_typeprestataire_prestataire
-    FOREIGN KEY(id_typeprestataire) REFERENCES typeprestataire(id_typeprestataire)
+    FOREIGN KEY(id_typeprestataire) REFERENCES typeprestataire(id_typeprestataire) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists ticket(
@@ -150,7 +149,7 @@ CREATE TABLE if not exists ticket(
     id_price INT NOT NULL,
     PRIMARY KEY(id_ticket),
     constraint fk_price_ticket
-    FOREIGN KEY(id_price) REFERENCES price(id_price)
+    FOREIGN KEY(id_price) REFERENCES price(id_price) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists users(
@@ -171,11 +170,11 @@ CREATE TABLE if not exists users(
     PRIMARY KEY(id_user),
     UNIQUE(id_virtualaccount),
     constraint fk_role_user
-    FOREIGN KEY(id_role) REFERENCES role(id_role),
+    FOREIGN KEY(id_role) REFERENCES role(id_role) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_virtualaccount_user
-    FOREIGN KEY(id_virtualaccount) REFERENCES virtualaccount(id_virtualaccount),
+    FOREIGN KEY(id_virtualaccount) REFERENCES virtualaccount(id_virtualaccount) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_prestataire_user
-    FOREIGN KEY(id_prestataire) REFERENCES prestataire(id_prestataire)
+    FOREIGN KEY(id_prestataire) REFERENCES prestataire(id_prestataire) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists origineartist(
@@ -183,9 +182,9 @@ CREATE TABLE if not exists origineartist(
     id_nationality INT,
     PRIMARY KEY(id_artist, id_nationality),
     constraint fk_artist_origineartist
-    FOREIGN KEY(id_artist) REFERENCES artist(id_artist),
+    FOREIGN KEY(id_artist) REFERENCES artist(id_artist) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_nationalite_originartist
-    FOREIGN KEY(id_nationality) REFERENCES nationality(id_nationality)
+    FOREIGN KEY(id_nationality) REFERENCES nationality(id_nationality) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists make(
@@ -193,9 +192,9 @@ CREATE TABLE if not exists make(
     id_musicstyle INT,
     PRIMARY KEY(id_artist, id_musicstyle),
     constraint fk_artist_do
-    FOREIGN KEY(id_artist) REFERENCES artist(id_artist),
+    FOREIGN KEY(id_artist) REFERENCES artist(id_artist) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_musicstyle_do
-    FOREIGN KEY(id_musicstyle) REFERENCES musicstyle(id_musicstyle)
+    FOREIGN KEY(id_musicstyle) REFERENCES musicstyle(id_musicstyle) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists have(
@@ -203,9 +202,9 @@ CREATE TABLE if not exists have(
     id_socialnetwork INT,
     PRIMARY KEY(id_artist, id_socialnetwork),
     constraint fk_artist_have
-    FOREIGN KEY(id_artist) REFERENCES artist(id_artist),
+    FOREIGN KEY(id_artist) REFERENCES artist(id_artist) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_socialnetwork_have
-    FOREIGN KEY(id_socialnetwork) REFERENCES socialnetwork(id_socialnetwork)
+    FOREIGN KEY(id_socialnetwork) REFERENCES socialnetwork(id_socialnetwork) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists concert(
@@ -214,9 +213,9 @@ CREATE TABLE if not exists concert(
     date_concert DATE,
     PRIMARY KEY(id_artist, id_scene),
     constraint fk_artist_concert
-    FOREIGN KEY(id_artist) REFERENCES artist(id_artist),
+    FOREIGN KEY(id_artist) REFERENCES artist(id_artist) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_scene_concert
-    FOREIGN KEY(id_scene) REFERENCES scene(id_scene)
+    FOREIGN KEY(id_scene) REFERENCES scene(id_scene) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists origineuser(
@@ -224,9 +223,9 @@ CREATE TABLE if not exists origineuser(
     id_user INT,
     PRIMARY KEY(id_nationality, id_user),
     constraint fk_nationalite_origineuser
-    FOREIGN KEY(id_nationality) REFERENCES nationality(id_nationality),
+    FOREIGN KEY(id_nationality) REFERENCES nationality(id_nationality) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_user_origineuser
-    FOREIGN KEY(id_user) REFERENCES users(id_user)
+    FOREIGN KEY(id_user) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists proposes(
@@ -234,9 +233,9 @@ CREATE TABLE if not exists proposes(
     id_service INT,
     PRIMARY KEY(id_prestataire, id_service),
     constraint fk_prestataire_proposes
-    FOREIGN KEY(id_prestataire) REFERENCES prestataire(id_prestataire),
+    FOREIGN KEY(id_prestataire) REFERENCES prestataire(id_prestataire) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_service_proposes
-    FOREIGN KEY(id_service) REFERENCES service(id_service)
+    FOREIGN KEY(id_service) REFERENCES service(id_service) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists access(
@@ -244,9 +243,9 @@ CREATE TABLE if not exists access(
     id_droit INT,
     PRIMARY KEY(id_role, id_droit),
     constraint fk_role_access
-    FOREIGN KEY(id_role) REFERENCES role(id_role),
+    FOREIGN KEY(id_role) REFERENCES role(id_role) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_droit_access
-    FOREIGN KEY(id_droit) REFERENCES droit(id_droit)
+    FOREIGN KEY(id_droit) REFERENCES droit(id_droit) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists bought(
@@ -256,11 +255,12 @@ CREATE TABLE if not exists bought(
     date_end_validity DATE,
     PRIMARY KEY(id_user, id_ticket, date_start_validity, date_end_validity),
     constraint fk_user_bought
-    FOREIGN KEY(id_user) REFERENCES users(id_user),
+    FOREIGN KEY(id_user) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_ticket_bought
-    FOREIGN KEY(id_ticket) REFERENCES ticket(id_ticket),
+    FOREIGN KEY(id_ticket) REFERENCES ticket(id_ticket) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_date_start_validity_bought
     FOREIGN KEY(date_start_validity, date_end_validity) REFERENCES date_validity_ticket(date_start_validity, date_end_validity)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists reserve(
@@ -270,9 +270,10 @@ CREATE TABLE if not exists reserve(
     date_end_placereserved DATE,
     PRIMARY KEY(id_user, id_place, date_start_placereserved, date_end_placereserved),
     constraint fk_user_reserve
-    FOREIGN KEY(id_user) REFERENCES users(id_user),
+    FOREIGN KEY(id_user) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_place_reserve
-    FOREIGN KEY(id_place) REFERENCES place(id_place),
+    FOREIGN KEY(id_place) REFERENCES place(id_place) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_date_start_placereserved_reserve
     FOREIGN KEY(date_start_placereserved, date_end_placereserved) REFERENCES date_reserve(date_start_placereserved, date_end_placereserved)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
