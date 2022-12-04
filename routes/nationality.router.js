@@ -8,9 +8,9 @@ router.get('/', findAll);
  * @swagger
  * /nationality:
  *   get:
- *      description: Return all music_style
+ *      description: Return all nationality
  *      tags:
- *          - Music_style_routes
+ *          - Nationality routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -47,20 +47,16 @@ router.post('/', create);
  * @swagger
  * /nationality:
  *   post:
- *      description: Create an music_style
+ *      description: Create an nationality
  *      tags:
- *          - Nationality route
+ *          - Nationality routes
  *      parameters:
  *          - in: body
  *            name: music style
  *            description: The music style to create.
  *            schema:
  *               type: object
- *               required:
- *                   - id_nationality
  *               properties:
- *                   id_nationality:
- *                       type: integer
  *                   libelle_nationality:
  *                       type: string
  *      responses:
@@ -75,26 +71,22 @@ router.post('/', create);
 router.put('/:id', update);
 /**
  * @swagger
- * /music_style/{id}:
+ * /nationality/{id}:
  *   put:
- *      description: Update an music_style
+ *      description: Update an nationality
  *      tags:
- *          - Nationality route
+ *          - Nationality routes
  *      parameters:
  *          - in: path
  *            name: id
  *            type: integer
  *            required: true
  *          - in: body
- *            name: music_style
- *            description: The music_style to update.
+ *            name: nationality
+ *            description: The nationality to update.
  *            schema:
  *               type: object
- *               required:
- *                   - id_nationality
  *               properties:
- *                   id_nationality:
- *                       type: integer
  *                   libelle_nationality:
  *                       type: string
  *      responses:
@@ -113,7 +105,7 @@ router.delete('/:id', remove);
  *   delete:
  *      description: Delete an nationality
  *      tags:
- *          - Nationality route
+ *          - Nationality routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -135,7 +127,7 @@ router.delete('/', removeAll);
  *   delete:
  *      description: Delete all nationality
  *      tags:
- *          - Nationality route
+ *          - Nationality routes
  *      responses:
  *          '200':
  *              description: Resource added successfully

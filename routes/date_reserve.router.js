@@ -61,15 +61,9 @@ router.post('/', create);
  *            schema:
  *               type: object
  *               required:
- *                   - id_artist
- *                   - id_scene
  *                   - date_start_placereserved
  *                   - date_end_placereserved
  *               properties:
- *                   id_artist:
- *                       type: integer
- *                   id_scene:
- *                       type: integer
  *                   date_start_placereserved:
  *                       type: string
  *                   date_end_placereserved:
