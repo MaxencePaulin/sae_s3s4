@@ -39,7 +39,7 @@ export const update = (req, res) => {
     Price.update(body, {
         where: { id_price: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Price was updated successfully."
             });

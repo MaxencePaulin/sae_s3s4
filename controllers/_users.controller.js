@@ -43,7 +43,7 @@ export const update = (req, res) => {
     Users.update(body, {
         where: { id_user: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Users was updated successfully."
             });
@@ -64,7 +64,7 @@ export const remove = (req, res) => {
     Users.destroy({
         where: { id_user: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Users was deleted successfully!"
             });

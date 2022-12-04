@@ -39,7 +39,7 @@ export const update = (req, res) => {
     SocialNetwork.update(body, {
         where: { id_socialnetwork: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "SocialNetwork was updated successfully."
             });

@@ -39,7 +39,7 @@ export const update = (req, res) => {
     Role.update(body, {
         where: { id_role: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Role was updated successfully."
             });

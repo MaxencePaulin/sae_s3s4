@@ -43,7 +43,7 @@ export const create = (req, res) => {
 //     Access.update(body, {
 //         where: { id_role: id_role , id_droit: id_droit }
 //     }).then(data => {
-//         if (data === 1) {
+//         if () {
 //             res.send({
 //                 message: "Access was updated successfully."
 //             });

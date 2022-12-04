@@ -39,7 +39,7 @@ export const update = (req, res) => {
     Artist.update(body, {
         where: { id_artist: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Artist was updated successfully."
             });

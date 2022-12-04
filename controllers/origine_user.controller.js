@@ -52,7 +52,7 @@ export const create = (req, res) => {
 //     Origineuser.update(body, {
 //         where: {id_nationality: id_nationality , id_user: id_user}
 //     }).then(data => {
-//         if (data === 1) {
+//         if () {
 //             res.send({
 //                 message: "Origineuser was updated successfully."
 //             });

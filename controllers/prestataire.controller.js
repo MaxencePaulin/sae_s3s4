@@ -39,7 +39,7 @@ export const update = (req, res) => {
     Prestataire.update(body, {
         where: { id_prestataire: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Prestataire was updated successfully."
             });

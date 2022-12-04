@@ -39,7 +39,7 @@ export const update = (req, res) => {
     VirtualAccount.update(body, {
         where: { id_virtualaccount: id_account }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "VirtualAccount was updated successfully."
             });

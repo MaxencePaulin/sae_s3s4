@@ -39,7 +39,7 @@ export const update = (req, res) => {
     Scene.update(body, {
         where: { id_scene: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Scene was updated successfully."
             });

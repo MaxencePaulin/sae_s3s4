@@ -127,20 +127,6 @@ router.put('/:id', update);
  *            description: The user to create.
  *            schema:
  *               type: object
- *               required:
- *                   - login
- *                   - password
- *                   - email
- *                   - firstname
- *                   - lastname
- *                   - dob
- *                   - bankcard
- *                   - address
- *                   - mobile
- *                   - genre
- *                   - id_role
- *                   - id_virtualaccount
- *                   - id_prestataire
  *               properties:
  *                   login:
  *                       type: string

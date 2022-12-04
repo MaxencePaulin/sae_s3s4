@@ -39,7 +39,7 @@ export const update = (req, res) => {
     TypeScene.update(body, {
         where: { id_typescene: id_type }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "TypeScene was updated successfully."
             });

@@ -39,7 +39,7 @@ export const update = (req, res) => {
     Qr_code.update(body, {
         where: { id_qr_code: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Qr_code was updated successfully."
             });

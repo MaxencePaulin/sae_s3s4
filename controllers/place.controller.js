@@ -39,7 +39,7 @@ export const update = (req, res) => {
     Place.update(body, {
         where: { id_place: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Place was updated successfully."
             });

@@ -39,7 +39,7 @@ export const update = (req, res) => {
     Droit.update(body, {
         where: { id_droit: id }
     }).then(data => {
-        if (data === 1) {
+        if (data[0] === 1) {
             res.send({
                 message: "Droit was updated successfully."
             });
