@@ -1,6 +1,7 @@
 import express from 'express';
 import { findAll, findOne, create,
-    update, remove, removeAll, login } from '../controllers/_users.controller.js';
+    update, remove, removeAll,
+    login, register } from '../controllers/_users.controller.js';
 
 const router = express.Router();
 
@@ -205,7 +206,7 @@ router.delete('/', removeAll);
  */
 
 router.post('/login', login);
-// router.post('/register', register);
+router.post('/register', register);
 // router.post('/logout', logout);
 
 export default router;

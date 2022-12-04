@@ -119,3 +119,48 @@ export const login = (req, res) => {
         });
     });
 }
+
+export const register = async (req, res) => {
+    const id_role = parseInt(req.body.id_role) || 1;
+    const id_qr_code = await model.Qr_code.create({
+        qr_code: "waiting..."
+    });
+    const id_virtualaccount = await model.VirtualAccount.create({
+        id_qr_code: id_qr_code.id_qr_code,
+    });
+    if (req.body.dob === '') {
+        req.body.dob = null;
+    }
+    const data = {
+        login: req.body.login,
+        password: req.body.password,
+        email: req.body.email,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        dob: req.body.dob,
+        address: req.body.address,
+        mobile: req.body.mobile,
+        genre: req.body.genre,
+        id_role: id_role,
+        id_virtualaccount: id_virtualaccount.id_virtualaccount,
+    }
+    Users.create(data).then(data => {
+        console.log(data);
+        model.Qr_code.update(
+            {qr_code: `userid=${data.id_user}`},
+            {where: {id_qr_code: id_virtualaccount.id_qr_code},
+            }).then(data => {
+            res.send({success: 1, data: data});
+        }).catch(e => {
+            console.log(e);
+            res.status(500).send({
+                message: e.message || "Some error occurred."
+            });
+        })
+    }).catch(e => {
+        console.log(e);
+        res.status(500).send({
+            message: e.message || "Some error occurred."
+        });
+    });
+}
