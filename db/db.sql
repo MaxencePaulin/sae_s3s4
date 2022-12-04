@@ -277,3 +277,4 @@ CREATE TABLE if not exists reserve(
     FOREIGN KEY(date_start_placereserved, date_end_placereserved) REFERENCES date_reserve(date_start_placereserved, date_end_placereserved)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+select * from date_validity_ticket;

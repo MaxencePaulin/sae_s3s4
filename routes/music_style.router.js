@@ -4,10 +4,145 @@ import { findAll, findOne, create, update, remove, removeAll } from '../controll
 const router = express.Router();
 
 router.get('/', findAll);
-router.get('/:id', findOne);
+/**
+ * @swagger
+ * /musicstyle:
+ *   get:
+ *      description: Return all musicstyle
+ *      tags:
+ *          - musicstyle_routes
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+
+ router.get('/:id', findOne);
+ /**
+  * @swagger
+  * /musicstyle/{id}:
+  *   get:
+  *      description: Return musicstyle by id_musicstyle
+  *      tags:
+  *          - musicstyle_routes
+  *      parameters:
+  *          - in: path
+  *            name: id
+  *            type: integer
+  *            required: true
+  *      responses:
+  *          '200':
+  *              description: Resource added successfully
+  *          '500':
+  *              description: Internal server error
+  *          '400':
+  *              description: Bad request
+*/
+
 router.post('/', create);
+/**
+ * @swagger
+ * /musicstyle:
+ *   post:
+ *      description: Create an musicstyle
+ *      tags:
+ *          - musicstyle_routes
+ *      parameters:
+ *          - in: body
+ *            name: music style
+ *            description: The music style to create.
+ *            schema:
+ *               type: object
+ *               required:
+ *                   - id_musicstyle
+ *               properties:
+ *                   id_musicstyle:
+ *                       type: integer
+ *                   libelle_musicstyle:
+ *                       type: string
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+*/
+
 router.put('/:id', update);
+/**
+ * @swagger
+ * /musicstyle/{id}:
+ *   put:
+ *      description: Update an musicstyle
+ *      tags:
+ *          - musicstyle_routes
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            type: integer
+ *            required: true
+ *          - in: body
+ *            name: musicstyle
+ *            description: The musicstyle to update.
+ *            schema:
+ *               type: object
+ *               required:
+ *                   - id_musicstyle
+ *               properties:
+ *                   id_musicstyle:
+ *                       type: integer
+ *                   libelle_musicstyle:
+ *                       type: string
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+*/
+
 router.delete('/:id', remove);
+/**
+ * @swagger
+ * /musicstyle/{id}:
+ *   delete:
+ *      description: Delete an musicstyle
+ *      tags:
+ *          - musicstyle_routes
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            type: integer
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+*/
+
 router.delete('/', removeAll);
+/**
+ * @swagger
+ * /musicstyle:
+ *   delete:
+ *      description: Delete all musicstyle
+ *      tags:
+ *          - musicstyle_routes
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+*/
 
 export default router;
