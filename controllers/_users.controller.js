@@ -92,3 +92,29 @@ export const removeAll = (req, res) => {
         });
     });
 }
+
+export const login = (req, res) => {
+    const login = req.body.login;
+    const password = req.body.password;
+    Users.findOne({
+        where: { login: login },
+        include: [{model: model.Role}]
+    }).then(data => {
+        if (data && data.password === password) {
+            req.session.login = data.login;
+            req.session.password = data.password;
+            req.session.id_role = data.id_role;
+            req.session.libelle_role = data.role.libelle_role;
+            res.send({success: 1, data: data});
+        } else {
+            res.status(500).send({
+                success: 0, message: "Error with the connection with id " + login
+            });
+        }
+    }).catch(e => {
+        console.log(e);
+        res.status(500).send({
+            success: 0, message: "Error with the connection with id " + login
+        });
+    });
+}

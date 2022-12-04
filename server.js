@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url';
 import hbengine from 'express-handlebars';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import session from 'express-session';
 
 // Routes
 
@@ -89,6 +90,14 @@ app.set("view engine", "hbs");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(session({
+    secret: 'secret',
+    cookie: {maxAge: 15 * 60 * 1000},
+    saveUninitialized: false,
+    resave: false,
+    unset: 'destroy'
+}));
 
 // temporaire vu que le front n'est pas encore fait
 const __filename = fileURLToPath(import.meta.url);

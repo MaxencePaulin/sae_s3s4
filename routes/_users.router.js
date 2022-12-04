@@ -1,5 +1,6 @@
 import express from 'express';
-import { findAll, findOne, create, update, remove, removeAll } from '../controllers/_users.controller.js';
+import { findAll, findOne, create,
+    update, remove, removeAll, login } from '../controllers/_users.controller.js';
 
 const router = express.Router();
 
@@ -217,7 +218,7 @@ router.delete('/', removeAll);
  *              description: Bad request
  */
 
-// router.post('/login', login);
+router.post('/login', login);
 // router.post('/register', register);
 // router.post('/logout', logout);
 

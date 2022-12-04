@@ -191,7 +191,7 @@ insert into ticket(type_ticket,id_price) values
 
 insert into users(login,password,email,firstname,lastname,dob,bankcard,address,mobile,genre,id_role,id_virtualaccount) values
 ('admin', 'password','admin1@gmail.com','firstname1', 'lastname1', '2019-01-01', null, null, '0605040302', 'homme',3, 1),
-('admin', 'password','admin2@gmail.com','firstname2', 'lastname2', '2019-01-02', null, 'address2', null, 'femme',3 ,2);
+('admin1', 'password1','admin2@gmail.com','firstname2', 'lastname2', '2019-01-02', null, 'address2', null, 'femme',3 ,2);
 
 insert into origineartist(id_artist, id_nationality)values
 (1,1),
