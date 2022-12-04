@@ -81,9 +81,9 @@ router.post('/', create);
  *                   email:
  *                       type: string
  *                   firstname:
- *                       type: integer
+ *                       type: string
  *                   lastname:
- *                       type: integer
+ *                       type: string
  *                   dob:
  *                       type: string
  *                   bankcard:
@@ -151,9 +151,9 @@ router.put('/:id', update);
  *                   email:
  *                       type: string
  *                   firstname:
- *                       type: integer
+ *                       type: string
  *                   lastname:
- *                       type: integer
+ *                       type: string
  *                   dob:
  *                       type: string
  *                   bankcard:

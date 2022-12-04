@@ -121,11 +121,13 @@ insert into service(libelle_service)values
 
 insert into qr_code(qr_code)values
 ('qr_code1'),
-('qr_code2');
+('qr_code2'),
+('qr_code3');
 
 insert into virtualaccount(amount,id_qr_code) values
 (0, 1),
-(100, 2);
+(100, 2),
+(50, 3);
 
 insert into droit(libelle_droit) values
 ('read'),
