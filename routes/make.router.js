@@ -108,10 +108,10 @@ router.delete('/one', remove);
  *              description: Bad request
 */
 
-router.delete('/all', removeAll);
+router.delete('/', removeAll);
 /**
  * @swagger
- * /make/all:
+ * /make:
  *   delete:
  *      description: Delete all make
  *      tags:

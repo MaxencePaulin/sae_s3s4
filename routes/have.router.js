@@ -77,10 +77,10 @@ router.post('/', create);
  *              description: Bad request
 */
 
-router.delete('/', remove);
+router.delete('/one', remove);
 /**
  * @swagger
- * /have:
+ * /have/one:
  *   delete:
  *      description: Delete an artist
  *      tags:
@@ -103,10 +103,10 @@ router.delete('/', remove);
  *              description: Bad request
 */
 
-router.delete('/all', removeAll);
+router.delete('/', removeAll);
 /**
  * @swagger
- * /have/all:
+ * /have:
  *   delete:
  *      description: Delete all artist
  *      tags:

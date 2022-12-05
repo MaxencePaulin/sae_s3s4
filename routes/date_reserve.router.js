@@ -20,10 +20,10 @@ router.get('/', findAll);
  *              description: Bad request
 */
 
-router.get('/reservation', findOne);
+router.get('/one', findOne);
 /**
  * @swagger
- * /datereserve/reservation:
+ * /datereserve/one:
  *   get:
  *      description: Return datereserve by date_start_placereserved and date_end_placereserved
  *      tags:
@@ -77,10 +77,10 @@ router.post('/', create);
  *              description: Bad request
 */
 
-router.delete('/reservation', remove);
+router.delete('/one', remove);
 /**
  * @swagger
- * /datereserve/reservation:
+ * /datereserve/one:
  *   delete:
  *      description: Delete datereserve by date_start_placereserved and date_end_placereserved
  *      tags:
