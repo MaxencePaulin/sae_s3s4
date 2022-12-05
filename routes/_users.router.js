@@ -1,9 +1,14 @@
 import express from 'express';
 import { findAll, findOne, create,
     update, remove, removeAll,
-    login, register, logout } from '../controllers/_users.controller.js';
+    login, register, logout,
+    getUserProfile } from '../controllers/_users.controller.js';
+import { protect } from '../utils/jwtUtils.js';
 
 const router = express.Router();
+
+
+router.get('/me', protect, getUserProfile);
 
 router.get('/', findAll);
 /**

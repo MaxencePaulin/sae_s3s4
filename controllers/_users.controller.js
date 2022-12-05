@@ -1,5 +1,7 @@
 import model from '../models/index.js';
 const Users = model.Users;
+import bcrypt from 'bcrypt';
+import { generateTokenForUser } from "../utils/jwtUtils.js";
 
 export const findAll = (req, res) => {
     Users.findAll({include: [{model: model.Role},
@@ -28,6 +30,8 @@ export const findOne = (req, res) => {
 
 export const create = (req, res) => {
     const body = req.body;
+    const salt = bcrypt.genSaltSync(10);
+    body.password = bcrypt.hashSync(body.password, salt);
     Users.create(body).then(data => {
         res.send(data);
     }).catch(e => {
@@ -40,6 +44,10 @@ export const create = (req, res) => {
 export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
+    if (body.password && body.password !== '') {
+        const salt = bcrypt.genSaltSync(10);
+        body.password = bcrypt.hashSync(body.password, salt);
+    }
     Users.update(body, {
         where: { id_user: id }
     }).then(data => {
@@ -94,6 +102,31 @@ export const removeAll = (req, res) => {
     });
 }
 
+export const getUserProfile = async (req, res) => {
+    const user = await Users.findByPk(req.user.id_user,  {include: [{model: model.Role},
+            {model: model.VirtualAccount, include: [{model: model.Qr_code}]},
+            {model: model.Prestataire}]});
+
+    if (user) {
+        res.send({success: 1, data: {
+                id_user: user.id_user,
+                login: user.login,
+                email: user.email,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                dob: user.dob,
+                address: user.address,
+                mobile: user.mobile,
+                genre: user.genre,
+                id_role: user.id_role,
+                libelle_role: user.role.libelle_role,
+            }
+        })
+    } else {
+        res.status(404).send({ success: 0, message: 'User Not Found' });
+    }
+}
+
 export const login = (req, res) => {
     const login = req.body.login;
     const password = req.body.password;
@@ -101,13 +134,15 @@ export const login = (req, res) => {
         where: { login: login },
         include: [{model: model.Role}]
     }).then(data => {
-        if (data && data.password === password) {
-            req.session.id_user = data.id_user;
-            req.session.login = data.login;
-            req.session.id_role = data.id_role;
-            req.session.libelle_role = data.role.libelle_role;
+        if (data && bcrypt.compareSync(password, data.password)) {
+            const token = generateTokenForUser(data);
+            req.session.token = token;
+            // req.session.id_user = data.id_user;
+            // req.session.login = data.login;
+            // req.session.id_role = data.id_role;
+            // req.session.libelle_role = data.role.libelle_role;
             console.log(req.session);
-            res.send({success: 1, data: data});
+            res.send({success: 1, data: {token:token}});
         } else {
             res.status(405).send({
                 success: 0, message: "Error with the connection with id " + login
@@ -122,6 +157,8 @@ export const login = (req, res) => {
 }
 
 export const register = async (req, res) => {
+    const salt = bcrypt.genSaltSync(10);
+    req.body.password = bcrypt.hashSync(req.body.password, salt);
     const id_role = parseInt(req.body.id_role) || 1;
     const id_qr_code = await model.Qr_code.create({
         qr_code: "waiting..."

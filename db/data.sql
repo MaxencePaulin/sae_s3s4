@@ -192,8 +192,8 @@ insert into ticket(type_ticket,id_price) values
 ('3 jours', 3);
 
 insert into users(login,password,email,firstname,lastname,dob,bankcard,address,mobile,genre,id_role,id_virtualaccount) values
-('admin', 'password','admin1@gmail.com','firstname1', 'lastname1', '2019-01-01', null, null, '0605040302', 'homme',3, 1),
-('admin1', 'password1','admin2@gmail.com','firstname2', 'lastname2', '2019-01-02', null, 'address2', null, 'femme',3 ,2);
+('admin', '$2b$10$21vNgcdjhDtj3RswzCk4kumHHOG2Iip30v3UnIK07SE.2lnaO6tv6','admin@gmail.com','firstname', 'lastname', '2003-04-11', null, null, '0605040302', 'homme',3, 1),
+('admin2', '$2b$10$7hdYz80EO48vClKUI6EutuaTRyx9Vw8EQxnHayo9NDHmxmIDtusIO','admin2@gmail.com','firstname2', 'lastname2', '2019-01-02', null, 'address2', null, 'femme',3 ,2);
 
 insert into origineartist(id_artist, id_nationality)values
 (1,1),
