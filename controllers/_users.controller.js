@@ -102,13 +102,14 @@ export const login = (req, res) => {
         include: [{model: model.Role}]
     }).then(data => {
         if (data && data.password === password) {
+            req.session.id_user = data.id_user;
             req.session.login = data.login;
-            req.session.password = data.password;
             req.session.id_role = data.id_role;
             req.session.libelle_role = data.role.libelle_role;
+            console.log(req.session);
             res.send({success: 1, data: data});
         } else {
-            res.status(500).send({
+            res.status(405).send({
                 success: 0, message: "Error with the connection with id " + login
             });
         }
@@ -163,4 +164,19 @@ export const register = async (req, res) => {
             message: e.message || "Some error occurred."
         });
     });
+}
+
+export const logout = (req, res) => {
+    try {
+        console.log(req.session);
+        req.session.destroy();
+        console.log(req.session);
+        res.send({success: 1});
+    }catch(e) {
+        console.log(e);
+        res.status(500).send({
+            success: 0,
+            message: e.message || "Some error occurred."
+        });
+    }
 }
