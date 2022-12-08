@@ -34,8 +34,8 @@ router.get('/one', findOne);
  *            type: integer
  *            required: true
  *          - in: query
- *             name: id_musicstyle
- *             type: integer
+ *            name: id_musicstyle
+ *            type: integer
  *            required: true
  *      responses:
  *          '200':

@@ -38,13 +38,13 @@ router.get('/', findAll);
  *            type: integer
  *            required: true
  *          - in: query
- *             name: date_start_validity
- *             type: string
- *             required: true
+ *            name: date_start_validity
+ *            type: string
+ *            required: true
  *          - in: query
- *             name: date_end_validity
- *             type: string
- *             required: true
+ *            name: date_end_validity
+ *            type: string
+ *            required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -109,13 +109,13 @@ router.delete('/one', remove);
  *            type: integer
  *            required: true
  *          - in: query
- *             name: date_start_validity
- *             type: string
- *             required: true
+ *            name: date_start_validity
+ *            type: string
+ *            required: true
  *          - in: query
- *             name: date_end_validity
- *             type: string
- *             required: true
+ *            name: date_end_validity
+ *            type: string
+ *            required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully

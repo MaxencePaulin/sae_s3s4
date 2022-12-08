@@ -10,7 +10,7 @@ router.get('/', findAll);
  *   get:
  *      description: Return all datereserve
  *      tags:
- *          - datereserve_routes
+ *          - date reserve routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -27,7 +27,7 @@ router.get('/one', findOne);
  *   get:
  *      description: Return datereserve by date_start_placereserved and date_end_placereserved
  *      tags:
- *          - datereserve_routes
+ *          - date reserve routes
  *      parameters:
  *          - in: path
  *            name: date_start_placereserved
@@ -53,7 +53,7 @@ router.post('/', create);
  *   post:
  *      description: Create an datereserve
  *      tags:
- *          - datereserve_routes
+ *          - date reserve routes
  *      parameters:
  *          - in: body
  *            name: datereserve
@@ -84,7 +84,7 @@ router.delete('/one', remove);
  *   delete:
  *      description: Delete datereserve by date_start_placereserved and date_end_placereserved
  *      tags:
- *          - datereserve_routes
+ *          - date reserve routes
  *      parameters:
  *          - in: path
  *            name: date_start_placereserved
@@ -110,7 +110,7 @@ router.delete('/', removeAll);
  *   delete:
  *      description: Delete all datereserve
  *      tags:
- *          - datereserve_routes
+ *          - date reserve routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
