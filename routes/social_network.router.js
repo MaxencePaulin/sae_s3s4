@@ -122,7 +122,7 @@ router.delete('/:id', remove);
  *            type: integer
  *            required: true
  *      responses:
- *          '200
+ *          '200':
  *              description: Resource added successfully
  *          '500':
  *              description: Internal server error
