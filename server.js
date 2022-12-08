@@ -11,6 +11,7 @@ import hbengine from 'express-handlebars';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import session from 'express-session';
+import cookieParser from 'cookie-parser';
 
 // Routes
 
@@ -77,9 +78,6 @@ export const client = new Client({
 client.connect();
 console.log(`Connecté à l'utilisateur [${pg_user}] dans la base [${pg_database}] sur le serveur [${pg_host}]`);
 
-// cors
-app.use(cors("*"));
-
 // temporaire pour le front
 app.engine("hbs", hbengine.engine({
     defaultLayout: "main",
@@ -91,13 +89,23 @@ app.set("view engine", "hbs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(cookieParser());
+
 app.use(session({
     secret: 'secret',
-    cookie: {maxAge: 15 * 60 * 1000},
+    cookie: {maxAge: 1000 * 60 * 60 * 24}, // 1 jour
     saveUninitialized: false,
     resave: false,
     unset: 'destroy'
 }));
+
+app.use(cors({
+    origin: [
+        'http://localhost:8080',
+    ],
+    credentials: true,
+    exposedHeaders: ['set-cookie']
+}))
 
 // temporaire vu que le front n'est pas encore fait
 const __filename = fileURLToPath(import.meta.url);
