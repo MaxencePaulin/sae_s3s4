@@ -4,6 +4,7 @@ import { findAll, findOne, create, remove, removeAll } from '../controllers/rese
 const router = express.Router();
 
 router.get('/', findAll);
+
 router.get('/one', findOne);
 router.post('/', create);
 router.delete('/one', remove);
