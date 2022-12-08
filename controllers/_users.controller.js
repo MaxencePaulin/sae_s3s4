@@ -20,7 +20,7 @@ export const findOne = (req, res) => {
     Users.findByPk(id, {include: [{model: model.Role},
             {model: model.VirtualAccount, include: [{model: model.Qr_code}]},
             {model: model.Prestataire}]}).then(data => {
-        res.send(data);
+        res.status(200).send(data);
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."
@@ -130,6 +130,9 @@ export const getUserProfile = async (req, res) => {
 export const login = (req, res) => {
     const login = req.body.login;
     const password = req.body.password;
+    if (login === '' || password === '') {
+        return res.status(400).send({ success: 0, message: 'Missing parameters' });
+    }
     Users.findOne({
         where: { login: login },
         include: [{model: model.Role}]
@@ -145,13 +148,13 @@ export const login = (req, res) => {
             res.send({success: 1, data: {token:token}});
         } else {
             res.status(405).send({
-                success: 0, message: "Error with the connection with id " + login
+                success: 0, message: "Error with the connection, please check your login and password"
             });
         }
     }).catch(e => {
         console.log(e);
         res.status(500).send({
-            success: 0, message: "Error with the connection with id " + login
+            success: 0, message: "Error with the connection, please check your login and password"
         });
     });
 }

@@ -127,6 +127,7 @@ app.use((req, res, next) =>{
 /** Swagger Initialization - START */
 const swaggerOption = {
     swaggerDefinition: (swaggerJsdoc.Options = {
+        openapi: '3.0.1', // on en a besoin pour l'authorization
         info: {
             title: "SAE S3S4",
             description: "API documentation",
@@ -141,6 +142,18 @@ const swaggerOption = {
             },
             servers: ["http://localhost:3000/"],
         },
+        components : {
+            securitySchemes : {
+                bearerAuth : {
+                    type : 'http',
+                    scheme : 'bearer',
+                    bearerFormat : 'JWT'
+                }
+            }
+        },
+        // security : [{        // Si on veut que l'authentification soit obligatoire pour toutes les routes
+        //     bearerAuth : []
+        // }]
     }),
     apis: ["server.js", "./routes/*.js"],
 };

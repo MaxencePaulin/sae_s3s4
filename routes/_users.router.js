@@ -9,12 +9,31 @@ const router = express.Router();
 
 
 router.get('/me', protect, getUserProfile);
+/**
+ * @swagger
+ * /users/me:
+ *   get:
+ *      security:
+ *          - bearerAuth: []
+ *      description: Return users connected
+ *      tags:
+ *          - Users_routes
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 
 router.get('/', findAll);
 /**
  * @swagger
  * /users:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all users
  *      tags:
  *          - Users_routes
@@ -38,7 +57,8 @@ router.get('/:id', findOne);
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -57,55 +77,73 @@ router.post('/', create);
  *      description: Create an user
  *      tags:
  *          - Users_routes
- *      parameters:
- *          - in: body
- *            name: user
- *            description: The user to create.
- *            schema:
- *               type: object
- *               required:
- *                   - login
- *                   - password
- *                   - email
- *                   - firstname
- *                   - lastname
- *                   - dob
- *                   - bankcard
- *                   - address
- *                   - mobile
- *                   - genre
- *                   - id_role
- *                   - id_virtualaccount
- *                   - id_prestataire
- *               properties:
- *                   login:
- *                       type: string
- *                   password:
- *                       type: string
- *                   username:
- *                       type: string
- *                   email:
- *                       type: string
- *                   firstname:
- *                       type: string
- *                   lastname:
- *                       type: string
- *                   dob:
- *                       type: string
- *                   bankcard:
- *                       type: string
- *                   address:
- *                       type: string
- *                   mobile:
- *                       type: string
- *                   genre:
- *                       type: string
- *                   id_role:
- *                       type: integer
- *                   id_virtualaccount:
- *                       type: integer
- *                   id_prestataire:
- *                       type: integer
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        login:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 50
+ *                          example: login
+ *                          required: true
+ *                        password:
+ *                          type: string
+ *                          minLength: 4
+ *                          maxLength: 50
+ *                          example: abcd
+ *                          required: true
+ *                        email:
+ *                          type: string
+ *                          minLength: 4
+ *                          maxLength: 50
+ *                          example: email@mail.com
+ *                          required: true
+ *                        firstname:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 50
+ *                          example: firstname
+ *                          required: true
+ *                        lastname:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 50
+ *                          example: lastname
+ *                          required: true
+ *                        dob:
+ *                          type: string
+ *                          minLength: 6
+ *                          maxLength: 10
+ *                          example: 2000-01-01
+ *                        bankcard:
+ *                          type: string
+ *                          minLength: 16
+ *                          maxLength: 16
+ *                          example: 1234567890123456
+ *                        address:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 50
+ *                          example: address
+ *                        mobile:
+ *                          type: string
+ *                          minLength: 10
+ *                          maxLength: 10
+ *                          example: 0605040302
+ *                        genre:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 255
+ *                          example: homme
+ *                        id_role:
+ *                          type: integer
+ *                        id_virtualaccount:
+ *                          type: integer
+ *                        id_prestataire:
+ *                          type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -126,42 +164,76 @@ router.put('/:id', update);
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
- *            required: true
- *          - in: body
- *            name: user
- *            description: The user to create.
  *            schema:
- *               type: object
- *               properties:
- *                   login:
- *                       type: string
- *                   password:
- *                       type: string
- *                   username:
- *                       type: string
- *                   email:
- *                       type: string
- *                   firstname:
- *                       type: string
- *                   lastname:
- *                       type: string
- *                   dob:
- *                       type: string
- *                   bankcard:
- *                       type: string
- *                   address:
- *                       type: string
- *                   mobile:
- *                       type: string
- *                   genre:
- *                       type: string
- *                   id_role:
- *                       type: integer
- *                   id_virtualaccount:
- *                       type: integer
- *                   id_prestataire:
- *                       type: integer
+ *              type: integer
+ *            required: true
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        login:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 50
+ *                          example: login
+ *                          required: true
+ *                        password:
+ *                          type: string
+ *                          minLength: 4
+ *                          maxLength: 50
+ *                          example: abcd
+ *                          required: true
+ *                        email:
+ *                          type: string
+ *                          minLength: 4
+ *                          maxLength: 50
+ *                          example: email@mail.com
+ *                          required: true
+ *                        firstname:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 50
+ *                          example: firstname
+ *                          required: true
+ *                        lastname:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 50
+ *                          example: lastname
+ *                          required: true
+ *                        dob:
+ *                          type: string
+ *                          minLength: 6
+ *                          maxLength: 10
+ *                          example: 2000-01-01
+ *                        bankcard:
+ *                          type: string
+ *                          minLength: 16
+ *                          maxLength: 16
+ *                          example: 1234567890123456
+ *                        address:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 50
+ *                          example: address
+ *                        mobile:
+ *                          type: string
+ *                          minLength: 10
+ *                          maxLength: 10
+ *                          example: 0605040302
+ *                        genre:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 255
+ *                          example: homme
+ *                        id_role:
+ *                          type: integer
+ *                        id_virtualaccount:
+ *                          type: integer
+ *                        id_prestataire:
+ *                          type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -182,7 +254,8 @@ router.delete('/:id', remove);
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -211,6 +284,40 @@ router.delete('/', removeAll);
  */
 
 router.post('/login', login);
+/**
+ * @swagger
+ * /users/login:
+ *   post:
+ *      description: Connect to a user
+ *      tags:
+ *          - Users_routes
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        login:
+ *                          type: string
+ *                          minLength: 1
+ *                          maxLength: 50
+ *                          example: login
+ *                          required: true
+ *                        password:
+ *                          type: string
+ *                          minLength: 4
+ *                          maxLength: 50
+ *                          example: abcd
+ *                          required: true
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+
 router.post('/register', register);
 router.post('/logout', logout);
 
