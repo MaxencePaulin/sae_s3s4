@@ -180,10 +180,11 @@ CREATE TABLE if not exists users(
 
 CREATE TABLE if not exists guest_book(
     id_avis serial ,
-    libelle_avis VARCHAR(255),
+    libelle_avis TEXT,
     id_artist INT ,
     id_prestataire INT,
-    id_user INT ,
+    id_user INT NOT NULL,
+    PRIMARY KEY(id_avis),
     constraint fk_artist_guest_book
     FOREIGN KEY(id_artist) REFERENCES artist(id_artist) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_prestataire_guest_book
