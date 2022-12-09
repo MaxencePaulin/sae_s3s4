@@ -90,7 +90,7 @@ router.post('/', create);
 router.put('/:id', update);
 /**
  * @swagger
- * /guest_book:
+ * /guest_book/{id}:
  *   put:
  *      security:
  *          - bearerAuth: []
