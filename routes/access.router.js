@@ -8,9 +8,11 @@ router.get('/', findAll);
  * @swagger
  * /access:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all access
  *      tags:
- *          - Access_routes
+ *          - access_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -23,19 +25,21 @@ router.get('/', findAll);
 router.get('/one', findOne);
 /**
  * @swagger
- * /access/one:
+ * /access/{id}:
  *   get:
- *      description: Return user by id
+ *      description: Return access by id role and id droit 
  *      tags:
- *          - Access_routes
+ *          - access_routes
  *      parameters:
  *          - in: query
  *            name: id_role
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *          - in: query
  *            name: id_droit
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -53,21 +57,19 @@ router.post('/', create);
  *   post:
  *      description: Create an access
  *      tags:
- *          - Access_routes
- *      parameters:
- *          - in: body
- *            name: user
- *            description: The acces to create.
- *            schema:
- *               type: object
- *               required:
- *                   - id_role
- *                   - id_droit
- *               properties:
- *                   id_role:
- *                       type: integer
- *                   id_droit:
- *                       type: integer
+ *          - access_routes
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        id_role:
+ *                          type: integer
+ *                          example: 1
+ *                        id_droit:
+ *                          type: integer
+ *                          example: 3
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -80,19 +82,21 @@ router.post('/', create);
 router.delete('/one', remove);
 /**
  * @swagger
- * /access:
+ * /access/{id}:
  *   delete:
  *      description: Delete an access
  *      tags:
- *          - Access_routes
+ *          - access_routes
  *      parameters:
  *          - in: query
  *            name: id_role
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *          - in: query
  *            name: id_droit
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -110,7 +114,7 @@ router.delete('/', removeAll);
  *   delete:
  *      description: Delete all access
  *      tags:
- *          - Access_routes
+ *          - access_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -119,5 +123,6 @@ router.delete('/', removeAll);
  *          '400':
  *              description: Bad request
  */
+
 
 export default router;

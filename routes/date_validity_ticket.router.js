@@ -8,6 +8,8 @@ router.get('/', findAll);
  * @swagger
  * /datevalidityticket:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all datevalidityticket
  *      tags:
  *          - datevalidityticket_routes
@@ -29,7 +31,7 @@ router.get('/one', findOne);
  *      tags:
  *          - datevalidityticket_routes
  *      parameters:
- *          - in: path
+ *          - in: query
  *            name: date_start_validity
  *            type: string
  *            required: true
@@ -54,20 +56,20 @@ router.post('/', create);
  *      description: Create a datevalidityticket
  *      tags:
  *          - datevalidityticket_routes
- *      parameters:
- *          - in: body
- *            name: datevalidityticket
- *            description: The datevalidityticket to create.
- *            schema:
- *              type: object
- *              required:
- *                  - date_start_validity
- *                  - date_end_validity
- *              properties:
- *                  date_start_validity:
- *                      type: string
- *                  date_end_validity:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        date_start_validity:
+ *                            type: string
+ *                            example: 2021-01-01
+ *                            required: true
+ *                        date_end_validity:
+ *                            type: string
+ *                            example: 2021-01-01
+ *                            required: true
  *      responses:
  *          '201':
  *              description: Resource added successfully
@@ -86,19 +88,18 @@ router.delete('/one', remove);
  *      tags:
  *          - datevalidityticket_routes
  *      parameters:
- *          - in: body
- *            name: datevalidityticket
- *            description: The datevalidityticket to delete.
- *            schema:
- *              type: object
- *              required:
- *                  - date_start_validity
- *                  - date_end_validity
- *              properties:
- *                  date_start_validity:
- *                      type: string
- *                  date_end_validity:
- *                      type: string
+
+ *      parameters:
+ *          - in: query
+ *            name: date_start_validity
+ *            example: 2021-01-01
+ *            type: string
+ *            required: true
+ *          - in: query
+ *            name: date_end_validity
+ *            example: 2021-01-01  
+ *            type: string
+ *            required: true
  *      responses:
  *          '204':
  *              description: Resource deleted successfully

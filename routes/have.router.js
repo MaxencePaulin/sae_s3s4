@@ -8,6 +8,8 @@ router.get('/', findAll);
  * @swagger
  * /have:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all have
  *      tags:
  *          - Have_routes
@@ -31,11 +33,13 @@ router.get('/one', findOne);
  *      parameters:
  *          - in: query
  *            name: id_artist
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *          - in: query
  *            name: id_socialnetwork
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -54,20 +58,16 @@ router.post('/', create);
  *      description: Create an artist
  *      tags:
  *          - Have_routes
- *      parameters:
- *          - in: body
- *            name: have
- *            description: The have to create.
- *            schema:
- *               type: object
- *               required:
- *                   - id_artist
- *                   - id_socialnetwork
- *               properties:
- *                   id_artist:
- *                       type: integer
- *                   id_socialnetwork:
- *                       type: integer
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   properties:
+ *                       id_artist:
+ *                           type: integer
+ *                       id_socialnetwork:
+ *                           type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -88,11 +88,13 @@ router.delete('/one', remove);
  *      parameters:
  *          - in: query
  *            name: id_artist
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *          - in: query
  *            name: id_socialnetwork
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *      responses:
  *          '200':

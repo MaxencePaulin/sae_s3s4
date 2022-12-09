@@ -8,9 +8,11 @@ router.get('/', findAll);
  * @swagger
  * /artist:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all artist
  *      tags:
- *          - Artist_routes
+ *          - artist_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -25,13 +27,14 @@ router.get('/:id', findOne);
  * @swagger
  * /artist/{id}:
  *   get:
- *      description: Return artist by id_artiste
+ *      description: Return artist by id
  *      tags:
- *          - Artist_routes
+ *          - artist_routes
  *      parameters:
- *          - in: path
+ *          - in: query
  *            name: id
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -49,32 +52,27 @@ router.post('/', create);
  *   post:
  *      description: Create an artist
  *      tags:
- *          - Artist_routes
- *      parameters:
- *          - in: body
- *            name: artist
- *            description: The artist to create.
- *            schema:
- *               type: object
- *               required:
- *                   - id_artist
- *                   - name
- *                   - image
- *                   - biography
- *                   - genre
- *               properties:
- *                   id_artist:
- *                      type: integer
- *                   name:
- *                      type: string
- *                   image:
- *                      type: string
- *                   biography:
- *                      type: string
- *                   genre:
- *                      type: string
+ *          - artist_routes
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        name:
+ *                            type: string
+ *                            required: true
+ *                        image:
+ *                            type: string
+ *                            required: true
+ *                        biography:
+ *                            type: string
+ *                            required: true
+ *                        genre:
+ *                            type: string
+ *                            required: true
  *      responses:
- *          '200':
+ *          '201':
  *              description: Resource added successfully
  *          '500':
  *              description: Internal server error
@@ -89,37 +87,28 @@ router.put('/:id', update);
  *   put:
  *      description: Update an artist
  *      tags:
- *          - Artist_routes
- *      parameters:
- *          - in: path
- *            name: id
- *            type: integer
- *            required: true
- *          - in: body
- *            name: artist
- *            description: The artist to update.
- *            schema:
- *               type: object
- *               required:
- *                   - id_artist
- *                   - name
- *                   - image
- *                   - biography
- *                   - genre
- *               properties:
- *                   id_artist:
- *                      type: integer
- *                   name:
- *                      type: string
- *                   image:
- *                      type: string
- *                   biography:
- *                      type: string
- *                   genre:
- *                      type: string
+ *          - artist_routes
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        name:
+ *                            type: string
+ *                            required: true
+ *                        image:
+ *                            type: string
+ *                            required: true
+ *                        biography:
+ *                            type: string
+ *                            required: true
+ *                        genre:
+ *                            type: string
+ *                            required: true
  *      responses:
  *          '200':
- *              description: Resource updated successfully
+ *              description: Resource added successfully
  *          '500':
  *              description: Internal server error
  *          '400':
@@ -133,15 +122,16 @@ router.delete('/:id', remove);
  *   delete:
  *      description: Delete an artist
  *      tags:
- *          - Artist_routes
+ *          - artist_routes
  *      parameters:
- *          - in: path
+ *          - in: query
  *            name: id
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *      responses:
  *          '200':
- *              description: Resource deleted successfully
+ *              description: Resource added successfully
  *          '500':
  *              description: Internal server error
  *          '400':
@@ -155,10 +145,10 @@ router.delete('/', removeAll);
  *   delete:
  *      description: Delete all artist
  *      tags:
- *          - Artist_routes
+ *          - artist_routes
  *      responses:
  *          '200':
- *              description: Resource deleted successfully
+ *              description: Resource added successfully
  *          '500':
  *              description: Internal server error
  *          '400':

@@ -8,6 +8,8 @@ router.get('/', findAll);
  * @swagger
  * /datereserve:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all datereserve
  *      tags:
  *          - date reserve routes
@@ -29,7 +31,7 @@ router.get('/one', findOne);
  *      tags:
  *          - date reserve routes
  *      parameters:
- *          - in: path
+ *          - in: query
  *            name: date_start_placereserved
  *            type: string
  *            required: true
@@ -54,20 +56,16 @@ router.post('/', create);
  *      description: Create an datereserve
  *      tags:
  *          - date reserve routes
- *      parameters:
- *          - in: body
- *            name: datereserve
- *            description: The datereserve to create.
- *            schema:
- *               type: object
- *               required:
- *                   - date_start_placereserved
- *                   - date_end_placereserved
- *               properties:
- *                   date_start_placereserved:
- *                       type: string
- *                   date_end_placereserved:
- *                       type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        date_start_placereserved:
+ *                            type: string
+ *                        date_end_placereserved:
+ *                            type: string
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -86,7 +84,7 @@ router.delete('/one', remove);
  *      tags:
  *          - date reserve routes
  *      parameters:
- *          - in: path
+ *          - in: query
  *            name: date_start_placereserved
  *            type: string
  *            required: true

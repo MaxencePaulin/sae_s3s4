@@ -25,7 +25,7 @@ router.get('/one', findOne);
  * @swagger
  * /make/one:
  *   get:
- *      description: Return artist by id_artiste
+ *      description: Retur id artiste and id style
  *      tags:
  *          - Make_routes
  *      parameters:
@@ -51,6 +51,8 @@ router.post('/', create);
  * @swagger
  * /make:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create an artist
  *      tags:
  *          - Make_routes
@@ -82,6 +84,8 @@ router.delete('/one', remove);
  * @swagger
  * /make/one:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete an artist
  *      tags:
  *          - Make_routes
@@ -113,6 +117,8 @@ router.delete('/', removeAll);
  * @swagger
  * /make:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all make
  *      tags:
  *          - Make_routes

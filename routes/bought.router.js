@@ -8,6 +8,8 @@ router.get('/', findAll);
  * @swagger
  * /bought:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all bought
  *      tags:
  *          - Bought_routes
@@ -27,7 +29,7 @@ router.get('/', findAll);
  *   get:
  *      description: Return user by id
  *      tags:
- *          - Access_routes
+ *          - bought_routes
  *      parameters:
  *          - in: query
  *            name: id_user
@@ -59,29 +61,31 @@ router.post('/', create);
  * @swagger
  * /bought:
  *   post:
- *      description: Create an access
+ *      description: Create an bought
  *      tags:
  *          - Bought_routes
- *      parameters:
- *          - in: body
- *            name: user
- *            description: The bought to create.
- *            schema:
- *              type: object
- *              required:
- *                  - id_user
- *                  - id_ticket
- *                  - date_start_validity
- *                  - date_end_validity
- *              properties:
- *                  id_user:
- *                      type: integer
- *                  id_ticket:
- *                      type: integer
- *                  date_start_validity:
- *                      type: string
- *                  date_end_validity:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        id_user:
+ *                            type: integer
+ *                            example: 1
+ *                            required: true
+ *                        id_ticket:
+ *                            type: integer
+ *                            example: 2
+ *                            required: true
+ *                        date_start_validity:
+ *                            type: string
+ *                            example: 2021-01-01
+ *                            required: true
+ *                        date_end_validity:
+ *                            type: string
+ *                            example: 2021-01-01
+ *                            required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -96,7 +100,7 @@ router.delete('/one', remove);
  * @swagger
  * /bought/one:
  *   delete:
- *      description: Delete an access
+ *      description: Delete an bought
  *      tags:
  *          - Bought_routes
  *      parameters:

@@ -8,6 +8,8 @@ router.get('/', findAll);
  * @swagger
  * /droit:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all droit
  *      tags:
  *          - Droit_routes
@@ -50,19 +52,18 @@ router.post('/', create);
  *      description: Create an droit
  *      tags:
  *          - Droit_routes
- *      parameters:
- *          - in: body
- *            name: droit
- *            description: The droit to create.
- *            schema:
- *               type: object
- *               required:
- *                   - id_droit
- *               properties:
- *                   id_droit:
- *                       type: integer
- *                   libelle_droit:
- *                       type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   required:
+ *                       - id_droit
+ *                   properties:
+ *                       id_droit:
+ *                           type: integer
+ *                       libelle_droit:
+ *                           type: string
  *      responses:
  *          '201':
  *              description: Resource added successfully
@@ -85,18 +86,18 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: droit
- *            description: The droit to update.
- *            schema:
- *               type: object
- *               required:
- *                   - id_droit
- *               properties:
- *                   id_droit:
- *                       type: integer
- *                   libelle_droit:
- *                       type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   required:
+ *                       - id_droit
+ *                   properties:
+ *                       id_droit:
+ *                           type: integer
+ *                       libelle_droit:
+ *                           type: string
  *      responses:
  *          '201':
  *              description: Resource added successfully
@@ -117,7 +118,8 @@ router.delete('/:id', remove);
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
+ *            schema:
+ *              type: integer
  *            required: true
  *      responses:
  *          '201':

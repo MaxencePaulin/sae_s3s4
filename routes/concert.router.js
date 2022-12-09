@@ -8,6 +8,8 @@ router.get('/', findAll);
  * @swagger
  * /concert:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all concert
  *      tags:
  *          - Concert_routes
@@ -54,24 +56,19 @@ router.post('/', create);
  *      description: Create an artist
  *      tags:
  *          - Concert_routes
- *      parameters:
- *          - in: body
- *            name: concert
- *            description: The concert to create.
- *            schema:
- *               type: object
- *               required:
- *                   - id_artist
- *                   - id_scene
- *                   - date_concert
- *               properties:
- *                   id_artist:
- *                       type: integer
- *                   id_scene:
- *                       type: integer
- *                   date_concert:
- *                       type: string
- *                       format: date
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        id_artist:
+ *                            type: integer
+ *                        id_scene:
+ *                            type: integer
+ *                        date_concert:
+ *                            type: string
+ *                            format: date
  *      responses:
  *          '200':
  *              description: Resource added successfully
