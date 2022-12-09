@@ -49,6 +49,7 @@ import ticketRoutes from './routes/ticket.router.js';
 import typePrestataireRoutes from './routes/type_prestataire.router.js';
 import typeSceneRoutes from './routes/type_scene.router.js';
 import virtualAccountRoutes from './routes/virtual_account.router.js';
+import guestBookRoutes from './routes/guest_book.router.js';
 
 // Database connection
 db.authenticate().then(() => {
@@ -189,6 +190,7 @@ app.use('/ticket', ticketRoutes);
 app.use('/typeprestataire', typePrestataireRoutes);
 app.use('/typescene', typeSceneRoutes);
 app.use('/virtualaccount', virtualAccountRoutes);
+app.use('/guest_book', guestBookRoutes);
 
 app.use("/user", userRoutes);
 app.use("/", mainRoutes);

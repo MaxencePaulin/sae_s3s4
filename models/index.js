@@ -26,6 +26,7 @@ import Ticket from "./Ticket.model.js";
 import TypePrestataire from "./TypePrestataire.model.js";
 import TypeScene from "./TypeScene.model.js";
 import VirtualAccount from "./VirtualAccount.model.js";
+import Guest_book from "./Guest_book.models.js";
 
 const model = {};
 
@@ -59,6 +60,7 @@ model.Ticket = Ticket;
 model.TypePrestataire = TypePrestataire;
 model.TypeScene = TypeScene;
 model.VirtualAccount = VirtualAccount;
+model.Guest_book = Guest_book;
 
 // Association :
 
@@ -133,5 +135,12 @@ model.Price.hasMany(model.Ticket, {foreignKey: 'id_price', onDelete: 'CASCADE', 
 
 model.VirtualAccount.belongsTo(model.Qr_code, {foreignKey: 'id_qr_code', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 model.Qr_code.hasMany(model.VirtualAccount, {foreignKey: 'id_qr_code', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+
+model.Guest_book.belongsTo(model.Users, {foreignKey: 'id_user', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Users.hasMany(model.Guest_book, {foreignKey: 'id_user', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Guest_book.belongsTo(model.Artist, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Artist.hasMany(model.Guest_book, {foreignKey: 'id_artist', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Guest_book.belongsTo(model.Prestataire, {foreignKey: 'id_prestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+model.Prestataire.hasMany(model.Guest_book, {foreignKey: 'id_prestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
 export default model;

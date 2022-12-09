@@ -1,5 +1,6 @@
 import express from 'express';
-import { findAll, findOne, create, update, remove, removeAll } from '../controllers/guest_book.controller';
+import { findAll, findOne, create, update, remove, removeAll,
+    findByArtOrPrest } from '../controllers/guest_book.controller.js';
 
 const router = express.Router();
 
@@ -13,6 +14,34 @@ router.get('/', findAll);
  *      description: Return all elements in Guest_book connected
  *      tags:
  *          - Guest_book routes
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+
+router.get('/one', findByArtOrPrest);
+/**
+ * @swagger
+ * /guest_book/one:
+ *   get:
+ *      description: Return comment by artist or prestataire
+ *      tags:
+ *          - Guest_book routes
+ *      parameters:
+ *          - in: query
+ *            name: id_artist
+ *            schema:
+ *              type: integer
+ *            required: false
+ *          - in: query
+ *            name: id_prestataire
+ *            schema:
+ *              type: integer
+ *            required: false
  *      responses:
  *          '200':
  *              description: Resource added successfully

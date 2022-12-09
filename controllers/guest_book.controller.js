@@ -88,3 +88,32 @@ export const removeAll = (req, res) => {
         });
     });
 }
+
+export const findByArtOrPrest = (req, res) => {
+    let id_artist = req.query.id_artist;
+    let id_prestataire = req.query.id_prestataire;
+    id_artist = id_artist === '' ? null
+        : typeof id_artist === 'undefined' ? null
+            : parseInt(id_artist);
+    id_prestataire = id_prestataire === '' ? null
+        : typeof id_prestataire === 'undefined' ? null
+                : parseInt(id_prestataire);
+    if ((id_artist === null && id_prestataire === null) || (id_artist !== null && id_prestataire !== null)) {
+        return res.status(500).send({
+            message: "You should put only one of the two parameters: id_artist or id_prestataire"
+        });
+    }
+    Guest_book.findAll({
+        where: {
+            id_artist: id_artist,
+            id_prestataire: id_prestataire
+        }
+    }).then(data => {
+        return res.status(200).send(data);
+    }).catch(e => {
+        console.log(e);
+        return res.status(500).send({
+            message: e.message || "Some error occurred."
+        });
+    });
+}
