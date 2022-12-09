@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/db.js';
 
-const Golden_book = db.define('golden_book', {
+const Guest_book = db.define('guest_book', {
     id_avis: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -40,4 +40,4 @@ const Golden_book = db.define('golden_book', {
     
 }, {timestamps: false, freezeTableName: true});
 
-export default Golden_book;
+export default Guest_book;
