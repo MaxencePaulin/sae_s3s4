@@ -25,8 +25,10 @@ router.get('/', findAll);
 router.get('/one', findOne);
 /**
  * @swagger
- * /access/{id}:
+ * /access/one:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return access by id role and id droit 
  *      tags:
  *          - access_routes
@@ -55,6 +57,8 @@ router.post('/', create);
  * @swagger
  * /access:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create an access
  *      tags:
  *          - access_routes
@@ -82,8 +86,10 @@ router.post('/', create);
 router.delete('/one', remove);
 /**
  * @swagger
- * /access/{id}:
+ * /access/one:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete an access
  *      tags:
  *          - access_routes
@@ -112,6 +118,8 @@ router.delete('/', removeAll);
  * @swagger
  * /access:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all access
  *      tags:
  *          - access_routes

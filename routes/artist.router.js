@@ -8,8 +8,6 @@ router.get('/', findAll);
  * @swagger
  * /artist:
  *   get:
- *      security:
- *          - bearerAuth: []
  *      description: Return all artist
  *      tags:
  *          - artist_routes
@@ -50,6 +48,8 @@ router.post('/', create);
  * @swagger
  * /artist:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create an artist
  *      tags:
  *          - artist_routes
@@ -85,6 +85,8 @@ router.put('/:id', update);
  * @swagger
  * /artist/{id}:
  *   put:
+ *      security:
+ *          - bearerAuth: []
  *      description: Update an artist
  *      tags:
  *          - artist_routes
@@ -120,6 +122,8 @@ router.delete('/:id', remove);
  * @swagger
  * /artist/{id}:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete an artist
  *      tags:
  *          - artist_routes
@@ -143,6 +147,8 @@ router.delete('/', removeAll);
  * @swagger
  * /artist:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all artist
  *      tags:
  *          - artist_routes
