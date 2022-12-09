@@ -195,6 +195,10 @@ insert into users(login,password,email,firstname,lastname,dob,bankcard,address,m
 ('admin', '$2b$10$21vNgcdjhDtj3RswzCk4kumHHOG2Iip30v3UnIK07SE.2lnaO6tv6','admin@gmail.com','firstname', 'lastname', '2003-04-11', null, null, '0605040302', 'homme',3, 1),
 ('admin2', '$2b$10$7hdYz80EO48vClKUI6EutuaTRyx9Vw8EQxnHayo9NDHmxmIDtusIO','admin2@gmail.com','firstname2', 'lastname2', '2019-01-02', null, 'address2', null, 'femme',3 ,2);
 
+insert into guest_book(libelle_avis, id_artist, id_prestataire, id_user) VALUES
+('j''aime vraiment ce festival il m''a permit d''aimer d''une autre façon la musique et il est très conviviale', null, null, 1),
+('j''aime beaucoup ce qu''il fait, il ne l''a pas voler son titre de chanteur !', 1, null, 2);
+
 insert into origineartist(id_artist, id_nationality)values
 (1,1),
 (2,2);
@@ -263,13 +267,4 @@ insert into reserve (id_user,id_place,date_start_placereserved,date_end_placeres
 (1,3,'2021-01-01','2021-12-31'),
 (1,4,'2022-01-01','2022-12-31'),
 (2,1,'2023-01-01','2023-12-31');
-
-
-
-
-
-
-
-
-
 
