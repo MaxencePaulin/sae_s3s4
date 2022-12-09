@@ -49,6 +49,8 @@ router.post('/', create);
  * @swagger
  * /guest_book:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create an comment
  *      tags:
  *          - Guest_book routes
@@ -90,6 +92,8 @@ router.put('/:id', update);
  * @swagger
  * /guest_book:
  *   put:
+ *      security:
+ *          - bearerAuth: []
  *      description: update an comment
  *      tags:
  *          - Guest_book routes
@@ -137,6 +141,8 @@ router.delete('/:id', remove);
  * @swagger
  * /guest_book/{id}:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete a comment
  *      tags:
  *          - Guest_book routes
@@ -159,6 +165,8 @@ router.delete('/', removeAll);
  * @swagger
  * /guest_book:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all comments
  *      tags:
  *          - Guest_book routes
