@@ -7,6 +7,7 @@ drop table if exists concert;
 drop table if exists have;
 drop table if exists make;
 drop table if exists origineartist;
+drop table if exists golden_book;
 drop table if exists users;
 drop table if exists ticket;
 drop table if exists prestataire;
@@ -175,6 +176,20 @@ CREATE TABLE if not exists users(
     FOREIGN KEY(id_virtualaccount) REFERENCES virtualaccount(id_virtualaccount) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_prestataire_user
     FOREIGN KEY(id_prestataire) REFERENCES prestataire(id_prestataire) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE if not exists golden_book(
+    id_avis serial ,
+    libelle_avis VARCHAR(255),
+    id_artist INT ,
+    id_prestataire INT,
+    id_user INT ,
+    constraint fk_artist_golden_book
+    FOREIGN KEY(id_artist) REFERENCES artist(id_artist) ON DELETE CASCADE ON UPDATE CASCADE,
+    constraint fk_prestataire_golden_book
+    FOREIGN KEY(id_prestataire) REFERENCES prestataire(id_prestataire) ON DELETE CASCADE ON UPDATE CASCADE,
+    constraint fk_user_golden_book
+    FOREIGN KEY(id_user) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE if not exists origineartist(
