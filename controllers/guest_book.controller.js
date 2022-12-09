@@ -108,7 +108,7 @@ export const findByArtOrPrest = (req, res) => {
             id_artist: id_artist,
             id_prestataire: id_prestataire
         },
-        include: [{model: model.User}, {model: model.Artist}, {model: model.Prestataire}]
+        include: [{model: model.Users}, {model: model.Artist}, {model: model.Prestataire}]
     }).then(data => {
         return res.status(200).send(data);
     }).catch(e => {
