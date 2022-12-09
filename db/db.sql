@@ -7,7 +7,7 @@ drop table if exists concert;
 drop table if exists have;
 drop table if exists make;
 drop table if exists origineartist;
-drop table if exists golden_book;
+drop table if exists guest_book;
 drop table if exists users;
 drop table if exists ticket;
 drop table if exists prestataire;
