@@ -15,6 +15,7 @@ const Guest_book = db.define('guest_book', {
     },
     id_artist: {
         type: DataTypes.INTEGER,
+        allowNull: true ,
         foreignKey: true,
         references: {
             model: 'artist',
@@ -24,6 +25,7 @@ const Guest_book = db.define('guest_book', {
     id_prestataire: {
         type: DataTypes.INTEGER,
         foreignKey: true,
+        allowNull: true ,
         references: {
             model: 'prestataire',
             key: 'id_prestataire',
@@ -32,6 +34,7 @@ const Guest_book = db.define('guest_book', {
     id_user: {
         type: DataTypes.INTEGER,
         foreignKey: true,
+        allowNull: false ,
         references: {
             model: 'users',
             key: 'id_users',
