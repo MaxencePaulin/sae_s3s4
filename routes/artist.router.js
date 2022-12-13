@@ -29,7 +29,7 @@ router.get('/:id', findOne);
  *      tags:
  *          - artist_routes
  *      parameters:
- *          - in: query
+ *          - in: path
  *            name: id
  *            schema:
  *              type: integer
@@ -60,17 +60,17 @@ router.post('/', create);
  *                    type: object
  *                    properties:
  *                        name:
- *                            type: string
- *                            required: true
+ *                          type: string
+ *                          required: true
  *                        image:
- *                            type: string
- *                            required: true
+ *                          type: string
+ *                          required: true
  *                        biography:
- *                            type: string
- *                            required: true
+ *                          type: string
+ *                          required: true
  *                        genre:
- *                            type: string
- *                            required: true
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '201':
  *              description: Resource added successfully
@@ -90,6 +90,12 @@ router.put('/:id', update);
  *      description: Update an artist
  *      tags:
  *          - artist_routes
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: integer
+ *          required: true
  *      requestBody:
  *          content:
  *             application/json:
@@ -97,17 +103,17 @@ router.put('/:id', update);
  *                    type: object
  *                    properties:
  *                        name:
- *                            type: string
- *                            required: true
+ *                          type: string
+ *                          required: true
  *                        image:
- *                            type: string
- *                            required: true
+ *                          type: string
+ *                          required: true
  *                        biography:
- *                            type: string
- *                            required: true
+ *                          type: string
+ *                          required: true
  *                        genre:
- *                            type: string
- *                            required: true
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -128,7 +134,7 @@ router.delete('/:id', remove);
  *      tags:
  *          - artist_routes
  *      parameters:
- *          - in: query
+ *          - in: path
  *            name: id
  *            schema:
  *              type: integer
@@ -147,8 +153,6 @@ router.delete('/', removeAll);
  * @swagger
  * /artist:
  *   delete:
- *      security:
- *          - bearerAuth: []
  *      description: Delete all artist
  *      tags:
  *          - artist_routes

@@ -34,7 +34,7 @@ router.get('/one', findOne);
  *            type: integer
  *            required: true
  *          - in: query
- *            name: id_origine
+ *            name: id_nationality
  *            type: integer
  *            required: true
  *      responses:
@@ -54,20 +54,16 @@ router.post('/', create);
  *      description: Create an artist
  *      tags:
  *          - origineartist_routes
- *      parameters:
- *          - in: body
- *            name: origineartist
- *            description: The origineartist to create.
- *            schema:
- *              type: object
- *              required:
- *                  - id_artist
- *                  - id_origine
- *              properties:
- *                  id_artist:
- *                      type: integer
- *                  id_origine:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        id_artist:
+ *                          type: integer
+ *                        id_nationality:
+ *                          type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -80,7 +76,7 @@ router.post('/', create);
 router.delete('/one', remove);
 /**
  * @swagger
- * /origineartist:
+ * /origineartist/one:
  *   delete:
  *      description: Delete an artist
  *      tags:
@@ -91,7 +87,7 @@ router.delete('/one', remove);
  *            type: integer
  *            required: true
  *          - in: query
- *            name: id_origine
+ *            name: id_nationality
  *            type: integer
  *            required: true
  *      responses:

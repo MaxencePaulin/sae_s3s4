@@ -49,6 +49,8 @@ router.post('/', create);
  * @swagger
  * /droit:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create an droit
  *      tags:
  *          - Droit_routes
@@ -56,16 +58,12 @@ router.post('/', create);
  *          content:
  *             application/json:
  *                schema:
- *                   type: object
- *                   required:
- *                       - id_droit
- *                   properties:
- *                       id_droit:
- *                           type: integer
- *                       libelle_droit:
- *                           type: string
+ *                    type: object
+ *                    properties:
+ *                        libelle_droit:
+ *                          type: string
  *      responses:
- *          '201':
+ *          '200':
  *              description: Resource added successfully
  *          '500':
  *              description: Internal server error
@@ -91,13 +89,11 @@ router.put('/:id', update);
  *             application/json:
  *                schema:
  *                   type: object
- *                   required:
- *                       - id_droit
  *                   properties:
- *                       id_droit:
- *                           type: integer
  *                       libelle_droit:
  *                           type: string
+ *                           required: true
+ *                           example: "read"
  *      responses:
  *          '201':
  *              description: Resource added successfully

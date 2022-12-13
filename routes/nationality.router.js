@@ -50,15 +50,16 @@ router.post('/', create);
  *      description: Create an nationality
  *      tags:
  *          - Nationality routes
- *      parameters:
- *          - in: body
- *            name: music style
- *            description: The music style to create.
- *            schema:
- *               type: object
- *               properties:
- *                   libelle_nationality:
- *                       type: string
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_nationality:
+ *                         type: string
+ *                         example: french
+ *                         required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -73,23 +74,24 @@ router.put('/:id', update);
  * @swagger
  * /nationality/{id}:
  *   put:
+ *      security:
+ *           - bearerAuth: []
  *      description: Update an nationality
  *      tags:
  *          - Nationality routes
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
- *            required: true
- *          - in: body
- *            name: nationality
- *            description: The nationality to update.
- *            schema:
- *               type: object
- *               properties:
- *                   libelle_nationality:
- *                       type: string
- *      responses:
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        libelle_nationality:
+ *                          type: string
+ *                          example: french
+ *                          required: true
  *          '200':
  *              description: Resource added successfully
  *          '500':

@@ -20,6 +20,7 @@ export const findOne = (req, res) => {
             date_end_validity: date_end_validity},
             include: [{model: model.Users}, {model: model.Ticket}]}).then(data => {
         res.send(data);
+        console.log(data);
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."

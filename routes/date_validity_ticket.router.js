@@ -88,8 +88,6 @@ router.delete('/one', remove);
  *      tags:
  *          - datevalidityticket_routes
  *      parameters:
-
- *      parameters:
  *          - in: query
  *            name: date_start_validity
  *            example: 2021-01-01

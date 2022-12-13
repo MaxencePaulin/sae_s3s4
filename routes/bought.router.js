@@ -29,7 +29,7 @@ router.get('/', findAll);
  *   get:
  *      description: Return user by id
  *      tags:
- *          - bought_routes
+ *          - Bought_routes
  *      parameters:
  *          - in: query
  *            name: id_user

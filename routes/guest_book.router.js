@@ -9,8 +9,6 @@ router.get('/', findAll);
  * @swagger
  * /guest_book:
  *   get:
- *      security:
- *          - bearerAuth: []
  *      description: Return all elements in Guest_book connected
  *      tags:
  *          - Guest_book routes

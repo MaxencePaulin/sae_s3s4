@@ -34,7 +34,7 @@ router.get('/one', findOne);
  *            type: integer
  *            required: true
  *          - in: query
- *            name: id_origine
+ *            name: id_nationality
  *            type: integer
  *            required: true
  *      responses:
@@ -54,17 +54,16 @@ router.post('/', create);
  *      description: Create an user
  *      tags:
  *          - origineuser_routes
- *      parameters:
- *          - in: body
- *            name: origineuser
- *            description: The origineuser to create.
- *            schema:
- *               type: object
- *               properties:
- *                   id_user:
- *                       type: integer
- *                   id_origine:
- *                       type: integer
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        id_user:
+ *                          type: integer
+ *                        id_nationality:
+ *                          type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -88,7 +87,7 @@ router.delete('/one', remove);
  *            type: integer
  *            required: true
  *          - in: query
- *            name: id_origine
+ *            name: id_nationality
  *            type: integer
  *            required: true
  *      responses:

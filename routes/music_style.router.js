@@ -50,19 +50,15 @@ router.post('/', create);
  *      description: Create an musicstyle
  *      tags:
  *          - musicstyle_routes
- *      parameters:
- *          - in: body
- *            name: music style
- *            description: The music style to create.
- *            schema:
- *               type: object
- *               required:
- *                   - id_musicstyle
- *               properties:
- *                   id_musicstyle:
- *                       type: integer
- *                   libelle_musicstyle:
- *                       type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        libelle_musicstyle:
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -85,18 +81,15 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: musicstyle
- *            description: The musicstyle to update.
- *            schema:
- *               type: object
- *               required:
- *                   - id_musicstyle
- *               properties:
- *                   id_musicstyle:
- *                       type: integer
- *                   libelle_musicstyle:
- *                       type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        libelle_musicstyle:
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully

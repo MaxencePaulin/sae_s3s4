@@ -56,20 +56,18 @@ router.post('/', create);
  *      description: Create an artist
  *      tags:
  *          - Make_routes
- *      parameters:
- *          - in: body
- *            name: make
- *            description: The make to create.
- *            schema:
- *              type: object
- *              required:
- *                  - id_artist
- *                  - id_musicstyle
- *              properties:
- *                  id_artist:
- *                      type: integer
- *                  id_musicstyle:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          id_artist:
+ *                            type: integer
+ *                            required: true
+ *                          id_musicstyle:
+ *                            type: integer
+ *                            required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -90,19 +88,14 @@ router.delete('/one', remove);
  *      tags:
  *          - Make_routes
  *      parameters:
- *          - in: body
- *            name: make
- *            description: The make to delete.
- *            schema:
- *              type: object
- *              required:
- *                  - id_artist
- *                  - id_musicstyle
- *              properties:
- *                  id_artist:
- *                      type: integer
- *                  id_musicstyle:
- *                      type: integer
+ *          - in: query
+ *            name: id_artist
+ *            type: integer
+ *            required: true
+ *          - in: query
+ *            name: id_musicstyle
+ *            type: integer
+ *            required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully

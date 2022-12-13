@@ -27,8 +27,6 @@ router.get('/one', findOne);
  * @swagger
  * /access/one:
  *   get:
- *      security:
- *          - bearerAuth: []
  *      description: Return access by id role and id droit 
  *      tags:
  *          - access_routes
