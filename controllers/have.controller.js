@@ -94,3 +94,39 @@ export const removeAll = (req, res) => {
         });
     });
 }
+
+export const updateSocialNetwork = async (req, res) => {
+    let id_artist = parseInt(req.query.id_artist);
+    let old_libelle_socialnetwork = req.query.old_libelle_socialnetwork;
+    let { libelle_socialnetwork, page_socialnetwork } = req.body;
+    let socialnetwork = await model.SocialNetwork.findOne({where: {libelle_socialnetwork: old_libelle_socialnetwork}});
+    if (socialnetwork.length === 0) {
+        res.status(500).send({success: 0, data: "Some error occurred"})
+    }
+    Have.findOne(
+        {
+            where: {id_artist: id_artist, id_socialnetwork: socialnetwork.id_socialnetwork}, include: [
+                {
+                    model: model.SocialNetwork
+                }
+            ]
+        }
+    ).then((data) => {
+        if (data.length <= 0) {
+            return res.status(400).send({success: 0, data:  `Aucun artiste avec cet id: ${id_artist}`});
+        }
+        socialnetwork.update({
+            libelle_socialnetwork: libelle_socialnetwork,
+            page_socialnetwork: page_socialnetwork
+        }).then((result) => {
+            if (result[0] === 0) {
+                return res.status(400).send({success: 0, data:  `impossible de modifier SocialNetwork ${old_libelle_socialnetwork} de l'artiste avec cet id: ${id_artist}`});
+            }
+            res.status(200).send({success: 1, data: `SocialNetwork updated successfully where id_artist: ${id_artist}`})
+        }).catch((e) => {
+            res.status(500).send({success: 0, data: e.message || "Some error occurred"})
+        })
+    }).catch((e) => {
+        res.status(500).send({success: 0, data: e.message || "Some error occurred"})
+    })
+}
