@@ -6,11 +6,11 @@ const router = express.Router();
 router.get('/', findAll);
 /**
  * @swagger
- * /services:
+ * /service:
  *   get:
- *      description: Return all services
+ *      description: Return all service
  *      tags:
- *          - services routes
+ *          - service routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -23,11 +23,11 @@ router.get('/', findAll);
 router.get('/:id', findOne);
 /**
  * @swagger
- * /services/{id}:
+ * /service/{id}:
  *   get:
- *      description: Return services by id
+ *      description: Return service by id
  *      tags:
- *          - services routes
+ *          - service routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -45,22 +45,23 @@ router.get('/:id', findOne);
 router.post('/', create);
 /**
  * @swagger
- * /services:
+ * /service:
  *   post:
- *      description: Create a services
+ *      security:
+ *          - bearerAuth: []
+ *      description: Create a service
  *      tags:
- *          - services routes
- *      parameters:
- *          - in: body
- *            name: services
- *            description: The services to create.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_services
- *              properties:
- *                  libelle_services:
- *                      type: string
+ *          - service routes
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_service:
+ *                           type: string
+ *                           required: true
+ *                           example: "restauration"
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -73,26 +74,28 @@ router.post('/', create);
 router.put('/:id', update);
 /**
  * @swagger
- * /services/{id}:
+ * /service/{id}:
  *   put:
- *      description: Update a services
+ *      security:
+ *          - bearerAuth: []
+ *      description: Update a service
  *      tags:
- *          - services routes
+ *          - service routes
  *      parameters:
  *          - in: path
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: services
- *            description: The services to update.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_services
- *              properties:
- *                  libelle_services:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_service:
+ *                           type: string
+ *                           required: true
+ *                           example: "restauration"
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -105,11 +108,13 @@ router.put('/:id', update);
 router.delete('/:id', remove);
 /**
  * @swagger
- * /services/{id}:
+ * /service/{id}:
  *   delete:
- *      description: Delete a services
+ *      security:
+ *          - bearerAuth: []
+ *      description: Delete a service
  *      tags:
- *          - services routes
+ *          - service routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -127,11 +132,13 @@ router.delete('/:id', remove);
 router.delete('/', removeAll);
 /**
  * @swagger
- * /services:
+ * /service:
  *   delete:
- *      description: Delete all services
+ *      security:
+ *          - bearerAuth: []
+ *      description: Delete all service
  *      tags:
- *          - services routes
+ *          - service routes
  *      responses:
  *          '200':
  *              description: Resource added successfully

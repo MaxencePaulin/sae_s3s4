@@ -6,11 +6,13 @@ const router = express.Router();
 router.get('/', findAll);
 /**
  * @swagger
- * /qr_code:
+ * /qrcode:
  *   get:
- *      description: Return all qr_code
+ *      security:
+ *          - bearerAuth: []
+ *      description: Return all qrcode
  *      tags:
- *          - Qr_code_routes
+ *          - qr_code_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -23,18 +25,20 @@ router.get('/', findAll);
 router.get('/:id', findOne);
 /**
  * @swagger
- * /qr_code/{id}:
+ * /qrcode/{id}:
  *   get:
- *      description: Return one qr_code
+ *      security:
+ *          - bearerAuth: []
+ *      description: Return one qrcode
  *      tags:
- *          - Qr_code_routes
+ *          - qr_code_routes
  *      parameters:
  *          - in: path
  *            name: id
  *            schema:
  *              type: string
  *            required: true
- *            description: The id of the qr_code
+ *            description: The id of the qrcode
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -48,25 +52,21 @@ router.get('/:id', findOne);
 router.post('/', create);
 /**
  * @swagger
- * /qr_code:
+ * /qrcode:
  *   post:
- *      description: Create a new qr_code
+ *      security:
+ *          - bearerAuth: []
+ *      description: Create a new qrcode
  *      tags:
- *          - Qr_code_routes
- *      parameters:
- *          - in: body
- *            name: qr_code
- *            description: The qr_code to create.
- *            schema:
- *              type: object
- *              required:
- *                  - id_qr_code
- *                  - qr_code
- *              properties:
- *                  id:
- *                      type: int
- *                  qr_code:
- *                      type: string
+ *          - qr_code_routes
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       qr_code:
+ *                          type: string
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -79,31 +79,28 @@ router.post('/', create);
 router.put('/:id', update);
 /**
  * @swagger
- * /qr_code/{id}:
+ * /qrcode/{id}:
  *   put:
- *      description: Update a qr_code
+ *      security:
+ *          - bearerAuth: []
+ *      description: Update a qrcode
  *      tags:
- *          - Qr_code_routes
+ *          - qr_code_routes
  *      parameters:
  *          - in: path
  *            name: id
  *            schema:
  *              type: string
  *            required: true
- *            description: The id of the qr_code
- *          - in: body
- *            name: qr_code
- *            description: The qr_code to create.
- *            schema:
- *              type: object
- *              required:
- *                  - id_qr_code
- *                  - qr_code
- *              properties:
- *                  id:
- *                      type: int
- *                  qr_code:
- *                      type: string
+ *            description: The id of the qrcode
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       qr_code:
+ *                          type: string
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -116,18 +113,20 @@ router.put('/:id', update);
 router.delete('/:id', remove);
 /**
  * @swagger
- * /qr_code/{id}:
+ * /qrcode/{id}:
  *   delete:
- *      description: Delete a qr_code
+ *      security:
+ *          - bearerAuth: []
+ *      description: Delete a qrcode
  *      tags:
- *          - Qr_code_routes
+ *          - qr_code_routes
  *      parameters:
  *          - in: path
  *            name: id
  *            schema:
  *              type: string
  *            required: true
- *            description: The id of the qr_code
+ *            description: The id of the qrcode
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -140,11 +139,11 @@ router.delete('/:id', remove);
 router.delete('/', removeAll);
 /**
  * @swagger
- * /qr_code:
+ * /qrcode:
  *   delete:
- *      description: Delete all qr_code
+ *      description: Delete all qrcode
  *      tags:
- *          - Qr_code_routes
+ *          - qr_code_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully

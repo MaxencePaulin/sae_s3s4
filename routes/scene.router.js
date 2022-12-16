@@ -62,22 +62,18 @@ router.post('/', create);
  *      description: add a scene
  *      tags:
  *          - scene
- *      parameters:
- *          - in: body
- *            name: scene properties
- *            type: object
- *            schema:
- *              properties:
- *                libelle_scene:
- *                  type: string
- *                id_typescene:
- *                  type: integer
- *              example:
- *                libelle_scene: "test"
- *                id_typescene: 1
- *              required:
- *              - libelle_scene
- *              - id_typescene
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_scene:
+ *                           type: integer
+ *                           example: scene6
+ *                       id_typescene:
+ *                           type: integer
+ *                           example: 1
  *      responses:
  *          '200':
  *              description: Resource updated successfully
@@ -101,21 +97,18 @@ router.put('/:id', update);
  *            description: Scene ID
  *            required: true
  *            type: integer
- *          - in: body
- *            name: scene properties
- *            type: object
- *            schema:
- *              properties:
- *                libelle_scene:
- *                  type: string
- *                id_typescene:
- *                  type: integer
- *              example:
- *                libelle_scene: "test"
- *                id_typescene: 1
- *              required:
- *              - libelle_scene
- *              - id_typescene
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_scene:
+ *                           type: integer
+ *                           example: scene6
+ *                       id_typescene:
+ *                           type: integer
+ *                           example: 1
  *      responses:
  *          '200':
  *              description: Resource updated successfully

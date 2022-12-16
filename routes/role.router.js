@@ -50,17 +50,14 @@ router.post('/', create);
  *      description: Create a role
  *      tags:
  *          - Role routes
- *      parameters:
- *          - in: body
- *            name: role
- *            description: The role to create.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_role
- *              properties:
- *                  libelle_role:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        libelle_role:
+ *                          type: string
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -83,16 +80,14 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: role
- *            description: The role to update.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_role
- *              properties:
- *                  libelle_role:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        libelle_role:
+ *                          type: string
  *      responses:
  *          '200':
  *              description: Resource added successfully

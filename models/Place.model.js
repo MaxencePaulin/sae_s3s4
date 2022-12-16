@@ -9,7 +9,7 @@ const Place = db.define('place', {
         autoIncrement: true,
         allowNull: false,
     },
-    name_place: {
+    no_place: {
         type: DataTypes.STRING,
         allowNull: false,
     }

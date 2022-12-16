@@ -47,20 +47,20 @@ router.post('/', create);
  * @swagger
  * /typescene:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create a typescene
  *      tags:
  *          - typescene routes
- *      parameters:
- *          - in: body
- *            name: typescene
- *            description: The typescene to create.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_typescene
- *              properties:
- *                  libelle_typescene:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_typescene:
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -75,6 +75,8 @@ router.put('/:id', update);
  * @swagger
  * /typescene/{id}:
  *   put:
+ *      security:
+ *          - bearerAuth: []
  *      description: Update a typescene
  *      tags:
  *          - typescene routes
@@ -83,16 +85,15 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: typescene
- *            description: The typescene to update.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_typescene
- *              properties:
- *                  libelle_typescene:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_typescene:
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -107,6 +108,8 @@ router.delete('/:id', remove);
  * @swagger
  * /typescene/{id}:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete a typescene
  *      tags:
  *          - typescene routes
@@ -129,6 +132,8 @@ router.delete('/', removeAll);
  * @swagger
  * /typescene:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all typescene
  *      tags:
  *          - typescene routes

@@ -8,6 +8,8 @@ router.get('/', findAll);
  * @swagger
  * /ticket:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all ticket
  *      tags:
  *          - Ticket_routes
@@ -24,6 +26,8 @@ router.get('/:id', findOne);
  * @swagger
  * /ticket/{id}:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return one ticket
  *      tags:
  *          - Ticket_routes
@@ -48,27 +52,29 @@ router.post('/', create);
  * @swagger
  * /ticket:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create one ticket
  *      tags:
  *          - Ticket_routes
- *      parameters:
- *          - in: body
- *            name: ticket
- *            schema:
- *              type: object
- *              required:
- *                  - id_ticket
- *                  - type_ticket
- *                  - id_price
- *              properties:
- *                  id_ticket:
- *                      type: integer
- *                  type_ticket:
- *                      type: string
- *                  id_price:
- *                      type: integer
- *            required: true
- *            description: Ticket id
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   properties:
+ *                       id_ticket:
+ *                           type: integer
+ *                           required: true
+ *                           example: 1
+ *                       type_ticket:
+ *                           type: string
+ *                           required: true
+ *                           example: "VIP"
+ *                       id_price:
+ *                           type: integer
+ *                           required: true
+ *                           example: 1
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -82,6 +88,8 @@ router.put('/:id', update);
  * @swagger
  * /ticket/{id}:
  *   put:
+ *      security:
+ *          - bearerAuth: []
  *      description: Update one ticket
  *      tags:
  *          - Ticket_routes
@@ -92,23 +100,24 @@ router.put('/:id', update);
  *              type: string
  *            required: true
  *            description: Ticket id
- *          - in: body
- *            name: ticket
- *            schema:
- *              type: object
- *              required:
- *                  - id_ticket
- *                  - type_ticket
- *                  - id_price
- *              properties:
- *                  id_ticket:
- *                      type: integer
- *                  type_ticket:
- *                      type: string
- *                  id_price:
- *                      type: integer
- *            required: true
- *            description: Ticket id
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   properties:
+ *                       id_ticket:
+ *                           type: integer
+ *                           required: true
+ *                           example: 1
+ *                       type_ticket:
+ *                           type: string
+ *                           required: true
+ *                           example: "VIP"
+ *                       id_price:
+ *                           type: integer
+ *                           required: true
+ *                           example: 1
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -122,6 +131,8 @@ router.delete('/:id', remove);
  * @swagger
  * /ticket/{id}:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete one ticket
  *      tags:
  *          - Ticket_routes
@@ -146,6 +157,8 @@ router.delete('/', removeAll);
  * @swagger
  * /ticket:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all ticket
  *      tags:
  *          - Ticket_routes

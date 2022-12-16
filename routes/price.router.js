@@ -50,20 +50,16 @@ router.post('/', create);
  *      description: Create a price
  *      tags:
  *          - Price routes
- *      parameters:
- *          - in: body
- *            name: price
- *            description: The price to create.
- *            schema:
- *              type: object
- *              required:
- *                  - normal_price
- *                  - reduc_price
- *              properties:
- *                  normal_price:
- *                      type: integer
- *                  reduc_price:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       normal_price:
+ *                          type: integer
+ *                       reduc_price:
+ *                          type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -86,16 +82,16 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: price
- *            description: The price to update.
- *            schema:
- *              type: object
- *              properties:
- *                  normal_price:
- *                      type: integer
- *                  reduc_price:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       normal_price:
+ *                          type: integer
+ *                       reduc_price:
+ *                          type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully

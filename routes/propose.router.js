@@ -54,20 +54,16 @@ router.post('/', create);
  *      description: Create an propose
  *      tags:
  *          - propose_routes
- *      parameters:
- *          - in: body
- *            name: propose
- *            description: The propose to create.
- *            schema:
- *              type: object
- *              required:
- *                  - id_prestataire
- *                  - id_service
- *              properties:
- *                  id_prestataire:
- *                      type: integer
- *                  id_service:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        id_prestataire:
+ *                           type: integer
+ *                        id_service:
+ *                           type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully

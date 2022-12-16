@@ -50,20 +50,16 @@ router.post('/', create);
  *      description: Create a prestataire
  *      tags:
  *          - Prestataire routes
- *      parameters:
- *          - in: body
- *            name: prestataire
- *            description: The prestataire to create.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_prestataire
- *                  - id_typeprestataire
- *              properties:
- *                  libelle_prestataire:
- *                      type: string
- *                  id_typeprestataire:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_prestataire:
+ *                          type: string
+ *                       id_typeprestataire:
+ *                          type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -86,19 +82,16 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: prestataire
- *            description: The prestataire to update.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_prestataire
- *                  - id_typeprestataire
- *              properties:
- *                  libelle_prestataire:
- *                      type: string
- *                  id_typeprestataire:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_prestataire:
+ *                          type: string
+ *                       id_typeprestataire:
+ *                          type: integer
  *      responses:
  *          '200':
  *              description: Resource added successfully

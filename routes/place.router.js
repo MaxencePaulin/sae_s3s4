@@ -50,17 +50,15 @@ router.post('/', create);
  *      description: Create a place
  *      tags:
  *          - Place routes
- *      parameters:
- *          - in: body
- *            name: place
- *            description: The place to create.
- *            schema:
- *              type: object
- *              required:
- *                  - no_place
- *              properties:
- *                  no_place:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        no_place:
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -83,16 +81,15 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: place
- *            description: The place to create.
- *            schema:
- *              type: object
- *              required:
- *                  - no_place
- *              properties:
- *                  no_place:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        no_place:
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully

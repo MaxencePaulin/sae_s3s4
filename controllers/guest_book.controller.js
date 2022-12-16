@@ -91,6 +91,7 @@ export const removeAll = (req, res) => {
 
 export const findByArtOrPrest = (req, res) => {
     let id_artist = req.query.id_artist;
+    console.log(id_artist);
     let id_prestataire = req.query.id_prestataire;
     id_artist = id_artist === '' ? null
         : typeof id_artist === 'undefined' ? null

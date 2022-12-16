@@ -47,23 +47,25 @@ router.post('/', create);
  * @swagger
  * /socialnetwork:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create a socialnetwork
  *      tags:
  *          - socialnetwork routes
- *      parameters:
- *          - in: body
- *            name: socialnetwork
- *            description: The socialnetwork to create.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_socialnetwork
- *                  - page_socialnetwork
- *              properties:
- *                  libelle_socialnetwork:
- *                      type: string
- *                  page_socialnetwork:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_socialnetwork:
+ *                           type: string
+ *                           required: true
+ *                           example: "Facebook"
+ *                       page_socialnetwork:
+ *                           type: string
+ *                           required: true
+ *                           example: "https://www.facebook.com"
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -78,6 +80,8 @@ router.put('/:id', update);
  * @swagger
  * /socialnetwork/{id}:
  *   put:
+ *      security:
+ *          - bearerAuth: []
  *      description: Update a socialnetwork
  *      tags:
  *          - socialnetwork routes
@@ -86,19 +90,20 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: socialnetwork
- *            description: The socialnetwork to update.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_socialnetwork
- *                  - page_socialnetwork
- *              properties:
- *                  libelle_socialnetwork:
- *                      type: string
- *                  page_socialnetwork:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_socialnetwork:
+ *                           type: string
+ *                           required: true
+ *                           example: "Facebook"
+ *                       page_socialnetwork:
+ *                           type: string
+ *                           required: true
+ *                           example: "https://www.facebook.com"
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -113,6 +118,8 @@ router.delete('/:id', remove);
  * @swagger
  * /socialnetwork/{id}:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete a socialnetwork
  *      tags:
  *          - socialnetwork routes
@@ -135,6 +142,8 @@ router.delete('/', removeAll);
  * @swagger
  * /socialnetwork:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all socialnetwork
  *      tags:
  *          - socialnetwork routes

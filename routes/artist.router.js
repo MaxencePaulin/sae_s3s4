@@ -153,6 +153,8 @@ router.delete('/', removeAll);
  * @swagger
  * /artist:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all artist
  *      tags:
  *          - artist_routes

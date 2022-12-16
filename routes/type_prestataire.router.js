@@ -47,20 +47,20 @@ router.post('/', create);
  * @swagger
  * /typeprestataire:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create a typeprestataire
  *      tags:
  *          - typeprestataire routes
- *      parameters:
- *          - in: body
- *            name: typeprestataire
- *            description: The typeprestataire to create.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_typeprestataire
- *              properties:
- *                  libelle_typeprestataire:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_typeprestataire:
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -75,6 +75,8 @@ router.put('/:id', update);
  * @swagger
  * /typeprestataire/{id}:
  *   put:
+ *      security:
+ *          - bearerAuth: []
  *      description: Update a typeprestataire
  *      tags:
  *          - typeprestataire routes
@@ -83,16 +85,15 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: typeprestataire
- *            description: The typeprestataire to update.
- *            schema:
- *              type: object
- *              required:
- *                  - libelle_typeprestataire
- *              properties:
- *                  libelle_typeprestataire:
- *                      type: string
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       libelle_typeprestataire:
+ *                          type: string
+ *                          required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -107,6 +108,8 @@ router.delete('/:id', remove);
  * @swagger
  * /typeprestataire/{id}:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete a typeprestataire
  *      tags:
  *          - typeprestataire routes
@@ -129,6 +132,8 @@ router.delete('/', removeAll);
  * @swagger
  * /typeprestataire:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all typeprestataire
  *      tags:
  *          - typeprestataire routes

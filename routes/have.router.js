@@ -55,6 +55,8 @@ router.post('/', create);
  * @swagger
  * /have:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create an artist
  *      tags:
  *          - Have_routes
@@ -82,6 +84,8 @@ router.delete('/one', remove);
  * @swagger
  * /have/one:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete an artist
  *      tags:
  *          - Have_routes
@@ -110,6 +114,8 @@ router.delete('/', removeAll);
  * @swagger
  * /have:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all artist
  *      tags:
  *          - Have_routes

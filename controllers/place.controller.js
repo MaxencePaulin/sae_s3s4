@@ -24,6 +24,7 @@ export const findOne = (req, res) => {
 
 export const create = (req, res) => {
     const body = req.body;
+    console.log(body);
     Place.create(body).then(data => {
         res.send(data);
     }).catch(e => {

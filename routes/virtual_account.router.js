@@ -8,9 +8,11 @@ router.get('/', findAll);
  * @swagger
  * /virtualaccount:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return all virtualaccount
  *      tags:
- *          - virtualaccount routes
+ *          - virtual_account routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -25,9 +27,11 @@ router.get('/:id', findOne);
  * @swagger
  * /virtualaccount/{id}:
  *   get:
+ *      security:
+ *          - bearerAuth: []
  *      description: Return virtualaccount by id
  *      tags:
- *          - virtualaccount routes
+ *          - virtual_account routes
  *      parameters:
  *          - in: path
  *            name: id
@@ -45,25 +49,27 @@ router.get('/:id', findOne);
 router.post('/', create);
 /**
  * @swagger
- * /virtual_account:
+ * /virtualaccount:
  *   post:
+ *      security:
+ *          - bearerAuth: []
  *      description: Create a virtual_account
  *      tags:
  *          - virtual_account routes
- *      parameters:
- *          - in: body
- *            name: virtual_account
- *            description: The virtual_account to create.
- *            schema:
- *              type: object
- *              required:
- *                  - amount
- *                  - id_qr_code
- *              properties:
- *                  amount:
- *                      type: integer
- *                  id_qr_code:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       amount:
+ *                          type: integer
+ *                          required: true
+ *                          example: 100
+ *                       id_qr_code:
+ *                          type: string
+ *                          required: true
+ *                          example: 1
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -76,8 +82,10 @@ router.post('/', create);
 router.put('/:id', update);
 /**
  * @swagger
- * /virtual_account/{id}:
+ * /virtualaccount/{id}:
  *   put:
+ *      security:
+ *          - bearerAuth: []
  *      description: Update a virtual_account
  *      tags:
  *          - virtual_account routes
@@ -86,19 +94,20 @@ router.put('/:id', update);
  *            name: id
  *            type: integer
  *            required: true
- *          - in: body
- *            name: virtual_account
- *            description: The virtual_account to update.
- *            schema:
- *              type: object
- *              required:
- *                  - amount
- *                  - id_qr_code
- *              properties:
- *                  amount:
- *                      type: integer
- *                  id_qr_code:
- *                      type: integer
+ *      requestBody:
+ *          content:
+ *            application/json:
+ *               schema:
+ *                   type: object
+ *                   properties:
+ *                       amount:
+ *                          type: integer
+ *                          required: true
+ *                          example: 100
+ *                       id_qr_code:
+ *                          type: string
+ *                          required: true
+ *                          example: 1
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -111,8 +120,10 @@ router.put('/:id', update);
 router.delete('/:id', remove);
 /**
  * @swagger
- * /virtual_account/{id}:
+ * /virtualaccount/{id}:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete a virtual_account
  *      tags:
  *          - virtual_account routes
@@ -133,8 +144,10 @@ router.delete('/:id', remove);
 router.delete('/', removeAll);
 /**
  * @swagger
- * /virtual_account:
+ * /virtualaccount:
  *   delete:
+ *      security:
+ *          - bearerAuth: []
  *      description: Delete all virtual_account
  *      tags:
  *          - virtual_account routes
