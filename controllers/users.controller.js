@@ -2,7 +2,6 @@ import usersService from '../services/users.service.js';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import { generateTokenForUser } from "../utils/jwtUtils.js";
-import { pagination } from "../utils/page.js";
 dotenv.config();
 
 export const loginForm = (req, res) => {

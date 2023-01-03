@@ -13,13 +13,6 @@ import swaggerUi from 'swagger-ui-express';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 
-// Routes
-
-import userRoutes from './routes/user.router.js';
-import mainRoutes from './routes/main.router.js';
-
-import auth from "./middleware/authenticate.js";
-
 // Routes v2
 import usersRoutes from './routes/_users.router.js';
 import accessRoutes from './routes/access.router.js';
@@ -79,14 +72,6 @@ export const client = new Client({
 client.connect();
 console.log(`Connecté à l'utilisateur [${pg_user}] dans la base [${pg_database}] sur le serveur [${pg_host}]`);
 
-// temporaire pour le front
-app.engine("hbs", hbengine.engine({
-    defaultLayout: "main",
-    extname: ".hbs"
-}));
-
-app.set("view engine", "hbs");
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -107,11 +92,6 @@ app.use(cors({
     credentials: true,
     exposedHeaders: ['set-cookie']
 }))
-
-// temporaire vu que le front n'est pas encore fait
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-app.use(express.static(__dirname + '/public'));
 
 // middleware
 app.use((req, res, next) =>{
@@ -192,10 +172,7 @@ app.use('/typescene', typeSceneRoutes);
 app.use('/virtualaccount', virtualAccountRoutes);
 app.use('/guest_book', guestBookRoutes);
 
-app.use("/user", userRoutes);
-app.use("/", mainRoutes);
-
-app.use("*", auth.authenticateData, (req, res, next) => {
+app.use("*", (req, res, next) => {
     const err = new Error("Not Found");
     err.status = 404;
     next(err);
@@ -203,10 +180,10 @@ app.use("*", auth.authenticateData, (req, res, next) => {
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    let username = req.user ? req.user.username : "";
-    res.render("error404.hbs", {
-        username: username
-    });
+    res.status(err.status || 500).send({
+        message: err.message,
+        error: err
+        });
 });
 
 db.sync().then(() => {
