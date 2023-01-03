@@ -95,7 +95,7 @@ router.put('/:id', update);
  *            name: id
  *            schema:
  *              type: integer
- *          required: true
+ *            required: true
  *      requestBody:
  *          content:
  *             application/json:
