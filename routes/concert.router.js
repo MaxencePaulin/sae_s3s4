@@ -1,5 +1,5 @@
 import express from 'express';
-import { findAll, findOne, create, remove, removeAll } from '../controllers/concert.controller.js';
+import { findAll, findOne, create, remove, removeAll , findByStyle } from '../controllers/concert.controller.js';
 
 const router = express.Router();
 
@@ -119,6 +119,30 @@ router.delete('/', removeAll);
  *      responses:
  *          '200':
  *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+
+
+router.get('/findByStyle/:id', findByStyle);
+/**
+ * @swagger
+ * /concert/findByStyle/{id}:
+ *   get:
+ *      description: Display scenes By a Style
+ *      tags:
+ *          - Concert_routes
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            description: the id of the music style to search 
+ *            required: true
+ *            type: integer
+*      responses:
+ *          '200':
+ *              description: Resource updated successfully
  *          '500':
  *              description: Internal server error
  *          '400':

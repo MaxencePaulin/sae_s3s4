@@ -1,5 +1,7 @@
+import { where } from 'sequelize';
 import model from '../models/index.js';
 const Concert = model.Concert;
+import { Op } from 'sequelize';
 
 export const findAll = (req, res) => {
     Concert.findAll({include: [{model: model.Artist}, {model: model.Scene,
@@ -92,5 +94,26 @@ export const removeAll = (req, res) => {
         res.status(500).send({
             message: e.message || "Some error occurred."
         });
+    });
+}
+export const findByStyle = (req, res) => {
+    console.log(req.params.id);
+    model.Make.findAll({where: {id_musicstyle : `${req.params.id}`}},{include :[{model:model.Artist}]}  ).then(data=>{
+        let id=[];
+        for (const id_artist of data) {
+            id.push(id_artist.dataValues.id_artist)
+        };
+        console.log(id)
+        Concert.findAll( {include: [{model: model.Scene} , {model: model.Artist}]}
+        ).then(data=>{
+            const resu =data.filter(toto => id.includes(toto.id_artist) )
+            res.send(resu)
+
+        })
+        .catch(e => {
+            res.status(500).send({
+                message: e.message || "Some error occurred."
+            });
+    })
     });
 }
