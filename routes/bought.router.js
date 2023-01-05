@@ -33,19 +33,23 @@ router.get('/', findAll);
  *      parameters:
  *          - in: query
  *            name: id_user
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: id_ticket
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: date_start_validity
- *            type: string
+ *            schema: 
+ *                type: string
  *            required: true
  *          - in: query
  *            name: date_end_validity
- *            type: string
+ *            schema: 
+ *                type: string
  *            required: true
  *      responses:
  *          '200':

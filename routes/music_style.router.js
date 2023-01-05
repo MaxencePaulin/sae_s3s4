@@ -31,8 +31,9 @@ router.get('/', findAll);
   *      parameters:
   *          - in: path
   *            name: id
-  *            type: integer
-  *            required: true
+  *            schema: 
+ *                type: integer
+ *            required: true
   *      responses:
   *          '200':
   *              description: Resource added successfully
@@ -79,7 +80,8 @@ router.put('/:id', update);
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *      requestBody:
  *          content:
@@ -110,7 +112,8 @@ router.delete('/:id', remove);
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *      responses:
  *          '200':

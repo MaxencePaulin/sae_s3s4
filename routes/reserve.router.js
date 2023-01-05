@@ -31,19 +31,23 @@ router.get('/one', findOne);
  *      parameters:
  *          - in: query
  *            name: id_user
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: id_place
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: date_start_placereserved
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: date_end_placereserved
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -108,19 +112,23 @@ router.delete('/one', remove);
  *      parameters:
  *          - in: query
  *            name: id_user
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: id_place
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: date_start_placereserved
- *            type: string
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: date_end_placereserved
- *            type: string
+ *            schema: 
+ *                type: integer
  *            required: true
  *      responses:
  *          '200':
