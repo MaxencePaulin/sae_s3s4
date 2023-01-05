@@ -96,24 +96,18 @@ export const removeAll = (req, res) => {
         });
     });
 }
-export const findByStyle = (req, res) => {
-    console.log(req.params.id);
-    model.Make.findAll({where: {id_musicstyle : `${req.params.id}`}},{include :[{model:model.Artist}]}  ).then(data=>{
-        let id=[];
-        for (const id_artist of data) {
-            id.push(id_artist.dataValues.id_artist)
-        };
-        console.log(id)
-        Concert.findAll( {include: [{model: model.Scene} , {model: model.Artist}]}
-        ).then(data=>{
-            const resu =data.filter(toto => id.includes(toto.id_artist) )
-            res.send(resu)
-
-        })
-        .catch(e => {
-            res.status(500).send({
-                message: e.message || "Some error occurred."
-            });
-    })
-    });
+export const findByStyle = async (req, res) => {
+    let tabId = await model.Make.findAll({where: {id_musicstyle: parseInt(req.params.id)}});
+    let tabIdArtist = [];
+    for (const id of tabId) {
+        tabIdArtist.push(id.dataValues.id_artist);
+    }
+    if (tabIdArtist.length === 0) {
+        return res.status(500).send("No artist with this style");
+    }
+    let result = await Concert.findAll({where: {id_artist: {[Op.in]: tabIdArtist}}, include: [{model: model.Artist}, {model: model.Scene}]})
+    if (result.length === 0) {
+        return res.status(500).send("No concert with this style");
+    }
+    res.status(200).send(result);
 }
