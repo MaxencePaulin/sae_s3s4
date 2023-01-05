@@ -31,11 +31,13 @@ router.get('/one', findOne);
  *      parameters:
  *          - in: query
  *            name: id_prestataire
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: id_service
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -84,11 +86,13 @@ router.delete('/one', remove);
  *      parameters:
  *          - in: query
  *            name: id_prestataire
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *          - in: query
  *            name: id_service
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *      responses:
  *          '200':

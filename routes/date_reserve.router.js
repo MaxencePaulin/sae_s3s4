@@ -33,11 +33,13 @@ router.get('/one', findOne);
  *      parameters:
  *          - in: query
  *            name: date_start_placereserved
- *            type: string
+ *            schema: 
+ *                type: string
  *            required: true
  *          - in: query
  *            name: date_end_placereserved
- *            type: string
+ *            schema: 
+ *                type: string
  *            required: true
  *      responses:
  *          '200':
@@ -86,11 +88,13 @@ router.delete('/one', remove);
  *      parameters:
  *          - in: query
  *            name: date_start_placereserved
- *            type: string
+ *            schema: 
+ *                type: string
  *            required: true
  *          - in: query
  *            name: date_end_placereserved
- *            type: string
+ *            schema: 
+ *                type: string
  *            required: true
  *      responses:
  *          '200':

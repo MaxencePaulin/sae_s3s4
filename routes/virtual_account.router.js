@@ -35,7 +35,8 @@ router.get('/:id', findOne);
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *      responses:
  *          '200':
@@ -92,7 +93,8 @@ router.put('/:id', update);
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *      requestBody:
  *          content:
@@ -130,7 +132,8 @@ router.delete('/:id', remove);
  *      parameters:
  *          - in: path
  *            name: id
- *            type: integer
+ *            schema: 
+ *                type: integer
  *            required: true
  *      responses:
  *          '200':
