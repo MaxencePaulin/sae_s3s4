@@ -37,7 +37,7 @@ const Guest_book = db.define('guest_book', {
         allowNull: false ,
         references: {
             model: 'users',
-            key: 'id_users',
+            key: 'id_user',
         }
     }
     
