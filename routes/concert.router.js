@@ -137,10 +137,11 @@ router.get('/findByStyle/:id', findByStyle);
  *      parameters:
  *          - in: path
  *            name: id
- *            description: the id of the music style to search 
+ *            description: the id of the music style to search
+ *            schema:
+ *                type: integer
  *            required: true
- *            type: integer
-*      responses:
+ *      responses:
  *          '200':
  *              description: Resource updated successfully
  *          '500':

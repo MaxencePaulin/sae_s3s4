@@ -15,13 +15,15 @@ router.get('/', findAll);
  *          - in: query
  *            name: page
  *            description: Number of the page (when id is not specified)
+ *            schema:
+ *                type: integer
  *            required: false
- *            type: integer
  *          - in: query
  *            name: limit
  *            description: Limit of result per page (when id is not specified)
+ *            schema:
+ *                type: integer
  *            required: false
- *            type: integer
  *      responses:
  *          '200':
  *              description: Resource updated successfully
@@ -43,8 +45,9 @@ router.get('/:id', findOne);
  *          - in: path
  *            name: id
  *            description: Scene ID
+ *            schema:
+ *                type: integer
  *            required: true
- *            type: integer
  *      responses:
  *          '200':
  *              description: Resource updated successfully
@@ -95,8 +98,9 @@ router.put('/:id', update);
  *          - in: path
  *            name: id
  *            description: Scene ID
+ *            schema:
+ *                type: integer
  *            required: true
- *            type: integer
  *      requestBody:
  *          content:
  *             application/json:
@@ -130,8 +134,9 @@ router.delete('/:id', remove);
  *          - in: path
  *            name: id
  *            description: Scene ID
+ *            schema:
+ *                type: integer
  *            required: true
- *            type: integer
  *      responses:
  *          '200':
  *              description: Resource updated successfully
