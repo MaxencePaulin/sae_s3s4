@@ -1,4 +1,3 @@
-import { where } from 'sequelize';
 import model from '../models/index.js';
 const Concert = model.Concert;
 import { Op } from 'sequelize';
