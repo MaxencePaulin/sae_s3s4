@@ -138,7 +138,7 @@ router.delete('/:id', remove);
  *      parameters:
  *          - in: path
  *            name: id
- *           schema: 
+ *            schema:
  *                type: integer
  *            required: true
  *      responses:

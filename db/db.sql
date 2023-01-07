@@ -112,8 +112,8 @@ CREATE TABLE if not exists place(
 );
 
 CREATE TABLE if not exists date_reserve(
-    date_start_placereserved DATE,
-    date_end_placereserved DATE,
+    date_start_placereserved timestamp,
+    date_end_placereserved timestamp,
     PRIMARY KEY(date_start_placereserved, date_end_placereserved)
 );
 
@@ -226,7 +226,7 @@ CREATE TABLE if not exists have(
 CREATE TABLE if not exists concert(
     id_artist INT,
     id_scene INT,
-    date_concert DATE,
+    date_concert timestamp,
     PRIMARY KEY(id_artist, id_scene),
     constraint fk_artist_concert
     FOREIGN KEY(id_artist) REFERENCES artist(id_artist) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -282,8 +282,8 @@ CREATE TABLE if not exists bought(
 CREATE TABLE if not exists reserve(
     id_user INT,
     id_place INT,
-    date_start_placereserved DATE,
-    date_end_placereserved DATE,
+    date_start_placereserved timestamp,
+    date_end_placereserved timestamp,
     PRIMARY KEY(id_user, id_place, date_start_placereserved, date_end_placereserved),
     constraint fk_user_reserve
     FOREIGN KEY(id_user) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE,

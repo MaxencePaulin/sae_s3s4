@@ -2,8 +2,22 @@ import model from '../models/index.js';
 const Guest_book = model.Guest_book;
 
 export const findAll = (req, res) => {
-    Guest_book.findAll().then(data => {
-        res.send(data);
+    Guest_book.findAll({include: [{model: model.Users}]}).then(data => {
+        let result = [];
+        data.forEach(element => {
+            result.push({
+                id_avis: element.id_avis,
+                libelle_avis: element.libelle_avis,
+                id_artist: element.id_artist,
+                id_prestataire: element.id_prestataire,
+                id_user: element.id_user,
+                user: {
+                    firstname: element.user.firstname,
+                    lastname: element.user.lastname,
+                }
+            });
+        });
+        res.status(200).send(result);
     }).catch(e => {
         res.status(500).send({
             message: e.message || "Some error occurred."
@@ -91,7 +105,6 @@ export const removeAll = (req, res) => {
 
 export const findByArtOrPrest = (req, res) => {
     let id_artist = req.query.id_artist;
-    console.log(id_artist);
     let id_prestataire = req.query.id_prestataire;
     id_artist = id_artist === '' ? null
         : typeof id_artist === 'undefined' ? null
@@ -111,7 +124,21 @@ export const findByArtOrPrest = (req, res) => {
         },
         include: [{model: model.Users}]
     }).then(data => {
-        return res.status(200).send(data);
+        let result = [];
+        data.forEach(element => {
+            result.push({
+                id_avis: element.id_avis,
+                libelle_avis: element.libelle_avis,
+                id_artist: element.id_artist,
+                id_prestataire: element.id_prestataire,
+                id_user: element.id_user,
+                user: {
+                    firstname: element.user.firstname,
+                    lastname: element.user.lastname,
+                }
+            });
+        });
+        return res.status(200).send(result);
     }).catch(e => {
         console.log(e);
         return res.status(500).send({

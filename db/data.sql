@@ -163,10 +163,10 @@ insert into place (no_place)values
 ('15B');
 
 insert into date_reserve(date_start_placereserved,date_end_placereserved)values
-('2020-01-01','2020-12-31'),
-('2021-01-01','2021-12-31'),
-('2022-01-01','2022-12-31'),
-('2023-01-01','2023-12-31');
+('2020-01-01 10:00:00','2020-12-31 10:00:00'),
+('2021-01-01 11:00:00','2021-12-31 11:00:00'),
+('2022-01-01 12:00:00','2022-12-31 12:00:00'),
+('2023-01-01 13:00:00','2023-12-31 13:00:00');
 
 insert into artist(name, image, biography, genre) values
 ('Johnny', 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Johnny_Hallyday_avp_2014_%28cropped%29.jpg', 'chanteur...', 'Homme'),
@@ -211,8 +211,8 @@ insert into have(id_artist,id_socialnetwork)values
 (1,1),
 (2,2);
 insert into concert(id_artist,id_scene,date_concert)values
-(1,1,'2020-01-01'),
-(2,2,'2021-01-02');
+(1,1,'2020-01-01 11:00:00'),
+(2,2,'2021-01-02 10:00:00');
 
 insert into origineuser(id_nationality,id_user)values
 (1,1),
@@ -250,21 +250,14 @@ insert into access(id_role, id_droit) values
 
 insert into bought (id_user,id_ticket,date_start_validity,date_end_validity)values
 (1,1,'2019-01-01','2019-12-31'),
-(1,2,'2020-01-01','2020-12-31'),
+(1,2,'2020-01-01' ,'2020-12-31'),
 (1,3,'2021-01-01','2021-12-31'),
 (1,3,'2022-01-01','2022-12-31'),
 (2,1,'2023-01-01','2023-12-31'),
 (2,2,'2024-01-01','2024-12-31');
 
-insert into date_reserve(date_start_placereserved, date_end_placereserved)values
-('2019-01-01', '2019-12-31'),
-('2010-01-01', '2019-12-31'),
-('2011-01-01', '2019-12-31'),
-('2012-01-01', '2019-12-31');
-
 insert into reserve (id_user,id_place,date_start_placereserved,date_end_placereserved)values
-(1,2,'2020-01-01','2020-12-31'),
-(1,3,'2021-01-01','2021-12-31'),
-(1,4,'2022-01-01','2022-12-31'),
-(2,1,'2023-01-01','2023-12-31');
-
+(1,2,'2020-01-01 10:00:00','2020-12-31 10:00:00'),
+(1,3,'2021-01-01 11:00:00','2021-12-31 11:00:00'),
+(1,4,'2022-01-01 12:00:00','2022-12-31 12:00:00'),
+(2,1,'2023-01-01 13:00:00','2023-12-31 13:00:00');
