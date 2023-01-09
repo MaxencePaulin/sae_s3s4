@@ -1,7 +1,30 @@
 import express from 'express';
-import { findAll, findOne, create, update, remove, removeAll } from '../controllers/nationality.controller.js';
+import { findAll, findOne, create, update, remove, removeAll , musicStyleByNationality } from '../controllers/nationality.controller.js';
 
 const router = express.Router();
+
+router.get('/musicStyleByNationality/:id', musicStyleByNationality);
+/**
+ * @swagger
+ * /nationality/musicStyleByNationality/{id}:
+ *   get:
+ *      description: Display scenes By a Style
+ *      tags:
+ *          - Nationality routes
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: integer
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Resource updated successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 
 router.get('/', findAll);
 /**
@@ -32,8 +55,8 @@ router.get('/', findAll);
   *          - in: path
   *            name: id
   *            schema: 
- *                type: integer
- *            required: true
+  *               type: integer
+  *            required: true
   *      responses:
   *          '200':
   *              description: Resource added successfully
@@ -143,5 +166,6 @@ router.delete('/', removeAll);
  *          '400':
  *              description: Bad request
 */
+
 
 export default router;
