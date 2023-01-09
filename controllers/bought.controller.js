@@ -28,6 +28,17 @@ export const findOne = (req, res) => {
     });
 }
 
+export const findAllByUser = (req, res) => {
+    const id_user = parseInt(req.params.id);
+    Bought.findAll({where: {id_user: id_user}, include: [{model: model.Ticket}]}).then(data => {
+        res.send(data);
+    }).catch(e => {
+        res.status(500).send({
+            message: e.message || "Some error occurred."
+        });
+    });
+}
+
 export const create = (req, res) => {
     const body = req.body;
     Bought.create(body).then(data => {
@@ -38,38 +49,6 @@ export const create = (req, res) => {
         });
     });
 }
-
-// export const update = (req, res) => {
-//     const id_user = parseInt(req.body.id_user_old);
-//     const id_ticket = parseInt(req.body.id_ticket_old);
-//     const date_start_validity_old = req.body.date_start_validity_old;
-//     const date_end_validity_old = req.body.date_end_validity_old;
-
-//     const body = {
-//         id_user : id_user_new ,
-//         id_ticket :id_ticket_new ,
-//         date_start_validity :date_start_validity_new ,
-//         date_end_validity : date_end_validity_end 
-//     };
-//     Bought.update(body, {
-//         where: { id_user: id_user , id_ticket: id_ticket , date_start_validity : date_start_validity_old , date_end_validity: date_end_validity_old}
-//     }).then(data => {
-//         if (data === 1) {
-//             res.send({
-//                 message: "Bought was updated successfully."
-//             });
-//         } else {
-//             res.send({
-//                 message: `Cannot update Bought with this primary key . Maybe Bought was not found or req.body is empty!`
-//             });
-//         }
-//     }).catch(e => {
-//         res.status(500).send({
-//             message: e.message || "Some error occurred."
-//         });
-//     });
-// }
-
 export const remove = (req, res) => {
     const id_user = parseInt(req.query.id_user);
     const id_ticket = parseInt(req.query.id_ticket);

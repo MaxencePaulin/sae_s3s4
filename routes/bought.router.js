@@ -1,5 +1,5 @@
 import express from 'express';
-import { findAll, findOne, create, remove, removeAll } from '../controllers/bought.controller.js';
+import {findAll, findOne, create, remove, removeAll, findAllByUser} from '../controllers/bought.controller.js';
 
 const router = express.Router();
 
@@ -22,12 +22,12 @@ router.get('/', findAll);
  *              description: Bad request
 */
 
- router.get('/one', findOne);
+router.get('/one', findOne);
 /**
  * @swagger
  * /bought/one:
  *   get:
- *      description: Return user by id
+ *      description: Return bought by id_user and id_ticket
  *      tags:
  *          - Bought_routes
  *      parameters:
@@ -59,6 +59,29 @@ router.get('/', findAll);
  *          '400':
  *              description: Bad request
 */
+
+router.get('/user/:id', findAllByUser);
+/**
+ * @swagger
+ * /bought/user/{id}:
+ *   get:
+ *      description: Return user by id
+ *      tags:
+ *          - Bought_routes
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *                type: integer
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 
 router.post('/', create);
 /**
