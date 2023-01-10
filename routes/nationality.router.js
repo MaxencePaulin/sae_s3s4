@@ -55,8 +55,8 @@ router.get('/', findAll);
   *          - in: path
   *            name: id
   *            schema: 
- *                type: integer
- *             required: true
+  *               type: integer
+  *            required: true
   *      responses:
   *          '200':
   *              description: Resource added successfully
