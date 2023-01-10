@@ -1,5 +1,6 @@
 import model from '../models/index.js';
 const MusicStyle = model.MusicStyle;
+import {Op} from 'sequelize'
 
 export const findAll = (req, res) => {
     MusicStyle.findAll().then(data => {
@@ -87,4 +88,37 @@ export const removeAll = (req, res) => {
             message: e.message || "Some error occurred."
         });
     });
+}
+export const NationalityByMusicstyle = async (req, res) => {
+    let respons = await model.Make.findAll({where : {
+        id_musicstyle : parseInt(req.params.id)}
+    })
+    let mon_tableaau=[]
+    for (const ele of respons ) {
+        mon_tableaau.push(ele.dataValues.id_artist)    
+    }
+    let mon_tableaau2=[]
+    let result2 = await model.OrigineArtist.findAll({ where:{id_artist : {[Op.in] : mon_tableaau }}, include : [{model : model.Artist} , {model:model.Nationality}]})
+    console.log("\n")
+    // console.log("              \n",JSON.stringify(result2))
+    result2.forEach(element => { 
+        let tmp = mon_tableaau2.find(l => l.id_nationality === element.id_nationality)
+        if (!tmp) { 
+            mon_tableaau2.push({
+                id_nationality: element.id_nationality,
+                libelle_nationalite: element.nationality.libelle_nationality ,
+                nbArtistWitheThisNationality:1
+            })
+        } else {
+            // console.log(count);
+            for (const id_nationality of mon_tableaau2) {
+                // console.log("deuxiem " , id_nationality.nbArtistWitheThisNationality )
+                if (id_nationality.id_nationality ===  tmp.id_nationality){
+                    id_nationality.nbArtistWitheThisNationality =id_nationality.nbArtistWitheThisNationality+1;
+                }
+                // console.log("deuxietroisiemm " , id_nationality.nbArtistWitheThisNationality )
+            }
+        }
+    });
+    res.status(200).send(mon_tableaau2)
 }

@@ -112,10 +112,10 @@ export const musicStyleByNationality = async (req, res) => {
             })
             // console.log(mon_tableaau2)
         } else {
-            console.log(count);
             for (const id_music of mon_tableaau2) {
-                if (id_music.id_musicstyle === tmp){
-                    nbArtistWitheThisStyle=nbArtistWitheThisStyle++
+                console.log(id_music.nbArtistWitheThisStyle , tmp.id_musicstyle )
+                if (id_music.id_musicstyle === tmp.id_musicstyle){
+                    id_music.nbArtistWitheThisStyle=id_music.nbArtistWitheThisStyle+1
                 }
             }
         }

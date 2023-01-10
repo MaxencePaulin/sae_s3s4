@@ -1,7 +1,30 @@
 import express from 'express';
-import { findAll, findOne, create, update, remove, removeAll } from '../controllers/music_style.controller.js';
+import { findAll, findOne, create, update, remove, removeAll  , NationalityByMusicstyle} from '../controllers/music_style.controller.js';
 
 const router = express.Router();
+
+router.get('/nationalityStyleByMusicStyle/:id', NationalityByMusicstyle);
+/**
+ * @swagger
+ * /musicstyle/nationalityStyleByMusicStyle/{id}:
+ *   get:
+ *      description: Display Nationality By a Music Style
+ *      tags:
+ *          - musicstyle_routes
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: integer
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Resource updated successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 
 router.get('/', findAll);
 /**
