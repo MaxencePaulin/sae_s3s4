@@ -191,7 +191,11 @@ insert into scene(libelle_scene,id_typescene)values
 insert into prestataire(libelle_prestataire,id_typeprestataire)values
 ('prestataire1 (son nom) de service',1),
 ('prestatair2 (son nom) de logement',2),
-('prestatair3 (son nom) de transport',3),
+('prestatair3 (son nom) d''accessoire',3),
+('prestatair4 (son nom) d''achat de goodies',3),
+('prestatair4 (son nom) de restauration',4),
+('prestatair4 (son nom) de restauration',4),
+('prestatair4 (son nom) de restauration',4),
 ('prestatair4 (son nom) de restauration',4),
 ('prestataire5 (son nom) de boisson',5);
 
@@ -225,7 +229,15 @@ insert into have(id_artist,id_socialnetwork)values
 (2,2);
 insert into concert(id_artist,id_scene,date_concert)values
 (1,1,'2023-07-22 11:00:00'),
-(2,2,'2023-07-23 10:00:00');
+(2,2,'2023-07-23 10:00:00'),
+(1,3,'2023-07-22 21:00:00'),
+(1,4,'2023-07-23 11:00:00'),
+(1,5,'2023-07-23 21:00:00'),
+(1,4,'2023-07-24 11:00:00'),
+(1,3,'2023-07-24 21:00:00'),
+(1,2,'2023-07-25 11:00:00'),
+(1,1,'2023-07-25 21:00:00'),
+(1,2,'2023-07-26 11:00:00');
 
 insert into origineuser(id_nationality,id_user)values
 (1,1),
