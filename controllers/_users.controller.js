@@ -2,6 +2,7 @@ import model from '../models/index.js';
 const Users = model.Users;
 import bcrypt from 'bcrypt';
 import { generateTokenForUser } from "../utils/jwtUtils.js";
+import { Model } from 'sequelize';
 
 export const findAll = (req, res) => {
     Users.findAll({include: [{model: model.Role},
@@ -219,4 +220,29 @@ export const logout = (req, res) => {
             message: e.message || "Some error occurred."
         });
     }
+}
+
+
+export const userWhoReservedEmplacement = async (req, res) => {
+    let result =await  model.Reserve.findAll({include :[{model: model.Date_reserve},{model : model.Users}]})
+    let res_final= []
+    // for (const valeur of result) {
+    //     // let valeur = JSON.parse(ele)
+    //     console.log(valeur)
+    //     console.log(valeur.user+ "djgkfjbkfdhgohnohnofd\n")
+        // console.log(ele.user.firstname ," hfnlsjhbfkshdpd")
+        let valeur ;
+        for (let i =0 ; i<result.length ; i++){
+            valeur = result[i]
+            res_final.push({id_user: valeur.id_user ,
+                    firstname : valeur.user.firstname ,
+                    lastname : valeur.user.lastname ,
+                    genre : valeur.user.genre ,
+                    id_place : valeur.id_place ,
+                    date_start : valeur.dae_start_placereserved ,
+                    date_end : valeur.date_end_placereserved ,
+                })
+        }
+    // }
+    res.send(res_final)
 }

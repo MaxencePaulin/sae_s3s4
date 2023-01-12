@@ -2,10 +2,28 @@ import express from 'express';
 import { findAll, findOne, create,
     update, remove, removeAll,
     login, register, logout,
-    getUserProfile } from '../controllers/_users.controller.js';
+    getUserProfile , userWhoReservedEmplacement } from '../controllers/_users.controller.js';
 import { protect } from '../utils/jwtUtils.js';
 
 const router = express.Router();
+
+
+router.get('/userWhoReservedEmplacement', userWhoReservedEmplacement);
+/**
+ * @swagger
+ * /users/userWhoReservedEmplacement:
+ *   get:
+ *      description: Return user by who reserved an emplacement
+ *      tags:
+ *          - Users_routes
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
 
 
 router.get('/me', protect, getUserProfile);
