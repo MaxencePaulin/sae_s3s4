@@ -40,10 +40,19 @@ export const findAllByUser = (req, res) => {
 }
 
 export const create = (req, res) => {
-    const body = req.body; 
+    const body = req.body;
+    if (body.date_start_validity !== null && !/^\d{4}-\d{2}-\d{2}$/.test(body.date_start_validity)) {
+        let date = body.date_start_validity.split("/");
+        body.date_start_validity = date[2] + "-" + date[1] + "-" + date[0];
+    }
+    if (body.date_end_validity !== null && !/^\d{4}-\d{2}-\d{2}$/.test(body.date_end_validity)) {
+        let date = body.date_end_validity.split("/");
+        body.date_end_validity = date[2] + "-" + date[1] + "-" + date[0];
+    }
     Bought.create(body).then(data => {
         res.send(data);
     }).catch(e => {
+        console.log(e);
         res.status(500).send({
             message: e.message || "Some error occurred."
         });
