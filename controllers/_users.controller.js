@@ -2,7 +2,8 @@ import model from '../models/index.js';
 const Users = model.Users;
 import bcrypt from 'bcrypt';
 import { generateTokenForUser } from "../utils/jwtUtils.js";
-import { Model } from 'sequelize';
+// import { Model, where } from 'sequelize';
+import {Op, where} from 'sequelize'
 
 export const findAll = (req, res) => {
     Users.findAll({include: [{model: model.Role},
@@ -224,25 +225,26 @@ export const logout = (req, res) => {
 
 
 export const userWhoReservedEmplacement = async (req, res) => {
-    let result =await  model.Reserve.findAll({include :[{model: model.Date_reserve},{model : model.Users}]})
-    let res_final= []
-    // for (const valeur of result) {
-    //     // let valeur = JSON.parse(ele)
-    //     console.log(valeur)
-    //     console.log(valeur.user+ "djgkfjbkfdhgohnohnofd\n")
-        // console.log(ele.user.firstname ," hfnlsjhbfkshdpd")
-        let valeur ;
-        for (let i =0 ; i<result.length ; i++){
-            valeur = result[i]
-            res_final.push({id_user: valeur.id_user ,
-                    firstname : valeur.user.firstname ,
-                    lastname : valeur.user.lastname ,
-                    genre : valeur.user.genre ,
-                    id_place : valeur.id_place ,
-                    date_start : valeur.dae_start_placereserved ,
-                    date_end : valeur.date_end_placereserved ,
-                })
-        }
+    let result =await  model.Reserve.findAll({include :[{model: model.Date_reserve}]})
+    let id_user_in_reserve= []
+    for (const ele of result) {
+        id_user_in_reserve.push(ele.id_user)
+    }
+    let find_in = await model.Bought.findAll({where:{id_user:{[Op.in]:id_user_in_reserve}}} , {include: [{model: model.Users}]})
+    let user_info=[]
+    for (const ele_bis of find_in) {
+        user_info.push(ele_bis.id_user)
+    }
+    let ma_list_final=[]
+    let all_users_ok = model.Users.findAll({where:{id_user:{[Op.in]:user_info}}})
+    console.log(JSON.stringify(all_users_ok) , "fgcbskjbldsjkhdjskjsd")
+    for (const ite of all_users_ok) {
+        ma_list_final.push({id_user: ite.id_user ,
+            firstname : ite.firstname ,
+            lastname : ite.lastname , 
+            genre : ite.user.genre 
+        }) 
+    }
+    res.status(500).send(ma_list_final)
     // }
-    res.send(res_final)
 }
