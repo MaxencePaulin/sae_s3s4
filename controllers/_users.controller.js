@@ -32,6 +32,10 @@ export const findOne = (req, res) => {
 
 export const create = (req, res) => {
     const body = req.body;
+    if (body.dob !== null && !/^\d{4}-\d{2}-\d{2}$/.test(body.dob)) {
+        let date = body.dob.split("/");
+        body.dob = date[2] + "-" + date[1] + "-" + date[0];
+    }
     const salt = bcrypt.genSaltSync(10);
     body.password = bcrypt.hashSync(body.password, salt);
     Users.create(body).then(data => {
@@ -46,6 +50,10 @@ export const create = (req, res) => {
 export const update = (req, res) => {
     const id = parseInt(req.params.id);
     const body = req.body;
+    if (body.dob !== null && !/^\d{4}-\d{2}-\d{2}$/.test(body.dob)) {
+        let date = body.dob.split("/");
+        body.dob = date[2] + "-" + date[1] + "-" + date[0];
+    }
     if (body.password && body.password !== '') {
         const salt = bcrypt.genSaltSync(10);
         body.password = bcrypt.hashSync(body.password, salt);
@@ -58,7 +66,7 @@ export const update = (req, res) => {
                 message: "Users was updated successfully."
             });
         } else {
-            res.send({
+            res.status(500).send({
                 message: `Cannot update Users with id=${id}. Maybe Users was not found or req.body is empty!`
             });
         }
