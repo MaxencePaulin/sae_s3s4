@@ -38,6 +38,18 @@ export const create = (req, res) => {
     });
 }
 
+export const createWithNewService = async (req, res) => {
+    const body = req.body;
+    let service = await model.Service.create({libelle_service: body.libelle_service}, {returning: true});
+    Proposes.create({id_prestataire: body.id_prestataire, id_service: service.id_service}).then(data => {
+        res.send(data);
+    }).catch(e => {
+        res.status(500).send({
+            message: e.message || "Some error occurred."
+        });
+    })
+}
+
 // export const update = (req, res) => {
 //     const id_prestataire = parseInt(req.params.id_prestataire);
 //     const id_service = parseInt(req.params.id_service);
