@@ -1,11 +1,19 @@
 import { where } from 'sequelize';
 import model from '../models/index.js';
 const Reserve = model.Reserve;
+import sequelize from 'sequelize';
+
 
 
 export const findAll = (req, res) => {
     Reserve.findAll({include: [{model: model.Users}, {model: model.Place},
-            {model: model.Date_reserve}]}).then(data => {
+            {model: model.Date_reserve}]},
+            {attributes: [
+                id_user , 
+                id_place ,
+                [sequelize.cast(sequelize.col('Date_reserve.date_start_placereserved'), 'varchar'),'date_start_placereserved'],
+                [sequelize.cast(sequelize.col('Date_reserve.date_end_placereserved'), 'varchar'), 'date_end_placereserved'],
+            ]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({

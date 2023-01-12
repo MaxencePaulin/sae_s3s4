@@ -225,7 +225,7 @@ export const logout = (req, res) => {
 
 
 export const userWhoReservedEmplacement = async (req, res) => {
-    let result =await  model.Reserve.findAll({include :[{model: model.Date_reserve}]})
+    let result =await  model.Reserve.findAll( {include :[{model: model.Date_reserve}]})
     let id_user_in_reserve= []
     for (const ele of result) {
         id_user_in_reserve.push(ele.id_user)
@@ -235,16 +235,7 @@ export const userWhoReservedEmplacement = async (req, res) => {
     for (const ele_bis of find_in) {
         user_info.push(ele_bis.id_user)
     }
-    let ma_list_final=[]
+    console.log(user_info)
     let all_users_ok = model.Users.findAll({where:{id_user:{[Op.in]:user_info}}})
-    console.log(JSON.stringify(all_users_ok) , "fgcbskjbldsjkhdjskjsd")
-    for (const ite of all_users_ok) {
-        ma_list_final.push({id_user: ite.id_user ,
-            firstname : ite.firstname ,
-            lastname : ite.lastname , 
-            genre : ite.user.genre 
-        }) 
-    }
-    res.status(500).send(ma_list_final)
-    // }
+    res.status(500).send(all_users_ok)
 }
