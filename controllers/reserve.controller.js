@@ -1,5 +1,7 @@
+import { where } from 'sequelize';
 import model from '../models/index.js';
 const Reserve = model.Reserve;
+
 
 export const findAll = (req, res) => {
     Reserve.findAll({include: [{model: model.Users}, {model: model.Place},
@@ -29,15 +31,26 @@ export const findOne = (req, res) => {
     });
 }
 
-export const create = (req, res) => {
+export const create = async (req, res) => {
     const body = req.body;
-    Reserve.create(body).then(data => {
+    let emplacement={id_user: parseInt(req.body.id_user) , 
+        id_place : parseInt(req.body.id_place) ,
+        date_start_placereserved : req.body.date_start_placereserved , 
+        date_end_placereserved : req.body.date_end_placereserved}
+    try {
+        let date={date_start_placereserved : req.body.date_start_placereserved , 
+        date_end_placereserved : req.body.date_end_placereserved}
+    let mon_res = await model.Date_reserve.create(date)
+    } catch(e) {
+        console.log(e)
+    }
+    Reserve.create(emplacement).then(data => {
         res.send(data);
-    }).catch(e => {
+    }).catch(e => { 
         res.status(500).send({
-            message: e.message || "Some error occurred."
+            message: e.message || "Some error occurred." 
         });
-    });
+    }); 
 }
 
 // export const update = (req, res) => {
