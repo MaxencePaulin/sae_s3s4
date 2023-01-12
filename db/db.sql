@@ -227,7 +227,7 @@ CREATE TABLE if not exists concert(
     id_artist INT,
     id_scene INT,
     date_concert timestamp,
-    PRIMARY KEY(id_artist, id_scene),
+    PRIMARY KEY(id_artist, id_scene, date_concert),
     constraint fk_artist_concert
     FOREIGN KEY(id_artist) REFERENCES artist(id_artist) ON DELETE CASCADE ON UPDATE CASCADE,
     constraint fk_scene_concert
