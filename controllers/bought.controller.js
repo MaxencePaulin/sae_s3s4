@@ -40,7 +40,7 @@ export const findAllByUser = (req, res) => {
 }
 
 export const create = (req, res) => {
-    const body = req.body;
+    const body = req.body; 
     Bought.create(body).then(data => {
         res.send(data);
     }).catch(e => {

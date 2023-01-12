@@ -12,7 +12,7 @@ export const findAll = (req, res) => {
         ],
         include: [{model: model.Artist}, {model: model.Scene,
             include: [{model: model.TypeScene}]}]}).then(data => {
-        console.log(data);
+        // console.log(data);
         res.send(data);
     }).catch(e => {
         console.log(e)
