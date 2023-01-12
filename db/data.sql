@@ -122,12 +122,14 @@ insert into service(libelle_service)values
 insert into qr_code(qr_code)values
 ('qr_code1'),
 ('qr_code2'),
-('qr_code3');
+('qr_code3'),
+('qr_code4');
 
 insert into virtualaccount(amount,id_qr_code) values
 (0, 1),
 (100, 2),
-(50, 3);
+(50, 3),
+(0, 4);
 
 insert into droit(libelle_droit) values
 ('read'),
@@ -208,7 +210,9 @@ insert into ticket(type_ticket,id_price) values
 
 insert into users(login,password,email,firstname,lastname,dob,bankcard,address,mobile,genre,id_role,id_virtualaccount) values
 ('admin', '$2b$10$21vNgcdjhDtj3RswzCk4kumHHOG2Iip30v3UnIK07SE.2lnaO6tv6','admin@gmail.com','firstname', 'lastname', '2003-04-11', null, null, '0605040302', 'homme',3, 1),
-('admin2', '$2b$10$7hdYz80EO48vClKUI6EutuaTRyx9Vw8EQxnHayo9NDHmxmIDtusIO','admin2@gmail.com','firstname2', 'lastname2', '2019-01-02', null, 'address2', null, 'femme',3 ,2);
+('admin2', '$2b$10$7hdYz80EO48vClKUI6EutuaTRyx9Vw8EQxnHayo9NDHmxmIDtusIO','admin2@gmail.com','firstname2', 'lastname2', '2019-01-02', null, 'address2', null, 'femme',3 ,2),
+('user','$2b$10$PGRcCsacLXuDDa3de/mA2OPRxiMqc/SM031G2Hxm1MF69RhVB.Zje', 'user@user.com', 'firstnameuser', 'lastnameuser', '2003-04-11', null, null, null, 'homme', 1, 3),
+('guest', '$2b$10$3mfmZUyyEy2QMDbyk91MzeIWmzWWGIfc1/o6ogZ8UzrFzdziFx0Ay', 'guest@guest.com', 'firstnameguest', 'lastnameguest', '1999-05-14', null, null, null, 'autre', 2, 4);
 
 insert into guest_book(libelle_avis, id_artist, id_prestataire, id_user) VALUES
 ('j''aime vraiment ce festival il m''a permit d''aimer d''une autre façon la musique et il est très conviviale', null, null, 1),
