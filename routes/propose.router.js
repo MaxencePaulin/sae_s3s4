@@ -1,5 +1,5 @@
 import express from 'express';
-import { findAll, findOne, create, remove, removeAll } from '../controllers/propose.controller.js';
+import { findAll, findOne, create, remove, removeAll, createWithNewService } from '../controllers/propose.controller.js';
 
 const router = express.Router();
 
@@ -66,6 +66,41 @@ router.post('/', create);
  *                           type: integer
  *                        id_service:
  *                           type: integer
+ *      responses:
+ *          '200':
+ *              description: Resource added successfully
+ *          '500':
+ *              description: Internal server error
+ *          '400':
+ *              description: Bad request
+ */
+
+router.post('/withnewservice', createWithNewService);
+/**
+ * @swagger
+ * /propose/withnewservice:
+ *   post:
+ *      description: Create an propose with new service
+ *      tags:
+ *          - propose_routes
+ *      requestBody:
+ *          content:
+ *             application/json:
+ *                schema:
+ *                    type: object
+ *                    properties:
+ *                        id_prestataire:
+ *                           type: integer
+ *                           minLength: 1
+ *                           maxLength: 1000
+ *                           example: 1
+ *                           required: true
+ *                        libelle_service:
+ *                           type: string
+ *                           minLength: 1
+ *                           maxLength: 1000
+ *                           example: service1
+ *                           required: true
  *      responses:
  *          '200':
  *              description: Resource added successfully
