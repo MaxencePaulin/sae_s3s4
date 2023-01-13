@@ -15,7 +15,7 @@ Creer un fichier .env à la racine du projet et y ajouter les variables d'enviro
 
 ```
 PORT=XXXX
-JWT_SECRET=XXXX(la notre dans le discord)
+JWT_SECRET=XXXX(la notre dans le discord ou sur le .env prérempli pour les professeurs)
 PG_USER=XXXX
 PG_HOST=XXXX
 PG_DATABASE=XXXX
