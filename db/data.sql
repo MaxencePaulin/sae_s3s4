@@ -113,7 +113,7 @@ insert into typeprestataire(libelle_typeprestataire)values
 ('autre');
 
 insert into service(libelle_service)values
-('restauration'),
+('fast food'),
 ('buvette'),
 ('Achat de goodies'),
 ('hébergement'),
@@ -217,8 +217,8 @@ insert into users(login,password,email,firstname,lastname,dob,bankcard,address,m
 insert into guest_book(libelle_avis, id_artist, id_prestataire, id_user) VALUES
 ('j''aime vraiment ce festival il m''a permit d''aimer d''une autre façon la musique et il est très conviviale', null, null, 1),
 ('j''aime beaucoup ce qu''il fait, il ne l''a pas voler son titre de chanteur !', 1, null, 2),
-('j''aime beaucoup ce qu''il fait, il ne l''a pas voler son titre de chanteur !', null, 1, 2),
-('j''aime beaucoup ce qu''il fait, il ne l''a pas voler son titre de chanteur !', null, 2, 1);
+('j''aime beaucoup ce qu''il fait, il ne l''a pas voler son titre de prestataire !', null, 1, 2),
+('j''aime beaucoup ce qu''il fait, il ne l''a pas voler son titre de prestataire !', null, 2, 1);
 
 insert into origineartist(id_artist, id_nationality)values
 (1,1),
