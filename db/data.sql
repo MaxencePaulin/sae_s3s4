@@ -191,15 +191,15 @@ insert into scene(libelle_scene,id_typescene)values
 ('scene 5',2);
 
 insert into prestataire(libelle_prestataire,id_typeprestataire)values
-('prestataire1 (son nom) de service',1),
-('prestatair2 (son nom) de logement',2),
-('prestatair3 (son nom) d''accessoire',3),
-('prestatair4 (son nom) d''achat de goodies',3),
-('prestatair4 (son nom) de restauration',4),
-('prestatair4 (son nom) de restauration',4),
-('prestatair4 (son nom) de restauration',4),
-('prestatair4 (son nom) de restauration',4),
-('prestataire5 (son nom) de boisson',5);
+('Prestataire (son nom) de service',1),
+('Prestataire (son nom) de logement',2),
+('Prestataire (son nom) d''accessoire',3),
+('Prestataire (son nom) d''achat de goodies',3),
+('Prestataire (son nom) de restauration',4),
+('Prestataire (son nom) de restauration',4),
+('Prestataire (son nom) de restauration',4),
+('Prestataire (son nom) de restauration',4),
+('Prestataire (son nom) de boisson',5);
 
 insert into ticket(type_ticket,id_price) values
 ('1 jour', 1),
