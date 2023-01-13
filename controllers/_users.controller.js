@@ -130,6 +130,7 @@ export const getUserProfile = async (req, res) => {
                 genre: user.genre,
                 id_role: user.id_role,
                 libelle_role: user.role.libelle_role,
+                id_prestataire: user.id_prestataire,
             }
         })
     } else {
