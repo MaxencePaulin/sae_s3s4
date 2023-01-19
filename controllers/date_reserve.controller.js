@@ -1,9 +1,14 @@
 import model from '../models/index.js';
 const Date_reserve = model.Date_reserve;
+import sequelize from 'sequelize';
+
 
 export const findAll = (req, res) => {
-    Date_reserve.findAll().then(data => {
-        console.log(JSON.stringify(data))
+    Date_reserve.findAll(
+        {attributes: [
+        [sequelize.cast(sequelize.col('date_reserve.date_start_placereserved'), 'varchar'), 'date_start_placereserved'],
+        [sequelize.cast(sequelize.col('date_reserve.date_end_placereserved'), 'varchar'), 'date_end_placereserved'],
+    ]}).then(data => {
         res.send(data);
     }).catch(e => {
         res.status(500).send({
@@ -15,7 +20,10 @@ export const findAll = (req, res) => {
 export const findOne = (req, res) => {
     const date_start_placereserved = req.query.date_start_placereserved;
     const date_end_placereserved = req.query.date_end_placereserved;
-    Date_reserve.findOne({where: {date_start_placereserved: date_start_placereserved,
+    Date_reserve.findOne( {attributes: [
+        [sequelize.cast(sequelize.col('date_reserve.date_start_placereserved'), 'varchar'), 'date_start_placereserved'],
+        [sequelize.cast(sequelize.col('date_reserve.date_end_placereserved'), 'varchar'), 'date_end_placereserved'],
+    ]},{where: {date_start_placereserved: date_start_placereserved,
             date_end_placereserved: date_end_placereserved}}).then(data => {
         res.send(data);
     }).catch(e => {
