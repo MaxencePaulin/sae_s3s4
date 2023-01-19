@@ -3,6 +3,7 @@ const Date_reserve = model.Date_reserve;
 
 export const findAll = (req, res) => {
     Date_reserve.findAll().then(data => {
+        console.log(JSON.stringify(data))
         res.send(data);
     }).catch(e => {
         res.status(500).send({
