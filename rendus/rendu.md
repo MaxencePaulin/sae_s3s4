@@ -1,5 +1,9 @@
 # Informations sur le rendu :
 
+## Trello :
+
+Voici le lien du Trello de ce projet : https://trello.com/b/WsLns1zI/saes3s4
+
 ## Installation :
 
 ```bash
