@@ -1,5 +1,7 @@
 # SAE_S3S4
 
+Pour les professeurs: lisez le rendu.md dans `rendus/`
+
 ## Installation
 
 Supprimer le dossier `node_modules` et le fichier `package-lock.json` si ils existent.
@@ -41,3 +43,5 @@ PG_PASSWORD=XXXX
 10/10/2022
 
 - mise en place des intéractions avec la base de données PostgreSQL
+
+Non actualisé depuis le 10/10/2022

@@ -10,7 +10,7 @@ Voici le lien du Trello de ce projet : https://trello.com/b/WsLns1zI/saes3s4
 npm i
 ```
 
-Veuilliez créer un fichier `.env` à la racine du projet et y ajouter les variables d'environnement suivantes :
+Veuillez créer un fichier `.env` à la racine du projet et y ajouter les variables d'environnement suivantes :
 
 ```
 PORT=3000
@@ -39,5 +39,5 @@ ou avec nodemon :
 npm run start:dev
 ```
 
-Les répertoires rendus/MCD_MR, rendus/MAQUETTES et rendus/STORY contiennent tous un fichier .md nécéssaire à leurs compréhension.
+Les répertoires `rendus/MCD_MR`, `rendus/MAQUETTES` et `rendus/STORY` contiennent tous un fichier `.md` nécéssaire à leurs compréhension.
 
