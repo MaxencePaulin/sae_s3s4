@@ -8,7 +8,7 @@ Pour plus de facilité vous pouvez télécharger le fichier looping .loo ici :
 
 Voici à quoi ressemble notre MCD :
 
-![MCD](./sources/MCD.png)
+![mcd](./sources/mcd.png)
 
 Et voici notre MLD avec en dessous notre MR :
 
