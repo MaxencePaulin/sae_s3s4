@@ -1,6 +1,29 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import UserGoogle from "../models/UserGoogle.model";
+var GoogleStrategy =require('passport-google-oauth20')
+const tokengoogle = require("./tokengoogle.json")
 dotenv.config();
+
+
+passport.use(new GoogleStrategy(
+    {
+    clientID:tokengoogle.web.client_id ,
+    clientSecret: tokengoogle.web.client_secret, 
+    callbackURL : "http://:3000/login"
+    },
+    async function ( accesToken , refreshToken , profil ,cb){
+
+        const [user, created ] = await UserGoogle.findOrCreate(
+            {where:{id_google : profil.id } , defaults :{
+            email : profil.email,
+            firstname : profil.firstname ,
+            lastname : profil.lastname ,
+            id_google : profil.id_google ,
+        }});
+        console.log(created)
+    }
+));
 
 export const generateTokenForUser = (user) => {
     return jwt.sign(
