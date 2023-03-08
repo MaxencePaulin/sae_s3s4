@@ -2,6 +2,7 @@ import model from '../models/index.js';
 const Prestataire = model.Prestataire;
 
 export const findAll = (req, res) => {
+    console.log("test")
     Prestataire.findAll({include: [{model: model.TypePrestataire}]}).then(data => {
         res.send(data);
     }).catch(e => {

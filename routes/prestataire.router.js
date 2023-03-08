@@ -1,9 +1,11 @@
 import express from 'express';
 import { findAll, findOne, create, update, remove, removeAll } from '../controllers/prestataire.controller.js';
+import cache from "../middleware/cache.middleware.js";
 
 const router = express.Router();
+const CACHE_TIME=100000
 
-router.get('/', findAll);
+router.get('/', cache(CACHE_TIME), findAll);
 /**
  * @swagger
  * /prestataire:
