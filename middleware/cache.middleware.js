@@ -16,10 +16,9 @@ export default duration => (req,res,next) => {
             res.originalSend = res.send;
             res.send = body => {
                 res.originalSend(body);
-                //res.cachedResponse = body;
+                res.cachedResponse = body;
                 cache.set(key, body, duration);
             }
-            //res.send("test")
             next();
         }
     }
