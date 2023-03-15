@@ -3,9 +3,8 @@ import { findAll, findOne, create, update, remove, removeAll } from '../controll
 import cache from "../middleware/cache.middleware.js";
 
 const router = express.Router();
-const CACHE_TIME=100000
 
-router.get('/', cache(CACHE_TIME), findAll);
+router.get('/', cache(100000), findAll);
 /**
  * @swagger
  * /prestataire:
