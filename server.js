@@ -41,6 +41,10 @@ import typeSceneRoutes from './routes/type_scene.router.js';
 import virtualAccountRoutes from './routes/virtual_account.router.js';
 import guestBookRoutes from './routes/guest_book.router.js';
 
+// chat Import
+import * as http from "http";
+import { Server } from "socket.io";
+
 // Database connection
 db.authenticate().then(() => {
     console.log('Connection à la base avec sequelize réussie.');
@@ -64,6 +68,67 @@ export const client = new Client({
     host: pg_host,
     database: pg_database,
     password: pg_password,
+});
+
+//Chat
+var server = http.createServer(app);
+var io = new Server(server);
+let usernames = [];
+let messages = [];
+
+// Socket Functions
+
+io.sockets.on('connection', function (socket){
+    console.log('Socket Connecté...');
+
+    socket.on('new user', function (data, callback){
+        if (usernames.indexOf(data) !== -1) {
+            console.log('1');
+            callback(false);
+        } else {
+            console.log('2');
+            callback(true);
+            socket.username = data;
+            usernames.push(socket.username);
+            updateMessages();
+            updateUsername();
+        }
+    });
+    // mettre a jour les username
+    function updateUsername() {
+        console.log('3');
+        io.sockets.emit('usernames', usernames);
+    }
+
+    // mettre a jour les messages
+    function updateMessages() {
+        console.log('4');
+        console.log(messages);
+        io.sockets.emit('messages', messages);
+    }
+
+    // Envoyer message
+    socket.on('send message', function (data){
+        console.log('5');
+        // process time
+        var processedTime = new Date(Date.now());
+        var Trimetring = processedTime.getHours() +":"+processedTime.getMinutes();
+        messages.push({msg: data, user:socket.username, time:Trimetring});
+        //updateMessages()
+        io.sockets.emit('messages', messages);
+        //io.sockets.emit('new message', {msg: data, user:socket.username, time:Trimetring});
+    });
+
+    // Deconnecter
+    socket.on('disconnet', function (data) {
+        if (!socket.username) {
+            console.log('6');
+            return;
+        }
+        console.log('7');
+        username.splice(usernames.indexOf(socket.username), 1);
+        updateUsername();
+    });
 });
 
 client.connect();
