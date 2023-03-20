@@ -2,9 +2,8 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import UserGoogle from "../models/UserGoogle.model.js";
 import GoogleStrategy from "passport-google-oauth20";
-import tokengoogle from "./tokengoogle.json" assert { type: "json" };
+//import tokengoogle from "./tokengoogle.json" assert { type: "json" };
 // var GoogleStrategy =require('passport-google-oauth20')
-// const tokengoogle = require("./tokengoogle.json")
 dotenv.config();
 
 
