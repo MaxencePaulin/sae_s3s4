@@ -71,8 +71,13 @@ export const client = new Client({
 });
 
 //Chat
-var server = http.createServer(app);
-var io = new Server(server);
+    var server = http.createServer(app);
+var io = new Server(server, {
+    cors: {
+        origin: "http://localhost:8080",
+        methods: ['GET', 'POST']
+    }
+});
 let usernames = [];
 let messages = [];
 
@@ -249,5 +254,6 @@ app.use((err, req, res, next) => {
 });
 
 db.sync().then(() => {
-    app.listen(port, console.log(`Le serveur écoute sur le port ${port}`));
+    server.listen(port, console.log(`Le serveur écoute sur le port ${port}`));
+    // app.listen(port, console.log(`Le serveur écoute sur le port ${port}`));
 }).catch(err => console.log("Error: " + err));
