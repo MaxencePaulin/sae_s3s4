@@ -52,7 +52,7 @@ db.authenticate().then(() => {
     console.error('Impossible de se connecter à la base de données: '+ err);
 });
 
-// Instantiate server
+// Instantiate serverHtttp
 const { Client } = pg;
 
 const app = express();
@@ -71,8 +71,8 @@ export const client = new Client({
 });
 
 //Chat
-    var server = http.createServer(app);
-var io = new Server(server, {
+var serverHtttp = http.createServer(app);
+var io = new Server(serverHtttp, {
     cors: {
         origin: "http://localhost:8080",
         methods: ['GET', 'POST']
@@ -203,7 +203,7 @@ const swaggerOption = {
         //     bearerAuth : []
         // }]
     }),
-    apis: ["server.js", "./routes/*.js"],
+    apis: ["serverHtttp.js", "./routes/*.js"],
 };
 const swaggerDocs = swaggerJsdoc(swaggerOption);
 
@@ -254,6 +254,6 @@ app.use((err, req, res, next) => {
 });
 
 db.sync().then(() => {
-    server.listen(port, console.log(`Le serveur écoute sur le port ${port}`));
+    serverHtttp.listen(port, console.log(`Le serveur écoute sur le port ${port}`));
     // app.listen(port, console.log(`Le serveur écoute sur le port ${port}`));
 }).catch(err => console.log("Error: " + err));
