@@ -27,7 +27,6 @@ import TypePrestataire from "./TypePrestataire.model.js";
 import TypeScene from "./TypeScene.model.js";
 import VirtualAccount from "./VirtualAccount.model.js";
 import Guest_book from "./Guest_book.models.js";
-import UserGoogle from "./UserGoogle.model.js";
 
 
 const model = {};
@@ -63,7 +62,6 @@ model.TypePrestataire = TypePrestataire;
 model.TypeScene = TypeScene;
 model.VirtualAccount = VirtualAccount;
 model.Guest_book = Guest_book;
-model.UserGoogle =UserGoogle ;
 
 // Association :
 
@@ -146,7 +144,5 @@ model.Artist.hasMany(model.Guest_book, {foreignKey: 'id_artist', onDelete: 'CASC
 model.Guest_book.belongsTo(model.Prestataire, {foreignKey: 'id_prestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 model.Prestataire.hasMany(model.Guest_book, {foreignKey: 'id_prestataire', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
-model.UserGoogle.belongsTo(model.Role, {foreignKey: 'id_role', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
-model.Role.hasMany(model.UserGoogle, {foreignKey: 'id_role', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
 
 export default model;

@@ -40,6 +40,7 @@ import typePrestataireRoutes from './routes/type_prestataire.router.js';
 import typeSceneRoutes from './routes/type_scene.router.js';
 import virtualAccountRoutes from './routes/virtual_account.router.js';
 import guestBookRoutes from './routes/guest_book.router.js';
+import googleRoutes from './routes/google.router.js';
 
 // chat Import
 import * as http from "http";
@@ -70,7 +71,7 @@ export const client = new Client({
     password: pg_password,
 });
 
-//Chat
+// =======================================Chat===============================================================================
 var serverHtttp = http.createServer(app);
 var io = new Server(serverHtttp, {
     cors: {
@@ -135,6 +136,7 @@ io.sockets.on('connection', function (socket){
         updateUsername();
     });
 });
+// =======================================Chat===============================================================================//
 
 client.connect();
 console.log(`Connecté à l'utilisateur [${pg_user}] dans la base [${pg_database}] sur le serveur [${pg_host}]`);
@@ -238,6 +240,7 @@ app.use('/typeprestataire', typePrestataireRoutes);
 app.use('/typescene', typeSceneRoutes);
 app.use('/virtualaccount', virtualAccountRoutes);
 app.use('/guest_book', guestBookRoutes);
+app.use('/gOauth', googleRoutes)
 
 app.use("*", (req, res, next) => {
     const err = new Error("Not Found");
@@ -252,6 +255,51 @@ app.use((err, req, res, next) => {
         error: err
         });
 });
+
+// ===================== Google connection ======================== JV
+
+/*  PASSPORT SETUP  */
+
+import { Passport } from 'passport'
+
+const passport = new Passport();
+
+var userProfile;
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, cb) {
+    cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+    cb(null, obj);
+});
+
+/*  Google AUTH  */
+
+import { OAuth2Strategy } from "passport-google-oauth"
+
+//const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+const GOOGLE_CLIENT_ID = '1073321622517-6bthl55on8lpgp11btg32hcsss7vbot9.apps.googleusercontent.com';
+const GOOGLE_CLIENT_SECRET = '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';
+passport.use(new OAuth2Strategy({
+        clientID: GOOGLE_CLIENT_ID,
+        clientSecret: GOOGLE_CLIENT_SECRET,
+        callbackURL: "http://localhost:3000/gOauth/auth/google/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+        userProfile=profile;
+        return done(null, userProfile);
+    }
+));
+
+
+
+// ===================== Google connection ======================== JV
 
 db.sync().then(() => {
     serverHtttp.listen(port, console.log(`Le serveur écoute sur le port ${port}`));
