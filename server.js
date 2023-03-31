@@ -76,7 +76,7 @@ var serverHtttp = http.createServer(app);
 var io = new Server(serverHtttp, {
     cors: {
         origin: "http://localhost:8080",
-        methods: ['GET', 'POST']
+        methods: ['GET', 'POST', 'DELETE', 'PUT']
     }
 });
 let usernames = [];
