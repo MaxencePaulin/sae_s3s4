@@ -297,6 +297,7 @@ passport.use(new OAuth2Strategy({
     }
 ));
 
+export { passport }
 
 
 // ===================== Google connection ======================== JV
