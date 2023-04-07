@@ -3,8 +3,8 @@ import { findAll, findOne, create, update, remove, removeAll } from '../controll
 import cache from "../middleware/cache.middleware.js";
 
 const router = express.Router();
-
-router.get('/', cache(100000), findAll);
+// cache(100000) pas totalement fonctionnel
+router.get('/', findAll);
 /**
  * @swagger
  * /prestataire:
