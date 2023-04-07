@@ -9,6 +9,8 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
+import csrf from 'csurf';
 
 // Routes v2
 import usersRoutes from './routes/_users.router.js';
@@ -174,6 +176,11 @@ app.use((req, res, next) =>{
     next();
 });
 
+// CSRF
+app.use(helmet());
+app.use(express.urlencoded({ extended: true }));
+app.use(csrf({ cookie: true }));
+
 /** Swagger Initialization - START */
 const swaggerOption = {
     swaggerDefinition: (swaggerJsdoc.Options = {
@@ -241,6 +248,17 @@ app.use('/typescene', typeSceneRoutes);
 app.use('/virtualaccount', virtualAccountRoutes);
 app.use('/guest_book', guestBookRoutes);
 app.use('/gOauth', googleRoutes)
+
+// CSRF 
+app.get('/login', (req, res) => {
+    const csrfToken = req.csrfToken();
+    res.render('form', { csrfToken });
+});
+
+app.post('/login', (req, res) => {
+    // Vérifiez le jeton CSRF ici
+    res.send('Formulaire soumis avec succès !');
+});
 
 app.use("*", (req, res, next) => {
     const err = new Error("Not Found");
