@@ -52,7 +52,7 @@ import { Server } from "socket.io";
 db.authenticate().then(() => {
     console.log('Connection à la base avec sequelize réussie.');
 }).catch((err) => {
-    console.error('Impossible de se connecter à la base de données: '+ err);
+    console.error('Impossible de se connecter à la base de données: ' + err);
 });
 
 // Instantiate serverHtttp
@@ -86,10 +86,10 @@ let messages = [];
 
 // Socket Functions
 
-io.sockets.on('connection', function (socket){
+io.sockets.on('connection', function (socket) {
     console.log('Socket Connecté...');
 
-    socket.on('new user', function (data, callback){
+    socket.on('new user', function (data, callback) {
         if (usernames.indexOf(data) !== -1) {
             console.log('1');
             callback(false);
@@ -116,12 +116,12 @@ io.sockets.on('connection', function (socket){
     }
 
     // Envoyer message
-    socket.on('send message', function (data){
+    socket.on('send message', function (data) {
         console.log('5');
         // process time
         var processedTime = new Date(Date.now());
-        var Trimetring = processedTime.getHours() +":"+processedTime.getMinutes();
-        messages.push({msg: data, user:socket.username, time:Trimetring});
+        var Trimetring = processedTime.getHours() + ":" + processedTime.getMinutes();
+        messages.push({ msg: data, user: socket.username, time: Trimetring });
         //updateMessages()
         io.sockets.emit('messages', messages);
         //io.sockets.emit('new message', {msg: data, user:socket.username, time:Trimetring});
@@ -150,7 +150,7 @@ app.use(cookieParser());
 
 app.use(session({
     secret: 'secret',
-    cookie: {maxAge: 1000 * 60 * 60 * 24}, // 1 jour
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 jour
     saveUninitialized: false,
     resave: false,
     unset: 'destroy'
@@ -165,13 +165,13 @@ app.use(cors({
 }))
 
 // middleware
-app.use((req, res, next) =>{
-    console.log("URL : "+req.path);
-    console.log("Browser: "+ 
+app.use((req, res, next) => {
+    console.log("URL : " + req.path);
+    console.log("Browser: " +
         req.headers["user-agent"]);
-    console.log("Language: "+
+    console.log("Language: " +
         req.headers["accept-language"]);
-    console.log("IP: "+
+    console.log("IP: " +
         JSON.stringify(req.ip));
     next();
 });
@@ -180,6 +180,14 @@ app.use((req, res, next) =>{
 app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(csrf({ cookie: true }));
+
+// Protection csp
+// permett de bloquer l'exécution de scripts provenant de sources externes 
+app.use(function (req, res, next) {
+    res.setHeader("Content-Security-Policy", "default-src 'self'");
+    next();
+});
+
 
 /** Swagger Initialization - START */
 const swaggerOption = {
@@ -199,12 +207,12 @@ const swaggerOption = {
             },
             servers: ["http://localhost:3000/"],
         },
-        components : {
-            securitySchemes : {
-                bearerAuth : {
-                    type : 'http',
-                    scheme : 'bearer',
-                    bearerFormat : 'JWT'
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT'
                 }
             }
         },
@@ -271,7 +279,7 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500).send({
         message: err.message,
         error: err
-        });
+    });
 });
 
 // ===================== Google connection ======================== JV
@@ -288,11 +296,11 @@ var userProfile;
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, cb) {
+passport.serializeUser(function (user, cb) {
     cb(null, user);
 });
 
-passport.deserializeUser(function(obj, cb) {
+passport.deserializeUser(function (obj, cb) {
     cb(null, obj);
 });
 
@@ -305,12 +313,12 @@ import { OAuth2Strategy } from "passport-google-oauth"
 const GOOGLE_CLIENT_ID = '1073321622517-6bthl55on8lpgp11btg32hcsss7vbot9.apps.googleusercontent.com';
 const GOOGLE_CLIENT_SECRET = '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';
 passport.use(new OAuth2Strategy({
-        clientID: GOOGLE_CLIENT_ID,
-        clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/gOauth/auth/google/callback"
-    },
-    function(accessToken, refreshToken, profile, done) {
-        userProfile=profile;
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/gOauth/auth/google/callback"
+},
+    function (accessToken, refreshToken, profile, done) {
+        userProfile = profile;
         return done(null, userProfile);
     }
 ));
