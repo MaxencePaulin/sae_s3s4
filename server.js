@@ -40,6 +40,8 @@ import typePrestataireRoutes from './routes/type_prestataire.router.js';
 import typeSceneRoutes from './routes/type_scene.router.js';
 import virtualAccountRoutes from './routes/virtual_account.router.js';
 import guestBookRoutes from './routes/guest_book.router.js';
+import discord from './routes/discord.router.js'
+import scrap from './routes/scrapper.router.js'
 
 // chat Import
 import * as http from "http";
@@ -238,8 +240,11 @@ app.use('/typeprestataire', typePrestataireRoutes);
 app.use('/typescene', typeSceneRoutes);
 app.use('/virtualaccount', virtualAccountRoutes);
 app.use('/guest_book', guestBookRoutes);
+app.use('/scrap' , scrap) ;
+app.use('/auth' , discord) ;
 
 app.use("*", (req, res, next) => {
+    console.log(req.url)
     const err = new Error("Not Found");
     err.status = 404;
     next(err);

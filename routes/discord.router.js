@@ -1,15 +1,16 @@
-import express from "express";
-import scrap from "../controllers/scrapper.controller.js";
+import express from 'express';
+import { auth } from '../controllers/discord.controller.js';
 
 const router = express.Router();
-router.get('/', scrap);
+
+router.get('/', auth);
 /**
  * @swagger
- * /scrap:
+ * /auth :
  *   get:
- *      description: Return all quotes from the scrapper
+ *      description: Routes for the discord auth 
  *      tags:
- *          - scrape routes
+ *          - auth_routes
  *      responses:
  *          '200':
  *              description: Resource added successfully
@@ -19,4 +20,4 @@ router.get('/', scrap);
  *              description: Bad request
  */
 
-export default router;
+export default router ;
