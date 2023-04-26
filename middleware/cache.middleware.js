@@ -12,7 +12,7 @@ export default duration => (req,res,next) => {
      - FALSE : lastModified will be different from ifModifiedSince Header (lastModified's Date more recent than ifModifiedSince's Date => must update cache with new resources).
      */
     // TODO change checked
-    const checked = true
+    const checked = false
     const ifModifiedSince = req.headers["if-modified-since"]
     const lastModified = checked ? ifModifiedSince : new Date()
 
