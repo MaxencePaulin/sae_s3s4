@@ -240,7 +240,6 @@ app.use('/typeprestataire', typePrestataireRoutes);
 app.use('/typescene', typeSceneRoutes);
 app.use('/virtualaccount', virtualAccountRoutes);
 app.use('/guest_book', guestBookRoutes);
-app.use('/gOauth', googleRoutes)
 
 app.use("*", (req, res, next) => {
     const err = new Error("Not Found");
@@ -299,6 +298,7 @@ passport.use(new OAuth2Strategy({
 
 export { passport }
 
+app.use('/gOauth', googleRoutes);
 
 // ===================== Google connection ======================== JV
 
